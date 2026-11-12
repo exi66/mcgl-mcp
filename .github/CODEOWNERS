@@ -1,0 +1,9 @@
+# Изменения этих файлов в PR сливаются только с одобрения владельца
+# (ruleset «Protect main» требует review от Code Owners).
+
+# Workflow: CI и публикация в npm
+/.github/        @exi66
+
+# Зависимости, версия, bin, скрипты (prepublishOnly)
+/package.json    @exi66
+/pnpm-lock.yaml  @exi66
