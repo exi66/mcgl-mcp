@@ -1,0 +1,8 @@
+services:
+  mcgl-mcp:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    # FORUM_LOGIN/FORUM_PASSWORD HTTP-режим не читает, даже если они есть в .env.
+    ports:
+      - "3000:3000"

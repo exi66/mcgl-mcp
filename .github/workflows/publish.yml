@@ -1,0 +1,46 @@
+# Публикация в npm по тегу вида v1.2.3.
+#
+# Нужен секрет NPM_TOKEN (npmjs.com → Access Tokens → Granular, право на публикацию
+# пакета mcgl-mcp). --provenance добавляет к пакету подтверждение, что он собран
+# этим workflow из этого репозитория.
+name: Publish to npm
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+  id-token: write # для --provenance
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4 # версия pnpm из packageManager в package.json
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Set version from tag
+        id: version
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          if ! [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$ ]]; then
+            echo "::error::Tag $GITHUB_REF_NAME is not a semver version (expected v1.2.3 or v1.2.3-beta.1)"
+            exit 1
+          fi
+          npm version "$VERSION" --no-git-tag-version
+          if [[ "$VERSION" == *-* ]]; then echo "dist_tag=next" >> "$GITHUB_OUTPUT"; else echo "dist_tag=latest" >> "$GITHUB_OUTPUT"; fi
+
+      # prepublishOnly внутри npm publish сам прогонит typecheck и чистую сборку.
+      - run: npm publish --provenance --access public --tag ${{ steps.version.outputs.dist_tag }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

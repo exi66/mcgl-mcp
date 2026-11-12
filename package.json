@@ -1,0 +1,67 @@
+{
+  "name": "mcgl-mcp",
+  "version": "0.0.0-dev",
+  "description": "MCP server for the Minecraft Galaxy (MCGL) game forum: read sections, topics and posts.",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "minecraft-galaxy",
+    "mcgl",
+    "forum",
+    "claude"
+  ],
+  "license": "MIT",
+  "author": "exi66",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/exi66/mcgl-mcp.git"
+  },
+  "homepage": "https://github.com/exi66/mcgl-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/exi66/mcgl-mcp/issues"
+  },
+  "type": "module",
+  "packageManager": "pnpm@9.15.9",
+  "bin": {
+    "mcgl-mcp": "dist/entry/stdio.js"
+  },
+  "files": [
+    "dist/**/*.js",
+    "!dist/dev/**",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\"",
+    "build": "pnpm clean && tsc -p tsconfig.build.json",
+    "prepublishOnly": "pnpm typecheck && pnpm test && pnpm build",
+    "dev:http": "tsx watch --env-file-if-exists=.env src/entry/http.ts",
+    "dev:stdio": "tsx --env-file-if-exists=.env src/entry/stdio.ts",
+    "start:http": "node --env-file-if-exists=.env dist/entry/http.js",
+    "start:stdio": "node dist/entry/stdio.js",
+    "inspect": "mcp-inspector node --env-file-if-exists=.env dist/entry/stdio.js",
+    "typecheck": "tsc -p tsconfig.json",
+    "check:login": "tsx --env-file-if-exists=.env src/dev/check-login.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:live": "vitest run --config vitest.live.config.ts",
+    "fixtures:update": "tsx --env-file-if-exists=.env scripts/update-fixtures.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "cheerio": "^1.2.0",
+    "express": "^5.3.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/inspector": "^2.15.0",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.6",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0"
+  }
+}
