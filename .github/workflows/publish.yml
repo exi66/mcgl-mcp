@@ -22,11 +22,12 @@ jobs:
 
       - uses: pnpm/action-setup@v4 # версия pnpm из packageManager в package.json
 
+      # Без registry-url: с ним setup-node пишет .npmrc с токеном-заглушкой в NODE_AUTH_TOKEN,
+      # npm отправляет её вместо OIDC и получает 404 на публикацию.
       - uses: actions/setup-node@v4
         with:
           node-version: 24
           cache: pnpm
-          registry-url: https://registry.npmjs.org
 
       # Trusted publishing требует npm >= 11.5.1.
       - run: npm install -g npm@^11.5.1
@@ -44,5 +45,7 @@ jobs:
           npm version "$VERSION" --no-git-tag-version
           if [[ "$VERSION" == *-* ]]; then echo "dist_tag=next" >> "$GITHUB_OUTPUT"; else echo "dist_tag=latest" >> "$GITHUB_OUTPUT"; fi
 
-      # prepublishOnly внутри npm publish сам прогонит typecheck, тесты и чистую сборку.
+      # Сборка заранее: npm проверяет bin (dist/entry/stdio.js) до запуска prepublishOnly.
+      # prepublishOnly внутри npm publish ещё раз прогонит typecheck, тесты и чистую сборку.
+      - run: pnpm build
       - run: npm publish --access public --tag ${{ steps.version.outputs.dist_tag }}
