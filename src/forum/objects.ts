@@ -19,6 +19,29 @@ export function parseObjectLiteral(raw: string): Record<string, string> | undefi
   return Object.keys(result).length ? result : undefined;
 }
 
+/**
+ * Ответ точного поиска игрока `/object/0/9?q=nick`: `[{'id':'714893','login':'pozziittiivo'}]`.
+ * Если игрока нет, форум отвечает `player$0` с id 0 — тогда undefined.
+ */
+export function parseUserExact(raw: string): { id: number; name: string } | undefined {
+  const obj = parseObjectLiteral(raw.trim().replace(/^\[/, "").replace(/\]$/, ""));
+  const id = Number(obj?.id);
+  if (!obj?.login || !Number.isInteger(id) || id <= 0) return undefined;
+  return { id, name: obj.login };
+}
+
+/**
+ * Ответ поиска по началу ника `/object/0/4?q=prefix`: строки `nick|group|id`.
+ * Пустые строки (`|guest|`) и удалённые аккаунты (`player$N`) отбрасываются.
+ */
+export function parseUserPrefix(raw: string): { id: number; name: string; group?: string }[] {
+  return raw
+    .split(/\r?\n/)
+    .map((line) => line.trim().split("|"))
+    .filter(([name, , id]) => name && !/^player\$\d+$/.test(name) && Number(id) > 0)
+    .map(([name, group, id]) => ({ id: Number(id), name, group: group || undefined }));
+}
+
 export interface ItemInfo {
   id: number;
   meta: number;

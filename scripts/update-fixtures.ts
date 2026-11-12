@@ -38,6 +38,13 @@ const GUEST_PAGES: Record<string, string> = {
   "object-item-41.txt": "/object/41/2",
   "object-item-35-14.txt": "/object/35/2?d=14",
   "object-item-missing.txt": "/object/999999/2",
+  // Темы игрока XBocT (id 20304): /forum/-(id+1), две страницы
+  "user-topics-20304-p1.html": "/forum/-20305/0",
+  "user-topics-20304-p2.html": "/forum/-20305/1",
+  // Поиск игрока: точный ник, неизвестный ник, начало ника
+  "user-exact-xbost.txt": "/object/0/9?q=XBocT",
+  "user-exact-missing.txt": "/object/0/9?q=nonexistent_zz91",
+  "user-prefix-xbo.txt": "/object/0/4?q=XBo",
 };
 
 const env = loadForumEnv();

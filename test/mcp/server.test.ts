@@ -15,6 +15,13 @@ const PAGES: Record<string, string> = {
   "/forum/9/0": "section-missing.html",
   "/topic/134087/0": "topic-134087.html",
   "/post/2120899": "post-2120899.html",
+  "/object/0/9?q=XBocT": "user-exact-xbost.txt",
+  "/object/0/9?q=xbost": "user-exact-xbost.txt",
+  "/object/0/9?q=Nobody": "user-exact-missing.txt",
+  "/object/0/4?q=Nobody": "user-prefix-xbo.txt",
+  "/object/0/4?q=XBo": "user-prefix-xbo.txt",
+  "/forum/-20305/0": "user-topics-20304-p1.html",
+  "/forum/-20305/1": "user-topics-20304-p2.html",
 };
 
 async function connect() {
@@ -40,11 +47,13 @@ describe("MCP server", () => {
     const { client } = await connect();
     const { tools } = await client.listTools();
     expect(tools.map((t) => t.name).sort()).toEqual([
+      "forum_find_users",
       "forum_get_post",
       "forum_get_topic",
       "forum_latest_topics",
       "forum_list_sections",
       "forum_list_topics",
+      "forum_user_topics",
     ]);
     expect(tools.every((t) => t.annotations?.readOnlyHint)).toBe(true);
     // Описания на английском (экономия токенов).
@@ -86,5 +95,48 @@ describe("MCP server", () => {
     const { client } = await connect();
     const result = await call(client, "forum_list_topics", { sectionId: 42 });
     expect(result.isError).toBe(true);
+  });
+});
+
+describe("player tools", () => {
+  test("forum_user_topics by nick: resolves the id, then reads /forum/-(id+1)", async () => {
+    const { client, forum } = await connect();
+    const result = await call(client, "forum_user_topics", { nick: "XBocT" });
+    expect(result.isError).toBe(false);
+    const data = result.json();
+    expect(data.user).toEqual({ id: 20304, name: "XBocT" });
+    expect(data.totalPages).toBe(2);
+    expect(data.topics.length).toBeGreaterThan(0);
+    expect(
+      data.topics.every((t: { created?: { author?: { name: string } } }) => t.created?.author?.name === "XBocT"),
+    ).toBe(true);
+    expect(forum.requests.map((r) => r.path)).toEqual(["/object/0/9?q=XBocT", "/forum/-20305/0"]);
+  });
+
+  test("forum_user_topics by userId and page: no nick lookup", async () => {
+    const { client, forum } = await connect();
+    const data = (await call(client, "forum_user_topics", { userId: 20304, page: 2 })).json();
+    expect(data.page).toBe(2);
+    expect(data.topics.length).toBeGreaterThan(0);
+    expect(forum.requests.map((r) => r.path)).toEqual(["/forum/-20305/1"]);
+  });
+
+  test("unknown nick: error with similar nicks", async () => {
+    const { client } = await connect();
+    const result = await call(client, "forum_user_topics", { nick: "Nobody" });
+    expect(result.isError).toBe(true);
+    expect(result.text).toMatch(/Player "Nobody" not found\. Nicks starting with "Nobody": XBocT, /);
+  });
+
+  test("neither nick nor userId: error", async () => {
+    const { client } = await connect();
+    expect((await call(client, "forum_user_topics", {})).isError).toBe(true);
+  });
+
+  test("forum_find_users by nick prefix", async () => {
+    const { client } = await connect();
+    const users = (await call(client, "forum_find_users", { prefix: "XBo", limit: 2 })).json();
+    expect(users).toHaveLength(2);
+    expect(users[0]).toEqual({ id: 20304, name: "XBocT", group: "platinum" });
   });
 });

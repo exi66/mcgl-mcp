@@ -1,11 +1,11 @@
 import { ForumError } from "./errors.js";
 import type { ForumHttp, ForumPage } from "./http.js";
-import { ItemResolver } from "./objects.js";
+import { ItemResolver, parseUserExact, parseUserPrefix } from "./objects.js";
 import { parseSections, parseTopicList } from "./parsers/topic-list.js";
 import { parsePostPage, parseTopicPage } from "./parsers/topic.js";
 import type { PlayerSession } from "./player-session.js";
 import { site } from "./site.js";
-import type { Post, PostView, Section, TopicList, TopicPage, TopicView } from "./types.js";
+import type { Post, PostView, Section, TopicList, TopicPage, TopicView, UserTopicList } from "./types.js";
 
 export const DEFAULT_PAGE_SIZE = 15;
 
@@ -67,6 +67,42 @@ export class ForumReader {
 
   async sectionTopics(sectionId: number, page = 1): Promise<TopicList> {
     return this.rememberPages(parseTopicList(await this.get(site.section(sectionId, page)), page));
+  }
+
+  /** Игроки, чей ник начинается с prefix (без учёта регистра). */
+  async findUsers(prefix: string, limit = 20): Promise<{ id: number; name: string; group?: string }[]> {
+    return parseUserPrefix((await this.http.get(site.userPrefix(prefix))).html).slice(0, limit);
+  }
+
+  /** Темы, созданные игроком. Игрок задаётся id или точным ником (регистр не важен). */
+  async userTopics(user: { id?: number; nick?: string }, page = 1): Promise<UserTopicList> {
+    let id = user.id;
+    if (id === undefined) {
+      const nick = user.nick?.trim() ?? "";
+      const found = nick ? parseUserExact((await this.http.get(site.userExact(nick))).html) : undefined;
+      if (!found) {
+        // Подсказки: ники с тем же началом; при опечатке в середине — по первым 4 буквам.
+        let prefix = nick;
+        let similar = nick ? await this.findUsers(nick, 10) : [];
+        if (similar.length === 0 && nick.length > 4) {
+          prefix = nick.slice(0, 4);
+          similar = await this.findUsers(prefix, 10);
+        }
+        throw new ForumError(
+          `Player "${nick}" not found.` +
+            (similar.length ? ` Nicks starting with "${prefix}": ${similar.map((u) => u.name).join(", ")}` : ""),
+        );
+      }
+      id = found.id;
+    }
+
+    const list = parseTopicList(await this.get(site.userTopics(id, page)), page);
+    if (list.topics.length === 0 && page > 1) {
+      throw new ForumError(`Player ${id} has fewer than ${page} pages of topics`);
+    }
+    // Заголовок страницы: «Темы пользователя <ник>».
+    const name = list.title?.replace(/^Темы пользователя\s+/, "") ?? user.nick ?? String(id);
+    return { ...this.rememberPages(list), user: { id, name } };
   }
 
   /** page — от начала темы (с 1); без него — последние pageSize постов. */

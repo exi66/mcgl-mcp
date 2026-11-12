@@ -13,7 +13,7 @@ const page = z.number().int().positive().default(1).describe("1-based page numbe
 const TOPIC_ROW_FIELDS =
   "Topic fields: pinned; closed (title struck through on the forum, no replies allowed); " +
   "whoCanReply: all | vip | premium_platinum | moderators (only visible in topic lists, not on the topic page); " +
-  "pages (topic page count); created/last: author and time." +
+  "pages (topic page count); created/last: author and time; author.group is the player's privilege (paid or staff role, e.g. vip, platinum, admin); 'girls' is only a nick color anyone can pick, not gender." +
   FLAGS_NOTE;
 
 export const listSections = definePublicTool({
@@ -60,7 +60,7 @@ export const getTopic = definePublicTool({
     "is ceil(N/pageSize). Post numbers (#N) are continuous. Returns title, section, totalPages, totalPosts, " +
     "posts (number, id, author, postedAt, text, rating; deleted posts are {deleted:true}). The latest view and " +
     "page 1 also include poll (if any), notices (e.g. 'moved from section') and current readers. " +
-    "author.accountDeleted: account removed or banned. " +
+    "author.accountDeleted: account removed or banned; author.group is the player's privilege (paid or staff role, e.g. vip, platinum, admin); 'girls' is only a nick color anyone can pick, not gender. " +
     "Post text markup: [quote: nick]..[/quote], [spoiler: title]..[/spoiler], [image: url], [video: url], " +
     "[audio: url], [Item name #id] or [item #id] (#id:meta for variants), [craft] grid of item ids with a legend." +
     FLAGS_NOTE,

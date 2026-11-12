@@ -22,6 +22,12 @@ export const site = {
   topic: (topicId: number, page: number) => `/topic/${topicId}/${page - 1}`,
   /** Отдельный пост. */
   post: (postId: number) => `/post/${postId}`,
+  /** Темы игрока. В URL id игрока + 1 со знаком минус: игрок 714893 → /forum/-714894. */
+  userTopics: (userId: number, page: number) => `/forum/-${userId + 1}/${page - 1}`,
+  /** Точный поиск игрока по нику (без учёта регистра): [{'id':'714893','login':'nick'}], нет такого → player$0. */
+  userExact: (nick: string) => `/object/0/9?q=${encodeURIComponent(nick)}`,
+  /** Поиск игроков по началу ника: строки "nick|group|id". */
+  userPrefix: (prefix: string) => `/object/0/4?q=${encodeURIComponent(prefix)}`,
 
   /** Страница с формой логина: из неё берутся скрытые поля (form, ref, fcode, recap). */
   loginPage: () => "/guilogin/",

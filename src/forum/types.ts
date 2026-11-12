@@ -1,7 +1,11 @@
 export interface UserRef {
   name: string;
   id?: number;
-  /** Группа игрока из CSS-класса ника: vip, platinum, premium, girls, eventmoder, system, guest… */
+  /**
+   * Привилегия игрока из CSS-класса ника: покупная (vip, premium, platinum…) или
+   * системная (eventmoder, system…); guest — без привилегий. "girls" — просто цвет
+   * ника, его может выбрать любой, к полу отношения не имеет.
+   */
   group?: string;
 }
 
@@ -49,6 +53,11 @@ export interface TopicList {
   page: number;
   totalPages: number;
   topics: TopicRow[];
+}
+
+/** Темы, созданные игроком (/forum/-{id+1}). */
+export interface UserTopicList extends TopicList {
+  user: { id: number; name: string };
 }
 
 export interface PostAuthor extends UserRef {

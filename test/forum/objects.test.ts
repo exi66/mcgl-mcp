@@ -1,5 +1,12 @@
 import { describe, expect, test } from "vitest";
-import { ItemResolver, itemToken, legendToken, parseObjectLiteral } from "../../src/forum/objects.js";
+import {
+  ItemResolver,
+  itemToken,
+  legendToken,
+  parseObjectLiteral,
+  parseUserExact,
+  parseUserPrefix,
+} from "../../src/forum/objects.js";
 import { startFakeForum } from "../helpers/fake-forum.js";
 import { fixture } from "../helpers/fixtures.js";
 
@@ -57,5 +64,20 @@ describe("ItemResolver", () => {
     expect((await resolver.resolve([text]))[0]).toBe("[Золотой блок #41] [item #1]");
     expect((await resolver.resolve([text]))[0]).toBe("[Золотой блок #41] [Камень #1]");
     expect(forum.requests).toHaveLength(2);
+  });
+});
+
+describe("player lookup responses", () => {
+  test("exact nick → id; unknown nick → undefined (forum answers player$0)", () => {
+    expect(parseUserExact(fixture("user-exact-xbost.txt"))).toEqual({ id: 20304, name: "XBocT" });
+    expect(parseUserExact(fixture("user-exact-missing.txt"))).toBeUndefined();
+    expect(parseUserExact("")).toBeUndefined();
+  });
+
+  test("nick prefix → players, without empty rows and deleted accounts", () => {
+    const users = parseUserPrefix(fixture("user-prefix-xbo.txt"));
+    expect(users[0]).toEqual({ id: 20304, name: "XBocT", group: "platinum" });
+    expect(users.every((u) => u.name && u.id > 0 && !u.name.startsWith("player$"))).toBe(true);
+    expect(parseUserPrefix("")).toEqual([]);
   });
 });
