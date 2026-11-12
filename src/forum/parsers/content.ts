@@ -27,7 +27,10 @@ export function postHtmlToText($: Doc, el: Node): string {
   node.find(".bc_quote").each((_, block) => {
     const b = $(block);
     const title = b.children(".bc_quote_title").first();
-    const who = title.text().replace(/\s*писал\(а\):\s*$/, "").trim();
+    const who = title
+      .text()
+      .replace(/\s*писал\(а\):\s*$/, "")
+      .trim();
     title.remove();
     b.prepend(`\n[quote${who ? `: ${who}` : ""}]\n`).append("\n[/quote]\n");
     b.replaceWith(b.contents());

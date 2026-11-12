@@ -10,14 +10,12 @@ function render(html: string): string {
 
 describe("postHtmlToText (bbCode → text)", () => {
   test("line breaks and whitespace", () => {
-    expect(render("first line<br/>  second   line<br/><br/><br/><br/>third")).toBe(
-      "first line\nsecond line\n\nthird",
-    );
+    expect(render("first line<br/>  second   line<br/><br/><br/><br/>third")).toBe("first line\nsecond line\n\nthird");
   });
 
   test("[quote] with and without author", () => {
     const html =
-      '<div class=bc_quote><div class=bc_quote_title>Nick</b> писал(а):</div>quoted text</div>my reply' +
+      "<div class=bc_quote><div class=bc_quote_title>Nick</b> писал(а):</div>quoted text</div>my reply" +
       "<div class=bc_quote>anonymous quote</div>";
     expect(render(html)).toBe("[quote: Nick]\nquoted text\n[/quote]\nmy reply\n[quote]\nanonymous quote\n[/quote]");
   });

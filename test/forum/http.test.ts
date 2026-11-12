@@ -66,7 +66,9 @@ describe("ForumHttp", () => {
   });
 
   test("encodes forms as UTF-8 urlencoded (cyrillic, &, +)", async () => {
-    const forum = await startFakeForum((req) => (req.method === "POST" ? { body: `got: ${req.form.text}` } : undefined));
+    const forum = await startFakeForum((req) =>
+      req.method === "POST" ? { body: `got: ${req.form.text}` } : undefined,
+    );
     const result = await forum.http().postForm("/post", { text: "Привет & пока + ещё" });
     expect(result.html).toBe("got: Привет & пока + ещё");
   });
@@ -79,7 +81,6 @@ describe("ForumHttp", () => {
     expect(req.headers["user-agent"]).toMatch(/mcgl-mcp/);
     expect(req.form).toEqual({ a: "1" });
   });
-
 
   test("stops on redirect loops", async () => {
     const forum = await startFakeForum(() => ({ status: 302, headers: { location: "/loop" } }));
@@ -108,7 +109,9 @@ describe("ForumHttp retries", () => {
 
   test("network errors (nobody listening) are retried and become ForumError", async () => {
     const forum = await startFakeForum(() => undefined);
-    const dead = new ForumHttp({ ...forum.env, baseUrl: "http://127.0.0.1:9" }, new RateLimiter(0), { retryDelaysMs: [1, 1] });
+    const dead = new ForumHttp({ ...forum.env, baseUrl: "http://127.0.0.1:9" }, new RateLimiter(0), {
+      retryDelaysMs: [1, 1],
+    });
     await expect(dead.get("/main/")).rejects.toBeInstanceOf(ForumError);
   });
 

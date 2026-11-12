@@ -33,7 +33,10 @@ describe("ItemResolver", () => {
     const forum = await fakeItems();
     const resolver = new ItemResolver(forum.http());
     const [text] = await resolver.resolve([
-      `${itemToken(41, 0)}, ${itemToken(35, 14)}, ${itemToken(999, 0)}\n${legendToken([[1, 0], [124, 0]])}`,
+      `${itemToken(41, 0)}, ${itemToken(35, 14)}, ${itemToken(999, 0)}\n${legendToken([
+        [1, 0],
+        [124, 0],
+      ])}`,
     ]);
     expect(text).toBe("[Золотой блок #41], [Красная шерсть #35:14], [item #999]\n1 = Камень\n124 = Ажурный камень");
   });

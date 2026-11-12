@@ -1,4 +1,4 @@
-# Проверки на каждый push в main и на pull request: типы, тесты, сборка, состав пакета.
+# Проверки на каждый push в main и на pull request: формат, типы, тесты, сборка, состав пакета.
 # Живые тесты на настоящем форуме (pnpm test:live) здесь не запускаются.
 name: CI
 
@@ -24,6 +24,7 @@ jobs:
           cache: pnpm
 
       - run: pnpm install --frozen-lockfile
+      - run: pnpm format:check
       - run: pnpm typecheck
       - run: pnpm test
       - run: pnpm build

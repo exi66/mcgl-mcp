@@ -114,7 +114,9 @@ export class ForumReader {
       from = Math.max(1, totalPosts - pageSize + 1);
     } else {
       if (page > totalPages) {
-        throw new ForumError(`Topic ${topicId} has only ${totalPages} page(s) of ${pageSize} posts (${totalPosts} posts)`);
+        throw new ForumError(
+          `Topic ${topicId} has only ${totalPages} page(s) of ${pageSize} posts (${totalPosts} posts)`,
+        );
       }
       from = (page - 1) * pageSize + 1;
       to = page * pageSize;

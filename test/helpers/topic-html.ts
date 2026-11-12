@@ -9,7 +9,13 @@ export interface SynthPost {
   text?: string;
 }
 
-export function topicHtml(opts: { title?: string; posts: SynthPost[]; page: number; totalPages: number; poll?: boolean }) {
+export function topicHtml(opts: {
+  title?: string;
+  posts: SynthPost[];
+  page: number;
+  totalPages: number;
+  poll?: boolean;
+}) {
   const { title = "Synthetic topic", posts, page, totalPages } = opts;
   const pages = Array.from({ length: totalPages }, (_, i) =>
     i + 1 === page ? `<span class="current">${i + 1}</span>` : `<a href="/topic/1/${i}">${i + 1}</a>`,
@@ -46,7 +52,11 @@ export function topicHtml(opts: { title?: string; posts: SynthPost[]; page: numb
  * Обработчик фейкового форума для темы из `total` постов при `forumPageSize`
  * постов на странице форума. `pageSize()` можно поменять на лету.
  */
-export function syntheticTopic(initialTotal: number, initialForumPageSize: number, opts: { deleted?: number[]; poll?: boolean } = {}) {
+export function syntheticTopic(
+  initialTotal: number,
+  initialForumPageSize: number,
+  opts: { deleted?: number[]; poll?: boolean } = {},
+) {
   let size = initialForumPageSize;
   let total = initialTotal;
   const all: SynthPost[] = Array.from({ length: 1000 }, (_, i) => ({
@@ -64,7 +74,12 @@ export function syntheticTopic(initialTotal: number, initialForumPageSize: numbe
       if (topic) {
         const page = Number(topic[1]) + 1;
         const totalPages = Math.max(1, Math.ceil(total / size));
-        return topicHtml({ posts: all.slice(0, total).slice((page - 1) * size, page * size), page, totalPages, poll: opts.poll });
+        return topicHtml({
+          posts: all.slice(0, total).slice((page - 1) * size, page * size),
+          page,
+          totalPages,
+          poll: opts.poll,
+        });
       }
       const post = /^\/post\/(\d+)$/.exec(path);
       if (post) {

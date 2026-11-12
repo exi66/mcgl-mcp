@@ -96,7 +96,9 @@ export class ForumHttp {
       } catch (error) {
         const delay = this.retryDelaysMs[attempt];
         if (!(error instanceof RetryableError) || delay === undefined) throw error;
-        logger.warn(`GET ${path} failed (${error.message}), retry ${attempt + 1}/${this.retryDelaysMs.length} in ${delay}ms`);
+        logger.warn(
+          `GET ${path} failed (${error.message}), retry ${attempt + 1}/${this.retryDelaysMs.length} in ${delay}ms`,
+        );
         await new Promise((r) => setTimeout(r, delay));
       }
     }
@@ -120,7 +122,9 @@ export class ForumHttp {
       }
 
       const html = decode(await res.arrayBuffer(), res.headers.get("content-type"));
-      logger.debug(`${current.method} ${url} -> ${res.status}${hop ? ` (after ${hop} redirect(s) from ${init.method} ${path})` : ""}`);
+      logger.debug(
+        `${current.method} ${url} -> ${res.status}${hop ? ` (after ${hop} redirect(s) from ${init.method} ${path})` : ""}`,
+      );
 
       if (res.status >= 500) {
         throw new RetryableError(`Forum returned HTTP ${res.status} for ${url}`);
@@ -147,7 +151,9 @@ export class ForumHttp {
       });
     } catch (error) {
       const timeout = error instanceof DOMException && error.name === "TimeoutError";
-      throw new RetryableError(timeout ? `Forum timed out: ${url}` : `Request to forum failed: ${url}`, { cause: error });
+      throw new RetryableError(timeout ? `Forum timed out: ${url}` : `Request to forum failed: ${url}`, {
+        cause: error,
+      });
     }
   }
 }

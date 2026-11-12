@@ -13,7 +13,8 @@ const page = z.number().int().positive().default(1).describe("1-based page numbe
 const TOPIC_ROW_FIELDS =
   "Topic fields: pinned; closed (title struck through on the forum, no replies allowed); " +
   "whoCanReply: all | vip | premium_platinum | moderators (only visible in topic lists, not on the topic page); " +
-  "pages (topic page count); created/last: author and time." + FLAGS_NOTE;
+  "pages (topic page count); created/last: author and time." +
+  FLAGS_NOTE;
 
 export const listSections = definePublicTool({
   name: "forum_list_sections",
@@ -30,8 +31,7 @@ export const latestTopics = definePublicTool({
   name: "forum_latest_topics",
   title: "Latest topics",
   description:
-    "Recently active topics across all sections, newest first; each row includes its section name. " +
-    TOPIC_ROW_FIELDS,
+    "Recently active topics across all sections, newest first; each row includes its section name. " + TOPIC_ROW_FIELDS,
   inputSchema: { page },
   annotations: readOnly,
   handler: async ({ page }, { reader }) => jsonResult(await reader.latestTopics(page)),
@@ -62,10 +62,16 @@ export const getTopic = definePublicTool({
     "page 1 also include poll (if any), notices (e.g. 'moved from section') and current readers. " +
     "author.accountDeleted: account removed or banned. " +
     "Post text markup: [quote: nick]..[/quote], [spoiler: title]..[/spoiler], [image: url], [video: url], " +
-    "[audio: url], [Item name #id] or [item #id] (#id:meta for variants), [craft] grid of item ids with a legend." + FLAGS_NOTE,
+    "[audio: url], [Item name #id] or [item #id] (#id:meta for variants), [craft] grid of item ids with a legend." +
+    FLAGS_NOTE,
   inputSchema: {
     topicId: z.number().int().positive(),
-    page: z.number().int().positive().optional().describe("1-based page from the topic start; omit for the newest posts"),
+    page: z
+      .number()
+      .int()
+      .positive()
+      .optional()
+      .describe("1-based page from the topic start; omit for the newest posts"),
     pageSize: z.number().int().min(1).max(50).default(DEFAULT_PAGE_SIZE).describe("Posts per page"),
   },
   annotations: readOnly,

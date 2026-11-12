@@ -58,7 +58,8 @@ export class ForumHealth {
     this.failures++;
     this.probing = false;
     if (this.failures >= this.threshold) {
-      if (this.failures === this.threshold) logger.warn(`Forum looks down, pausing requests for ${this.cooldownMs / 1000}s`);
+      if (this.failures === this.threshold)
+        logger.warn(`Forum looks down, pausing requests for ${this.cooldownMs / 1000}s`);
       this.openUntil = this.now() + this.cooldownMs;
     }
   }

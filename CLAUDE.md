@@ -3,6 +3,7 @@
 MCP-сервер для форума игры Minecraft Galaxy (https://forum.minecraft-galaxy.ru). API у форума нет: сервер ходит как браузер (HTML, формы, кука `PHPSESSID`) и парсит страницы cheerio.
 
 Документация для людей:
+
 - `README.md` — для игроков: установка, инструменты, настройки. Он же показывается на npm, поэтому держать коротким.
 - `docs/forum.md` — как сервер работает с форумом.
 - `docs/development.md` — разработка, тесты, релизы, хостинг.
@@ -12,6 +13,7 @@ MCP-сервер для форума игры Minecraft Galaxy (https://forum.mi
 ## Команды
 
 ```bash
+pnpm format           # prettier --write . (CI проверяет format:check)
 pnpm typecheck        # tsc по src, test, scripts (tsconfig.json, noEmit)
 pnpm test             # vitest, без сети
 pnpm test:live        # smoke на настоящем форуме (креды из .env необязательны)
@@ -21,7 +23,7 @@ pnpm fixtures:update  # перекачать test/fixtures с форума
 pnpm inspect          # MCP Inspector на собранный stdio-сервер
 ```
 
-Перед тем как сказать «готово»: `pnpm typecheck && pnpm test`.
+Перед тем как сказать «готово»: `pnpm format && pnpm typecheck && pnpm test`.
 
 ## Устройство
 

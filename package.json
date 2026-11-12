@@ -46,7 +46,9 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:live": "vitest run --config vitest.live.config.ts",
-    "fixtures:update": "tsx --env-file-if-exists=.env scripts/update-fixtures.ts"
+    "fixtures:update": "tsx --env-file-if-exists=.env scripts/update-fixtures.ts",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.32.2",
@@ -58,6 +60,7 @@
     "@modelcontextprotocol/inspector": "^2.15.0",
     "@types/express": "^5.0.6",
     "@types/node": "^26.6.6",
+    "prettier": "^3.10.1",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2",
     "vitest": "^5.1.0"
