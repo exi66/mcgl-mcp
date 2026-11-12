@@ -1,0 +1,62 @@
+name: Ошибка
+description: Сервер работает не так, как ожидалось
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Спасибо, что сообщаете об ошибке. Если сломалось чтение конкретной страницы форума
+        (пустые или странные данные), лучше выбрать шаблон «Форум поменял разметку».
+
+        **Не публикуйте пароль от форума**, в том числе в логах и конфиге клиента.
+  - type: input
+    id: version
+    attributes:
+      label: Версия mcgl-mcp
+      description: "Видна в логах клиента при старте или в `npm view mcgl-mcp version`"
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: client
+    attributes:
+      label: MCP-клиент
+      options:
+        - Claude Desktop
+        - Claude Code
+        - Cursor
+        - Другой (укажите ниже)
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Режим
+      options:
+        - Локальный (npx mcgl-mcp), без логина
+        - Локальный (npx mcgl-mcp), с логином игрока
+        - HTTP (публичный сервер)
+    validations:
+      required: true
+  - type: input
+    id: tool
+    attributes:
+      label: Инструмент
+      placeholder: forum_get_topic
+  - type: textarea
+    id: what
+    attributes:
+      label: Что произошло
+      description: Что вы попросили, какой был ответ или ошибка. Ссылки на темы и посты форума очень помогают.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Что ожидалось
+  - type: textarea
+    id: logs
+    attributes:
+      label: Логи
+      description: Логи MCP-сервера из клиента. Для подробностей можно задать `LOG_LEVEL=debug` в env. Пароль и куки сервер не логирует, но всё равно проверьте.
+      render: text

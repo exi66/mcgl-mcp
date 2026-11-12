@@ -1,0 +1,16 @@
+name: Предложение
+description: Новый инструмент или улучшение
+labels: [enhancement]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: Что хочется
+      description: Что должен уметь агент. Например, «читать профиль игрока» или «список сообществ».
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Зачем
+      description: Сценарий использования. Если это страница форума, приложите ссылку на пример.

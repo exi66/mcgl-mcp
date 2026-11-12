@@ -1,0 +1,32 @@
+name: Форум поменял разметку
+description: Страница форума перестала читаться или читается неправильно
+labels: [forum-markup]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        API у форума нет, сервер разбирает HTML страниц. Если форум что-то поменял в вёрстке,
+        достаточно ссылки на страницу и описания, что не так.
+  - type: input
+    id: url
+    attributes:
+      label: Ссылка на страницу форума
+      placeholder: https://forum.minecraft-galaxy.ru/topic/133931/0
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: Что не так
+      description: "Например: «пустой список постов», «нет опроса», «автор поста не тот», «ошибка Could not parse …»."
+    validations:
+      required: true
+  - type: dropdown
+    id: auth
+    attributes:
+      label: Читали под игроком?
+      description: Гостю и залогиненному игроку форум показывает разное
+      options:
+        - Нет, гостем
+        - Да, с логином игрока
+        - Не знаю
