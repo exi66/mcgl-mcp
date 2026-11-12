@@ -1,9 +1,4 @@
-# Публикация в npm по тегу вида v1.2.3.
-#
-# Trusted publishing (OIDC): токен не нужен. На npmjs.com в настройках пакета
-# mcgl-mcp заведён Trusted Publisher: GitHub Actions, exi66/mcgl-mcp, publish.yml,
-# разрешён `npm publish`. npm проверяет, что публикует именно этот workflow,
-# и сам добавляет provenance (подтверждение, из какого репозитория собран пакет).
+# Публикация в npm
 name: Publish to npm
 
 on:
@@ -22,8 +17,6 @@ jobs:
 
       - uses: pnpm/action-setup@v4 # версия pnpm из packageManager в package.json
 
-      # Без registry-url: с ним setup-node пишет .npmrc с токеном-заглушкой в NODE_AUTH_TOKEN,
-      # npm отправляет её вместо OIDC и получает 404 на публикацию.
       - uses: actions/setup-node@v4
         with:
           node-version: 24

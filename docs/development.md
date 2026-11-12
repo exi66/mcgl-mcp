@@ -84,6 +84,7 @@ pnpm fixtures:update   # перекачать страницы форума в t
   - **Перед публикацией** `prepublishOnly` прогоняет typecheck, тесты и сборку.
   - **Без токена.** Публикация идёт через trusted publishing (OIDC). На npmjs.com в настройках пакета заведён Trusted Publisher: GitHub Actions, `exi66/mcgl-mcp`, `publish.yml`, разрешён `npm publish`. npm сам проверяет, что публикует этот workflow, и добавляет provenance. Секретов в репозитории нет.
   - **Если переименовать `publish.yml`** или перенести репозиторий, Trusted Publisher на npmjs.com нужно пересоздать.
+  - **Не добавлять `registry-url` в `actions/setup-node`.** С ним setup-node подставляет в `.npmrc` токен-заглушку, npm отправляет её вместо OIDC и получает 404 на публикацию.
 
 Что попадёт в пакет: `npm pack --dry-run`. Идут только `dist/**/*.js` (без `dist/dev`), README и LICENSE.
 
