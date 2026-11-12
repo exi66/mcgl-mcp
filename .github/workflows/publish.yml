@@ -1,8 +1,9 @@
 # Публикация в npm по тегу вида v1.2.3.
 #
-# Нужен секрет NPM_TOKEN (npmjs.com → Access Tokens → Granular, право на публикацию
-# пакета mcgl-mcp). --provenance добавляет к пакету подтверждение, что он собран
-# этим workflow из этого репозитория.
+# Trusted publishing (OIDC): токен не нужен. На npmjs.com в настройках пакета
+# mcgl-mcp заведён Trusted Publisher: GitHub Actions, exi66/mcgl-mcp, publish.yml,
+# разрешён `npm publish`. npm проверяет, что публикует именно этот workflow,
+# и сам добавляет provenance (подтверждение, из какого репозитория собран пакет).
 name: Publish to npm
 
 on:
@@ -11,7 +12,7 @@ on:
 
 permissions:
   contents: read
-  id-token: write # для --provenance
+  id-token: write # OIDC-токен для trusted publishing
 
 jobs:
   publish:
@@ -27,6 +28,9 @@ jobs:
           cache: pnpm
           registry-url: https://registry.npmjs.org
 
+      # Trusted publishing требует npm >= 11.5.1.
+      - run: npm install -g npm@^11.5.1
+
       - run: pnpm install --frozen-lockfile
 
       - name: Set version from tag
@@ -40,7 +44,5 @@ jobs:
           npm version "$VERSION" --no-git-tag-version
           if [[ "$VERSION" == *-* ]]; then echo "dist_tag=next" >> "$GITHUB_OUTPUT"; else echo "dist_tag=latest" >> "$GITHUB_OUTPUT"; fi
 
-      # prepublishOnly внутри npm publish сам прогонит typecheck и чистую сборку.
-      - run: npm publish --provenance --access public --tag ${{ steps.version.outputs.dist_tag }}
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # prepublishOnly внутри npm publish сам прогонит typecheck, тесты и чистую сборку.
+      - run: npm publish --access public --tag ${{ steps.version.outputs.dist_tag }}

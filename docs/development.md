@@ -81,9 +81,9 @@ pnpm fixtures:update   # перекачать страницы форума в t
 
   - **Версия берётся из тега.** В `package.json` лежит заглушка `0.0.0-dev`, менять её руками не нужно.
   - **Пререлизы** (`v1.0.0-beta.1`) публикуются с dist-tag `next`, поэтому `npx mcgl-mcp` по-прежнему ставит последнюю стабильную версию.
-  - **Перед публикацией** `prepublishOnly` прогоняет typecheck, тесты и сборку. Пакет подписывается `--provenance`.
-  - **Подтверждение.** Публикация идёт через staged publishing: новую версию нужно подтвердить на npmjs.com, после этого она становится `latest`.
-  - **Токен.** Нужен секрет `NPM_TOKEN` (Granular access token с правом публикации). Срок у таких токенов ограничен, поэтому его нужно периодически перевыпускать.
+  - **Перед публикацией** `prepublishOnly` прогоняет typecheck, тесты и сборку.
+  - **Без токена.** Публикация идёт через trusted publishing (OIDC). На npmjs.com в настройках пакета заведён Trusted Publisher: GitHub Actions, `exi66/mcgl-mcp`, `publish.yml`, разрешён `npm publish`. npm сам проверяет, что публикует этот workflow, и добавляет provenance. Секретов в репозитории нет.
+  - **Если переименовать `publish.yml`** или перенести репозиторий, Trusted Publisher на npmjs.com нужно пересоздать.
 
 Что попадёт в пакет: `npm pack --dry-run`. Идут только `dist/**/*.js` (без `dist/dev`), README и LICENSE.
 
