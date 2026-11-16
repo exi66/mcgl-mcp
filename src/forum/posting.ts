@@ -61,10 +61,11 @@ export class Poster {
     private readonly reader: ForumReader,
   ) {}
 
-  /** Ответ в тему. kind "hpost" — тема сообщества. */
+  /** Ответ в тему. kind "hpost" — тема сообщества, "pm" — личная переписка. */
   async reply(kind: TopicKind, topicId: number, message: string) {
-    const path = kind === "hpost" ? site.communityTopic(topicId, 1) : site.topic(topicId, 1);
-    const submit = kind === "hpost" ? `/hpost/${topicId}` : `/topic/${topicId}`;
+    const prefix = kind === "hpost" ? "hpost" : kind === "pm" ? "privatetopic" : "topic";
+    const path = `/${prefix}/${topicId}/0`;
+    const submit = `/${prefix}/${topicId}`;
 
     return this.session.withAuth(async () => {
       const form = this.formOrThrow((await this.session.getAuthed(path)).html, "this topic");
@@ -91,8 +92,10 @@ export class Poster {
       return {
         topic: { id: topicId, title: after.title, community: after.community },
         post: { id: post.id, number: post.number },
-        // Прямая ссылка на пост: /hmessage/ID у сообществ, /post/ID в общем форуме.
-        url: this.session.http.absoluteUrl(kind === "hpost" ? `/hmessage/${post.id}` : `/post/${post.id}`),
+        // Прямая ссылка на пост: /hmessage/ID у сообществ, /post/ID в общем форуме; у ЛС — на переписку.
+        url: this.session.http.absoluteUrl(
+          kind === "hpost" ? `/hmessage/${post.id}` : kind === "pm" ? submit : `/post/${post.id}`,
+        ),
       };
     });
   }
@@ -116,6 +119,27 @@ export class Poster {
       return {
         topic: { id: Number(topicId), title: topic.title, community: topic.community, section: topic.section },
         url: this.session.http.absoluteUrl(`/hpost/${topicId}`),
+      };
+    });
+  }
+
+  /** Новое личное сообщение (новая переписка). Успех — редирект на /privatetopic/<новая>. */
+  async sendPrivateMessage(nick: string, title: string, message: string) {
+    const submit = site.privateNew();
+
+    return this.session.withAuth(async () => {
+      const form = this.formOrThrow((await this.session.getAuthed(submit)).html, "private messages");
+      const result = await this.session.http.postForm(
+        submit,
+        { ...form.fields, user: nick, title, text: message },
+        { referer: this.session.http.absoluteUrl(submit) },
+      );
+
+      const conversationId = /\/privatetopic\/(\d+)/.exec(result.url)?.[1];
+      if (!conversationId) throw this.rejected(result.html);
+      return {
+        conversation: { id: Number(conversationId), title, to: nick },
+        url: this.session.http.absoluteUrl(`/privatetopic/${conversationId}`),
       };
     });
   }

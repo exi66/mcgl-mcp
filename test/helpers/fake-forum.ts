@@ -76,7 +76,8 @@ export async function startFakeForum(handler: FakeHandler): Promise<FakeForum> {
   servers.push(server);
 
   const baseUrl = `http://127.0.0.1:${(server.address() as AddressInfo).port}`;
-  const env: ForumEnv = { baseUrl, minIntervalMs: 0, timeoutMs: 2000 };
+  // Таймаут с запасом: под нагрузкой параллельных тестов локальный сервер отвечает не мгновенно.
+  const env: ForumEnv = { baseUrl, minIntervalMs: 0, timeoutMs: 10_000 };
   return {
     baseUrl,
     requests,

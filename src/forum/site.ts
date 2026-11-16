@@ -50,6 +50,15 @@ export const site = {
    */
   screenshotGallery: (category: string, filter: number, page: number, userId?: number) =>
     `/${category}/${filter}/${page - 1}${userId ? `?u=${userId}` : ""}`,
+  /**
+   * Личные сообщения. folder: 0 входящие, 1 исходящие, 2 новые, 3 системные, 4 избранные.
+   * Страница — число в пути (/private/0 — первая).
+   */
+  privateList: (folder: number, page: number) => `/private/${page - 1}${folder ? `?t=${folder}` : ""}`,
+  /** Переписка: сообщения в разметке постов темы. */
+  privateTopic: (conversationId: number, page: number) => `/privatetopic/${conversationId}/${page - 1}`,
+  /** Сюда отправляется форма нового личного сообщения. */
+  privateNew: () => "/private/0",
   /** Детали привата (видны всем, кроме скрытых — у них нет владельца и координат). */
   zone: (zoneId: number) => `/zoneinfo/${zoneId}`,
   /** Кто прописан в привате. У скрытого привата закрыто. */

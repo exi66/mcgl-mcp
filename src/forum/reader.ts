@@ -10,6 +10,7 @@ import {
   parseZoneInfo,
   parseZoneResidents,
 } from "./parsers/profile.js";
+import { parseConversationList } from "./parsers/private.js";
 import { parseScreenshot, parseScreenshotComments, parseScreenshotGallery } from "./parsers/screenshot.js";
 import { parseSections, parseTopicList } from "./parsers/topic-list.js";
 import { communityFromNav, parsePostPage, parseTopicPage } from "./parsers/topic.js";
@@ -40,6 +41,8 @@ const TOPIC_CACHE_MAX = 30;
 /** Сколько доверяем числу страниц темы, увиденному в списке тем. */
 const PAGES_HINT_TTL_MS = 10 * 60_000;
 const PAGES_HINT_MAX = 500;
+/** Папки личных сообщений: число в ?t=. */
+export const PM_FOLDERS = { inbox: 0, outbox: 1, new: 2, system: 3, favorites: 4 } as const;
 /** Разделы галереи скриншотов. */
 export const SCREENSHOT_CATEGORIES = { game: "screens", other: "screensother", works: "screensworks" } as const;
 /** Фильтры галереи: число в URL. */
@@ -48,10 +51,11 @@ export const SCREENSHOT_FILTERS = { all: 0, best: 1, best_week: 2, discussed: 6,
 const ZONES_PAGE_SIZE = 50;
 
 /**
- * Вид темы: обычная (/topic/N) или тема сообщества (/hpost/N). id у них из
+ * Вид темы: обычная (/topic/N), тема сообщества (/hpost/N) или личная переписка
+ * (/privatetopic/N) — разметка у всех одна. id у них из
  * разных пространств, поэтому вид — часть ключа кешей.
  */
-export type TopicKind = "topic" | "hpost";
+export type TopicKind = "topic" | "hpost" | "pm";
 interface TopicRef {
   kind: TopicKind;
   id: number;
@@ -209,6 +213,11 @@ export class ForumReader {
       userId,
     );
     return parseScreenshotGallery(await this.get(path), page);
+  }
+
+  /** Список личных переписок в папке. Только под логином. */
+  async conversations(folder: keyof typeof PM_FOLDERS = "inbox", page = 1) {
+    return parseConversationList(await this.get(site.privateList(PM_FOLDERS[folder], page)), page);
   }
 
   /** Скриншот и страница комментариев к нему (названия предметов подставлены). */
@@ -406,7 +415,12 @@ export class ForumReader {
     const hit = this.topicCache.get(key);
     if (hit && Date.now() - hit.at < TOPIC_CACHE_TTL_MS) return hit.page;
 
-    const path = ref.kind === "hpost" ? site.communityTopic(ref.id, page) : site.topic(ref.id, page);
+    const path =
+      ref.kind === "hpost"
+        ? site.communityTopic(ref.id, page)
+        : ref.kind === "pm"
+          ? site.privateTopic(ref.id, page)
+          : site.topic(ref.id, page);
     const parsed = parseTopicPage(await this.get(path), ref.id, page);
     if (this.topicCache.size >= TOPIC_CACHE_MAX) {
       this.topicCache.delete(this.topicCache.keys().next().value!);

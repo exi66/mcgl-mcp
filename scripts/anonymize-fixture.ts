@@ -4,17 +4,19 @@
  * Профили и разделы профилей — данные настоящих игроков (баны, заходы,
  * оценки), поэтому в репозиторий они попадают только обезличенными: каждый
  * ник со ссылкой на профиль становится PlayerN, его id — 9000000+N (во всех
- * ссылках: /profilemain/ID, /zones/ID, ?to=ID…). Служебный GalaxyEvent и
- * тестовый Capri остаются как есть. Одноразовые токены `_h` заменяются на `token`.
+ * ссылках: /profilemain/ID, /zones/ID, ?to=ID, showtip(1, ID…) и /forum/-(ID+1)).
+ * id меняются только внутри ссылок, а не во всём тексте: иначе короткий id
+ * (у system — 4) испортил бы любые числа на странице. Служебные system,
+ * GalaxyEvent и тестовый Capri остаются как есть. Токены `_h` → `token`.
  */
 import { readFileSync, writeFileSync } from "node:fs";
 
-const KEEP = new Set(["618942", "714940"]); // GalaxyEvent, Capri
+const KEEP = new Set(["4", "618942", "714940"]); // system, GalaxyEvent, Capri
 
 const [input, output] = process.argv.slice(2);
 let html = readFileSync(input, "utf8");
 
-const KEEP_NAMES = new Set(["GalaxyEvent", "Capri"]);
+const KEEP_NAMES = new Set(["system", "GalaxyEvent", "Capri"]);
 const names = new Map<string, string>();
 const ids = new Map<string, string>();
 const addId = (id: string) => {
@@ -38,13 +40,29 @@ for (const [, id] of html.matchAll(/\/(?:profilemain|userkarma|zones|userscreens
   if (id) addId(id);
 }
 for (const [, id] of html.matchAll(/[?&]to=(\d+)/g)) addId(id);
+// Владелец профиля: <div class='user-profile-id' id='ID'>; автор в галерее: show_screen("ID", …).
+for (const [, id] of html.matchAll(/user-profile-id['"]\s+id=['"](\d+)['"]/g)) addId(id);
+for (const [, id] of html.matchAll(/show_screen\("(\d+)"/g)) addId(id);
+// «Лучшие авторы» в галерее: <a href="/screens/0?u=ID">ник</a>.
+for (const [, id, name] of html.matchAll(/href=["']\/screens\/\d+\?u=(\d+)["'][^>]*>([^<]+)</g)) {
+  addId(id);
+  addName(name);
+}
 
 const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 // Длинные ники первыми, чтобы "Nick" не заменился внутри "Nick2".
 for (const [nick, alias] of [...names].sort((a, b) => b[0].length - a[0].length)) {
   html = html.replace(new RegExp(`(?<![\\w$-])${escape(nick)}(?![\\w$-])`, "g"), alias);
 }
-for (const [id, fake] of ids) html = html.replace(new RegExp(`(?<!\\d)${id}(?!\\d)`, "g"), fake);
+// id — только в ссылках и вызовах: после "/" или "=" (/profilemain/ID, ?to=ID, ?u=ID) и в showtip(1, ID…).
+for (const [id, fake] of ids) {
+  html = html.replace(new RegExp(`(?<=[/=]|=['"]|showtip\\(1,\\s*|show_screen\\(")${id}(?!\\d)`, "g"), fake);
+}
+// Темы игрока: /forum/-(id+1).
+html = html.replace(/\/forum\/-(\d+)/g, (m, n: string) => {
+  const fake = ids.get(String(Number(n) - 1));
+  return fake ? `/forum/-${Number(fake) + 1}` : m;
+});
 html = html.replace(/_h=[a-z0-9]+/g, "_h=token");
 
 writeFileSync(output, html);
