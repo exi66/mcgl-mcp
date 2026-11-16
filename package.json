@@ -48,7 +48,8 @@
     "test:live": "vitest run --config vitest.live.config.ts",
     "fixtures:update": "tsx --env-file-if-exists=.env scripts/update-fixtures.ts",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "rules:update": "tsx --env-file-if-exists=.env scripts/update-rules.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.32.2",

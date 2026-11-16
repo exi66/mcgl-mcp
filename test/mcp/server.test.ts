@@ -68,7 +68,13 @@ describe("MCP server", () => {
 
     const pkg = JSON.parse(readFileSync(new URL("../../package.json", import.meta.url), "utf8"));
     expect(client.getServerVersion()).toEqual({ name: "mcgl-mcp", version: pkg.version });
-    expect(client.getInstructions()).toMatch(/Russian/);
+    const instructions = client.getInstructions() ?? "";
+    expect(instructions).toMatch(/Russian/);
+    // Правила форума (раздел 2 Кодекса) отдаются один раз при подключении.
+    expect(instructions).toContain("Раздел 2. Правила поведения на форуме");
+    expect(instructions).toMatch(/2.1.1. Запрещен мат/);
+    expect(instructions).toMatch(/2.9.7./);
+    expect(instructions.length).toBeLessThan(10_000);
   });
 
   test("returns compact JSON without false flags", async () => {

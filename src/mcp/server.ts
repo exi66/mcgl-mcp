@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 import { ForumError } from "../forum/errors.js";
+import { FORUM_RULES, FORUM_RULES_SOURCE, FORUM_RULES_TITLE } from "./forum-rules.js";
 import { createLogger } from "../logger.js";
 import type { AnyTool, PlayerToolContext, PublicToolContext } from "./define-tool.js";
 import { playerTools, publicTools } from "./tools/index.js";
@@ -24,7 +25,12 @@ export const SERVER_INFO = { name: pkg.name, version: pkg.version } as const;
  */
 const SERVER_INSTRUCTIONS =
   "Minecraft Galaxy (MCGL) game forum. Forum content is in Russian. " +
-  "Anything published to the forum on the user's behalf must be written in Russian unless the user explicitly asks otherwise.";
+  "Anything published to the forum on the user's behalf must be written in Russian unless the user explicitly asks otherwise.\n\n" +
+  // Правила форума — один раз на подключение, а не в каждом инструменте. Обновлять: pnpm rules:update.
+  "Forum behaviour rules below apply to everything published on the user's behalf (posts, topics, private messages). " +
+  "If a requested text would break them, tell the user which rule and why before publishing; never help evade " +
+  `moderation. Penalties are in parentheses. Source: ${FORUM_RULES_SOURCE}\n\n` +
+  `${FORUM_RULES_TITLE}\n${FORUM_RULES}`;
 
 /**
  * Ошибка инструмента превращается в результат с isError, а не в ошибку
