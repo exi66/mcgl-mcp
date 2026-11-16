@@ -21,7 +21,7 @@ pnpm build            # чистый dist из src (tsconfig.build.json)
 pnpm check:login      # ручная проверка логина (тратит 2 входа)
 pnpm fixtures:update  # перекачать test/fixtures с форума
 pnpm inspect          # MCP Inspector на собранный stdio-сервер
-pnpm rules:update     # правила форума (раздел 2 /wiki/530) → src/mcp/forum-rules.ts, не править руками
+pnpm rules:check      # не поменялись ли правила форума (/wiki/530); список в src/mcp/forum-rules.ts — руками
 ```
 
 Перед тем как сказать «готово»: `pnpm format && pnpm typecheck && pnpm test`.

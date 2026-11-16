@@ -70,11 +70,11 @@ describe("MCP server", () => {
     expect(client.getServerVersion()).toEqual({ name: "mcgl-mcp", version: pkg.version });
     const instructions = client.getInstructions() ?? "";
     expect(instructions).toMatch(/Russian/);
-    // Правила форума (раздел 2 Кодекса) отдаются один раз при подключении.
-    expect(instructions).toContain("Раздел 2. Правила поведения на форуме");
-    expect(instructions).toMatch(/2.1.1. Запрещен мат/);
-    expect(instructions).toMatch(/2.9.7./);
-    expect(instructions.length).toBeLessThan(10_000);
+    // Сжатые правила форума — один раз при подключении; при нарушении — предупредить и спросить подтверждение.
+    expect(instructions).toMatch(/Not allowed on the forum/);
+    expect(instructions).toMatch(/swearing/);
+    expect(instructions).toMatch(/explicitly confirms/);
+    expect(instructions.length).toBeLessThan(3_000);
   });
 
   test("returns compact JSON without false flags", async () => {
