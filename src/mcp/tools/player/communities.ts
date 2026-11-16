@@ -56,7 +56,8 @@ export const joinCommunity = definePlayerTool({
   description:
     "Joins a community on behalf of the player, accepting its joining terms. Ask the user to confirm first. " +
     "Fails with the forum's reason if the community is closed or the player does not meet its conditions " +
-    "(check with forum_get_community: membership must be can_join). Returns the community state after joining.",
+    "(check with forum_get_community: membership must be can_join). Some communities take a deposit in game money " +
+    "for joining. Returns the community state after joining.",
   inputSchema: { communityId: z.number().int().positive() },
   annotations: { readOnlyHint: false, destructiveHint: false, idempotentHint: true, openWorldHint: true },
   handler: async ({ communityId }, { session }) => jsonResult(await changeMembership(session, communityId, "join")),

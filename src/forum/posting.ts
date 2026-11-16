@@ -18,6 +18,22 @@ import type { PlayerSession } from "./player-session.js";
 import type { ForumReader, TopicKind } from "./reader.js";
 import { site } from "./site.js";
 
+/**
+ * Форум молча обрезает текст поста/ЛС до 32768 байт (strlen в PHP — байты, а не символы:
+ * кириллица в UTF-8 — 2 байта, то есть ~16 тыс. русских символов). Лучше отказать заранее.
+ */
+export const MAX_MESSAGE_BYTES = 32_768;
+
+export function assertMessageSize(message: string): void {
+  const bytes = Buffer.byteLength(message, "utf8");
+  if (bytes > MAX_MESSAGE_BYTES) {
+    throw new ForumError(
+      `The message is too long for the forum: ${bytes} bytes in UTF-8, the limit is ${MAX_MESSAGE_BYTES} ` +
+        "(about 16 000 Cyrillic characters). The forum would cut it silently; shorten it or split into several posts.",
+    );
+  }
+}
+
 export class ForumCaptchaError extends ForumError {
   constructor(readonly retryInSec: number) {
     super(
@@ -63,6 +79,7 @@ export class Poster {
 
   /** Ответ в тему. kind "hpost" — тема сообщества, "pm" — личная переписка. */
   async reply(kind: TopicKind, topicId: number, message: string) {
+    assertMessageSize(message);
     const prefix = kind === "hpost" ? "hpost" : kind === "pm" ? "privatetopic" : "topic";
     const path = `/${prefix}/${topicId}/0`;
     const submit = `/${prefix}/${topicId}`;
@@ -102,6 +119,7 @@ export class Poster {
 
   /** Новая тема в разделе сообщества. Успех — редирект на /hpost/<новая тема>. */
   async createCommunityTopic(sectionId: number, title: string, message: string) {
+    assertMessageSize(message);
     const path = site.communitySection(sectionId, 1);
     const submit = `/htopic/${sectionId}`;
 
@@ -125,6 +143,7 @@ export class Poster {
 
   /** Новое личное сообщение (новая переписка). Успех — редирект на /privatetopic/<новая>. */
   async sendPrivateMessage(nick: string, title: string, message: string) {
+    assertMessageSize(message);
     const submit = site.privateNew();
 
     return this.session.withAuth(async () => {
@@ -159,8 +178,9 @@ export class Poster {
     return new ForumError(
       reason
         ? `The forum rejected the post: ${reason}`
-        : "The forum did not accept the post and gave no reason " +
-            "(the account may lack playtime or rights to post here).",
+        : "The forum did not accept the post and gave no reason. Possible causes: the account is too new " +
+            "(little playtime), its e-mail is not confirmed, it is muted or blocked on the forum, the topic is closed, " +
+            "or only VIP/Premium/moderators may reply there (the topic author always may).",
     );
   }
 }

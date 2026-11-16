@@ -1,5 +1,5 @@
 import { createLogger } from "../logger.js";
-import { LoginFailedError, SessionExpiredError } from "./errors.js";
+import { ForumError, LoginFailedError, SessionExpiredError } from "./errors.js";
 import type { ForumHttp, ForumPage } from "./http.js";
 import { alertText, currentUser, isGuestPage, load } from "./parsers/common.js";
 import { parseLoginForm } from "./parsers/player.js";
@@ -54,7 +54,9 @@ export class PlayerSession {
   /** GET страницы от имени игрока; если форум считает нас гостем, бросает SessionExpiredError. */
   async getAuthed(path: string): Promise<ForumPage> {
     const page = await this.http.get(path);
-    if (isGuestPage(load(page.html))) throw new SessionExpiredError();
+    const $ = load(page.html);
+    if (isGuestPage($)) throw new SessionExpiredError();
+    assertAccountUsable($);
     return page;
   }
 
@@ -96,8 +98,35 @@ export class PlayerSession {
       throw new LoginFailedError(alertText($) ?? "unknown reason");
     }
 
+    try {
+      assertAccountUsable($);
+    } catch (error) {
+      // Не перелогиниваемся на каждом вызове: без участия игрока это не исправить.
+      throw new LoginFailedError((error as Error).message);
+    }
     this.username = username;
     logger.info(`Logged in as ${username}`);
     return username;
+  }
+}
+
+/**
+ * Вход прошёл, но форум вместо содержимого любой страницы показывает:
+ * - форму одноразового кода (у аккаунта двухфакторная авторизация, input onepass);
+ * - «Доступ к аккаунту заблокирован!» (вход с IP не из списка разрешённых).
+ * Пройти это сервер не может — объясняем, а не падаем на парсерах.
+ */
+export function assertAccountUsable($: ReturnType<typeof load>): void {
+  if ($('input[name="onepass"]').length) {
+    throw new ForumError(
+      "The account uses two-factor authentication: the forum asks for a one-time code on every new login, " +
+        "which this server cannot enter. Use an account without 2FA.",
+    );
+  }
+  if (/Доступ к аккаунту заблокирован/.test(alertText($) ?? "")) {
+    throw new ForumError(
+      "The forum blocked access from this IP for the account (IP restriction in its security settings). " +
+        "Unlock it on the site (code word, e-mail or phone) or add this IP to the allowed list.",
+    );
   }
 }

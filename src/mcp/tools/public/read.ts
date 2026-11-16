@@ -12,7 +12,7 @@ const page = z.number().int().positive().default(1).describe("1-based page numbe
 
 const TOPIC_ROW_FIELDS =
   "Topic fields: pinned; closed (title struck through on the forum, no replies allowed); " +
-  "whoCanReply: all | vip | premium_platinum | moderators (only visible in topic lists, not on the topic page); " +
+  "whoCanReply: all | vip | premium_platinum | moderators (the topic author can always reply; only visible in topic lists, not on the topic page); " +
   "pages (topic page count); inCommunity: a community topic (read it with forum_community_topic, not forum_get_topic; community: its name); created/last: author and time; author.group is the player's privilege (paid or staff role, e.g. vip, platinum, admin); 'girls' is only a nick color anyone can pick, not gender." +
   FLAGS_NOTE;
 

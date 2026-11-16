@@ -29,7 +29,9 @@ export async function changeMembership(
         throw new ForumError(`Cannot join "${state.name}": ${state.joinBlockedReason}`);
       }
       if (state.membership === "closed") {
-        throw new ForumError(`"${state.name}" is a closed community: joining is by application only`);
+        throw new ForumError(
+          `"${state.name}" is a closed community: joining is by application or by invitation (an invitation comes as a system private message; then the join button appears)`,
+        );
       }
     } else if (state.membership !== "member") {
       throw new ForumError(`You are not a member of "${state.name}"`);

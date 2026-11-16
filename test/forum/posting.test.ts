@@ -101,6 +101,21 @@ describe("Poster.reply", () => {
   });
 });
 
+test("too long for the forum (32768 bytes in UTF-8): refused before sending", async () => {
+  const { poster, sent } = await setup("ok");
+  // 17 000 кириллических символов = 34 000 байт: форум молча обрезал бы.
+  await expect(poster.reply("hpost", 7, "ж".repeat(17_000))).rejects.toThrow(/too long/);
+  expect(sent).toHaveLength(0);
+  await expect(poster.reply("hpost", 7, "ж".repeat(16_000))).resolves.toBeDefined();
+});
+
+test("silent rejection lists the real reasons", async () => {
+  const { poster } = await setup("silent");
+  await expect(poster.reply("hpost", 7, "text")).rejects.toThrow(
+    /too new.*e-mail is not confirmed.*topic author always may/s,
+  );
+});
+
 describe("Poster.createCommunityTopic", () => {
   test("success is the redirect to the new topic", async () => {
     const created: FakeRequest[] = [];
