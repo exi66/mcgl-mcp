@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta http-equiv="x-rim-auto-match" content="none">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="keywords" content="minecraft, многопользовательская, игра, game, beta, server, сервер, mmorpg, dmh"/> 
+	<meta http-equiv="description" content="Сервер игры Minecraft Galaxy"/>
+		<title>Ивенты Minecraft Galaxy - Minecraft Galaxy</title>
+
+	<link rel="stylesheet" href="/style.css?v=10" type="text/css"/>
+	<link rel="stylesheet" href="/light.css?v=5" type="text/css"/>	<link rel="stylesheet" href="/adaptive.css?v=3" type="text/css"/>
+	
+	<meta property="og:image" content="http://minecraft-galaxy.ru/img/logo_large.png"/> 
+	<script type="text/javascript" src="/js/jquery.min.js"></script> 
+	<script type="text/javascript" src="/js/jquery-ui.min.js"></script> 
+	
+	<script type="text/javascript" src="/js/jquery.autocomplete.js"></script>
+	
+	<script type="text/javascript" src="/script.js?v=9"></script>
+	<script type="text/javascript" src="/tpl/format.js"></script>
+	<script src="/map/script.js"></script>
+	
+	<script type="text/javascript" src="/js/ThreeCanvas.js"></script>
+	<script type="text/javascript" src="/js/Cube.js"></script>
+	<script type="text/javascript" src="/js/BinFileReader.js"></script>
+	
+	<style>
+		html { background-image: url('/files/teams/253_back.png') !important; background-blend-mode: unset; background-repeat: repeat; background-attachment:fixed; }
+	</style>
+	
+</head>
+
+<body onresize="change_sizes();" onload="change_sizes();">
+<div class="main-div">
+	<div class="header">
+		<div class="mobile-menu"></div>
+		<div class="main-logo"></div>		<div class="title"><a href="https://minecraft-galaxy.ru">Minecraft Galaxy</a></div>
+		<div class="title-mobile"><a href="/">MCGL</a></div>
+<div class="mobile-showen-menu-back"><div class="mobile-showen-menu"><ul class="mobilemenu"><li><a class="item mobile-menu-item" href="/">Форумы</a></li><li><a class="item mobile-menu-item" href="/forum/0">Темы ↓</a>								<ul class="dropdown-mobile">
+										<li><a class="item mobile-menu-item" href="/forum/0">Последние</a></li><li><a class="item mobile-menu-item" href="/forum/-1">Избранные</a></li><li><a class="item mobile-menu-item" href="/private/0">Личные</a></li><li><a class="item mobile-menu-item" href="/forum/-714941">Все свои</a></li><li><a class="item mobile-menu-item" href="/teamforums/">Форумы сообществ</a></li>								</ul>
+							</li><li><a class="item mobile-menu-item" href="/blog/">Новости</a></li><li><a class="item mobile-menu-item" href="/users/">Игроки ↓</a>								<ul class="dropdown-mobile">
+										<li><a class="item mobile-menu-item" href="/users/">Список</a></li><li><a class="item mobile-menu-item" href="/clans/">Кланы</a></li><li><a class="item mobile-menu-item" href="/teams/">Сообщества</a></li><li><a class="item mobile-menu-item" href="/topgalaxy/">Galaxy Forbes</a></li><li><a class="item mobile-menu-item" href="/bans/">Баны</a></li><li><a class="item mobile-menu-item" href="/mutes/0">Молчуны</a></li><li><a class="item mobile-menu-item" href="/achieves/"><img src="/img/achieve/best.png"/> Достижения</a></li><li><a class="item mobile-menu-item" href="/top/0">Топ 25</a></li><li><a class="item mobile-menu-item" href="/prodtop/">Производство</a></li><li><a class="item mobile-menu-item" href="/screens/0">Скриншоты</a></li><li><a class="item mobile-menu-item" href="/fortress/">Крепости</a></li><li><a class="item mobile-menu-item" href="/battles/">Дракон</a></li><li><a class="item mobile-menu-item" href="/eventcalendar/">События</a></li><li><a class="item mobile-menu-item" href="/plugins/">Плагины</a></li>								</ul>
+							</li><li><a class="item mobile-menu-item" href="/goldshop/"><span class="vip">Donate</span></a></li><li><a class="item mobile-menu-item" href="/wiki/">Помощь ↓</a>								<ul class="dropdown-mobile">
+										<li><a class="item mobile-menu-item" href="/wiki/530">Наши правила</a></li><li><a class="item mobile-menu-item" href="/wiki/">Wiki</a></li><li><a class="item mobile-menu-item" href="/wiki/FAQ">FAQ</a></li><li><a class="item mobile-menu-item" href="/professions/">Профессии</a></li><li><a class="item mobile-menu-item" href="/doc/9120">План разработок</a></li><li><a class="item mobile-menu-item" href="https://minecraft-galaxy.ru/install/">Установка клиента</a></li><li><a class="item mobile-menu-item" href="/items/">Блоки и предметы</a></li><li><a class="item mobile-menu-item" href="/wiki/O_серверах">О серверах</a></li><li><a class="item mobile-menu-item" href="/wiki/995">О гриферах</a></li><li><a class="item mobile-menu-item" href="/exchange/0"><img src="/img/arrow_up.png"/> Биржа <img src="/img/arrow_down.png"/></a></li>								</ul>
+							</li><li><a class="item mobile-menu-item" href="#"><img src="/img/map.png" width="10"/> Карты ↓</a>								<ul class="dropdown-mobile">
+										<li><a class="item mobile-menu-item" href="/capitals/"><span class="vip">Столицы</span></a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/1/0/">Main</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/2/0/">Guest</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/3/0/">DemoPlanet</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/5/0/">Hunter</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/6/0/">LittleBigPlanet</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/7/0/">MinerPlanet</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/8/0/">Clans</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/9/0/">MiniGames</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/10/0/">MonkeyPlanet</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/11/0/">Pirate station</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/12/0/">Nano</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/13/0/">Rookie</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/14/0/">Newbie</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/15/0/">Build</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/16/0/">Pacific</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/19/0/">Novice</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/20/0/">Team</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/22/0/">Farm</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/23/0/">Creator</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/25/0/">Prometeus</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/26/0/">Laboratory</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/28/0/">Zeus</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/29/0/">Dragon nest</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/30/0/">Atlantida</a></li>								</ul>
+							</li><li><a class="item mobile-menu-item" href="/search/">Поиск</a></li><li><a class="item mobile-menu-item" href="#"><span class="mods">Заявки</span> ↓</a>								<ul class="dropdown-mobile">
+										<li><a class="item mobile-menu-item" href="/ban/">Забанить!</a></li><li><a class="item mobile-menu-item" href="/dispute/">Жалоба на гриф</a></li><li><a class="item mobile-menu-item" href="/faq/4">Кража аккаунта</a></li><li><a class="item mobile-menu-item" href="/faq/5">Сообщить о баге</a></li><li><a class="item mobile-menu-item" href="/faq/41">Получить <span class="premium">Gold</span></a></li><li><a class="item mobile-menu-item" href="/faq/22">Апелляция банов</a></li><li><a class="item mobile-menu-item" href="/faq/0">Прочее...</a></li>								</ul>
+							</li></ul></div></div>				<div class="sms-chat-img"><a href="/smschat/"><img src="/img/sms-chat.png"></a></div>
+				<div class="sms-chat-msg" id="smschat">
+					<a href="/profilemain/637906" class="user-link eventmoder" onmouseover='showtip(1, 637906, event)' onmouseout='hidetip()'>social</a>: 15.11.26 -  20:00. Не опаздывай. Они уже ждут.<br/><a href="/profilemain/712823" class="user-link vip" onmouseover='showtip(1, 712823, event)' onmouseout='hidetip()'>Kiyote</a>: Спасибо игроку SlimeMind670 за разработку клиента для Mac OS !<br/><a href="/profilemain/277171" class="user-link vip" onmouseover='showtip(1, 277171, event)' onmouseout='hidetip()'>50_C_E_N_T</a>: Серваки легли ?<br/>				</div>
+							<div class="login-panel">
+								<script>
+					function setc(ssid) {
+						if(ssid) {
+							document.cookie = "PHPSESSID=" + ssid + "; path=/; domain=." + window.location.hostname.split(".").splice(1).join(".") + "; expires=" + new Date((new Date).getTime() + 7*24*3600*1000);
+							document.location.reload();
+						}
+						else {
+							document.location = "/guilogin/";
+						}
+					}
+					function twin() {
+						document.cookie = "PHPSESSID=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT; domain=." + window.location.hostname.split(".").splice(1).join(".");
+						document.location = "/guilogin/";
+					}
+				</script>
+				<div class="profile-panel">
+					<div class="button-container">
+						<a href="/profilemain/" class="button button-arrow"><span class="text">Capri</span><span onclick="show_submenu(this, true); return false"; class="arrow"></span></a>
+						<div class="submenu">
+							<div class="item"><a href="javascript: twin();">Зайти за твинка</a></div><div class="item"><hr></div>			<div class="item"><a href="/securitynew/714940/0">Безопасность</a></div>
+			<div class="item"><a href="/settings/">Настройки</a></div>
+			<div class="item"><a href="/login.php?l=&_h=token">Выход</a></div>
+									</div>
+					</div> 
+				</div>
+							</div>
+			</div>
+			<ul class="tabs mainmenu"><li><a class="item" href="/">Форумы</a></li><li><a class="item" href="/forum/0">Темы ↓</a>						<ul class="dropdown">
+								<li><a href="/forum/0">Последние</a></li><li><a href="/forum/-1">Избранные</a></li><li><a href="/private/0">Личные</a></li><li><a href="/forum/-714941">Все свои</a></li><li><a href="/teamforums/">Форумы сообществ</a></li>						</ul>
+					</li><li><a class="item" href="/blog/">Новости</a></li><li><a class="item" href="/users/">Игроки ↓</a>						<ul class="dropdown">
+								<li><a href="/users/">Список</a></li><li><a href="/clans/">Кланы</a></li><li><a href="/teams/">Сообщества</a></li><li><a href="/topgalaxy/">Galaxy Forbes</a></li><li><a href="/bans/">Баны</a></li><li><a href="/mutes/0">Молчуны</a></li><li><a href="/achieves/"><img src="/img/achieve/best.png"/> Достижения</a></li><li><a href="/top/0">Топ 25</a></li><li><a href="/prodtop/">Производство</a></li><li><a href="/screens/0">Скриншоты</a></li><li><a href="/fortress/">Крепости</a></li><li><a href="/battles/">Дракон</a></li><li><a href="/eventcalendar/">События</a></li><li><a href="/plugins/">Плагины</a></li>						</ul>
+					</li><li><a class="item" href="/goldshop/"><span class="vip">Donate</span></a></li><li><a class="item" href="/wiki/">Помощь ↓</a>						<ul class="dropdown">
+								<li><a href="/wiki/530">Наши правила</a></li><li><a href="/wiki/">Wiki</a></li><li><a href="/wiki/FAQ">FAQ</a></li><li><a href="/professions/">Профессии</a></li><li><a href="/doc/9120">План разработок</a></li><li><a href="https://minecraft-galaxy.ru/install/">Установка клиента</a></li><li><a href="/items/">Блоки и предметы</a></li><li><a href="/wiki/O_серверах">О серверах</a></li><li><a href="/wiki/995">О гриферах</a></li><li><a href="/exchange/0"><img src="/img/arrow_up.png"/> Биржа <img src="/img/arrow_down.png"/></a></li>						</ul>
+					</li><li><a class="item" href="#"><img src="/img/map.png" width="10"/> Карты ↓</a>						<ul class="dropdown">
+								<li><a href="/capitals/"><span class="vip">Столицы</span></a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/1/0/">Main</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/2/0/">Guest</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/3/0/">DemoPlanet</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/5/0/">Hunter</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/6/0/">LittleBigPlanet</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/7/0/">MinerPlanet</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/8/0/">Clans</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/9/0/">MiniGames</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/10/0/">MonkeyPlanet</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/11/0/">Pirate station</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/12/0/">Nano</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/13/0/">Rookie</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/14/0/">Newbie</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/15/0/">Build</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/16/0/">Pacific</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/19/0/">Novice</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/20/0/">Team</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/22/0/">Farm</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/23/0/">Creator</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/25/0/">Prometeus</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/26/0/">Laboratory</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/28/0/">Zeus</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/29/0/">Dragon nest</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/30/0/">Atlantida</a></li>						</ul>
+					</li><li><a class="item" href="/search/">Поиск</a></li><li><a class="item" href="#"><span class="mods">Заявки</span> ↓</a>						<ul class="dropdown">
+								<li><a href="/ban/">Забанить!</a></li><li><a href="/dispute/">Жалоба на гриф</a></li><li><a href="/faq/4">Кража аккаунта</a></li><li><a href="/faq/5">Сообщить о баге</a></li><li><a href="/faq/41">Получить <span class="premium">Gold</span></a></li><li><a href="/faq/22">Апелляция банов</a></li><li><a href="/faq/0">Прочее...</a></li>						</ul>
+					</li></ul><div class="right-panel"><a class="panel-link" href="/supportqueue/" title="Написать в поддержку" target=""><img src="/img/8/4449_icon25.ico" alt=""/></a><a class="panel-link" href="/lastevents/" onclick="show_twits(this);return false;" rel="" title="Лента событий"><span class="counter">10</span><img src="/img/8/4483_icon59.ico" alt=""/></a><a class="panel-link" href="/uservotes/" title="Очки голосования" target=""><img src="/img/8/4519_icon95.ico" alt=""/></a><a class="panel-link" href="/userissues/0?t=1" title="Задачи" target=""><span class="counter">55</span><img src="/img/8/4429_icon5.ico" alt=""/></a></div>				<div class="fixed-panel">
+					<div class="inner-panel">
+						<div class="button-container"><a href="/forum/0" class="button">Последние</a></div>
+						<div class="button-container"><a href="/teamforums/" class="button">Сообщества</a></div>
+						<div class="button-container">
+								<a href="/private/0" class="button button-arrow"><span class="text">Личные</span><span onclick="show_submenu(this, false); return false"; class="arrow"></span></a>
+								<div class="submenu">
+									<div class="item"><a href="/private/0?t=2">Новые </a></div>
+								</div>
+							</div> 
+						<div class="button-container"><a href="/wiki/" class="button">Wiki</a></div>
+						<div class="button-container"><a href="http://map.minecraft-galaxy.ru/" class="button">Карта</a></div>
+						<div class="button-container"><a href="/search/" class="button">Поиск</a></div>
+						
+						<div class="right-fields">
+							<div class="button-container">
+								<a href="/profilemain/" class="button button-arrow"><span class="text">Capri</span><span onclick="show_submenu(this, false); return false"; class="arrow"></span></a>
+								<div class="submenu">
+									<div class="item"><a href="javascript: twin();">Зайти за твинка</a></div><div class="item"><hr></div>			<div class="item"><a href="/securitynew/714940/0">Безопасность</a></div>
+			<div class="item"><a href="/settings/">Настройки</a></div>
+			<div class="item"><a href="/login.php?l=&_h=token">Выход</a></div>
+											</div>
+							</div> 
+						</div>
+					</div>
+				</div>
+				<div class="content"><div class="frame"><div style="padding: 5px;"><div id="text-40"> <span style="font-size: 20px;">Новичок, добро пожаловать на форумы MCGL!</span><br/><br/>Задать любой вопрос, касающийся игры, можно в <a target=_blank href="/forum/3"><span style="font-size: 16px;">Вопросах по игре</span></a>, сообществе <a target=_blank href="/hforum/1"><span style="font-size: 16px;">Хелперов</span></a>. Любые технические вопросы решаются через <a target=_blank href="/support/"><span style="font-size: 16px;">Поддержку (support)</span></a>.<br/><br/>Также рекомендуем прочитать <a target=_blank href="/wiki/"><span style="font-size: 16px;">Вики Minecraft Galaxy</span></a>, <a target=_blank href="/wiki/FAQ"><span style="font-size: 16px;">Ответы на вопросы</span></a> и вспомнить <a target=_blank href="/topic/24"><span style="font-size: 16px;">Правила серверов</span></a>.<br/><br/>Все разделы форума будут доступны только после некоторого времени, проведенного в игре.<br/></div></div></div></div><div class="tb-panel"><a class="tb-btn-active" id="m-1" title="Общая информация" href="/hmain/253" ><span class="icons-24" style="background-position:-0px -0px;"></span></a><a class="tb-btn" id="m-1" title="Состав" href="/hmembers/253" ><span class="icons-24" style="background-position:-72px -72px;"></span></a><a class="tb-btn" id="m-1" title="Приглашенные" href="/hinvites/253" ><span class="icons-24" style="background-position:-24px -72px;"></span></a><a class="tb-btn" id="m-1" title="Группы" href="/hsquad/253" ><span class="icons-24" style="background-position:-72px -96px;"></span></a><span class="splitter"><span></span></span><a class="tb-btn" id="m-1" title="Обсуждения" href="/hforum/253" ><span class="icons-24" style="background-position:-0px -72px;"></span></a><a class="tb-btn" id="m-1" title="Свои темы" href="/hself/253" ><span class="icons-24" style="background-position:-168px -24px;"></span></a><a class="tb-btn" id="m-1" title="Черный список" href="/hblacklist/253" ><span class="icons-24" style="background-position:-192px -24px;"></span></a><span class="splitter"><span></span></span><a class="tb-btn" id="m-1" title="Статистика" href="/hstat/253" ><span class="icons-24" style="background-position:-72px -0px;"></span></a><a class="tb-btn" id="m-1" title="Репорт игр с арены" href="/arenagames/0" ><span class="icons-24" style="background-position:-0px -96px;"></span></a></div><div class="content"><a class="top-block" href="#" title="" target="">Вверх &uarr;</a><div class="frame"><div style="padding: 5px;"><div style='display: flex;'><b class=''>Ивенты Minecraft Galaxy</b><div style='flex-grow: 1;'></div><div>Лидер: <a href="/profilemain/618942" class="user-link eventmoder" onmouseover='showtip(1, 618942, event)' onmouseout='hidetip()'>GalaxyEvent</a>, участников: 8114, место: 17</div></div></div></div><div class="frame"><div id="info"> <div class=frame><div style="text-align: center;"><img class="post-image" src="http://i.mcgl.ru/0TCSx22NOz"></div><br/><div class=bc_quote><span style="font-size: 16px;"><b>Друзья, это сообщество для тех, кто хочет принимать участие во всех проводимых мероприятиях нашего сервера. В этом сообществе будет располагаться информация обо всех проводимых ивентах и их итогах. К тому же для вас открыт специальный раздел форума </b><a target=_blank href="http://forum.minecraft-galaxy.ru/htopic/451"><font color="#7FC7FF"><b>«Книга отзывов и предложений»</b></font></a><b>, где вы можете оставить свой отзыв, пожелание и даже предложить собственный ивент, и вместе мы сможем его доработать и реализовать.</b></span></div><br/>&nbsp;&nbsp;<span style="font-size: 16px;">Приветствую, дорогие друзья, представляю вам статью про ивенты, а так же FAQ по ним. Начнем с простого, продолжим сложным.</span><br/><div class="scroll"><div class="scroll-head" onclick="switchTable(this);"><img src="/img/icon_plus.gif" class="_plus"> Что такое ивенты?</div><div class="scroll-body"><br/>&nbsp;&nbsp;Для начала давайте обратимся к значению этого слова, <a target="_blank" href="/redirect/?url=http%3A%2F%2Fru.wikipedia.org%2Fwiki%2F%D0%98%D0%B2%D0%B5%D0%BD%D1%82">глянем википедию</a>.<br/><div class=bc_quote><div class=bc_quote_title>Wikipedia</b> писал(а):</div>Иве́нт (от англ. event — событие) — развлекательное или рекламное представление, осуществляемое на театральной сцене, кино- или телеэкране, на спортивной или цирковой арене с использованием разного рода сюжетных ходов, изобразительных приёмов, световой техники, компьютерной графики и т. п. Понятие ивента включает в себя событие, мероприятие, церемонию и шоу.</div></div></div>&nbsp;&nbsp;<span style="font-size: 16px;">Итак, теперь мы знаем, что ивент — событие, мероприятие. Теперь давайте посмотрим, что это такое в рамках нашего сервера и разберем разные существующие типы ивентов.</span><br/><div class="scroll"><div class="scroll-head" onclick="switchTable(this);"><img src="/img/icon_plus.gif" class="_plus"> Творческие конкурсы</div><div class="scroll-body"><br/>&nbsp;&nbsp;<a target=_blank href="http://forum.minecraft-galaxy.ru/htopic/449">Творческие конкурсы</a> включают в себя конкурсы поделок, скриншотов, конкурсы видеороликов, а также конкурсы стихов или рассказов. Часто эти конкурсы могут быть тематическими. По длительности они могут быть от недели до трех. Количество победителей определяется по количеству работ. Может быть до 5 победителей.</div></div><div class="scroll"><div class="scroll-head" onclick="switchTable(this);"><img src="/img/icon_plus.gif" class="_plus"> Строительные ивенты</div><div class="scroll-body"><br/>&nbsp;&nbsp;<a target=_blank href="http://forum.minecraft-galaxy.ru/htopic/604">Строительные ивенты или конкурсы построек</a> проходят всегда длительное время и включают в себя период регистрации (половина отведенного на конкурс времени). Строить можно как на этапе регистрации, так и после нее. Однако после окончания периода регистрации принять участие в текущем конкурсе невозможно. Как и творческие, строительные ивенты могут быть ограничены тематикой, а могут быть свободными. Победителей всегда трое.</div></div><div class="scroll"><div class="scroll-head" onclick="switchTable(this);"><img src="/img/icon_plus.gif" class="_plus"> Форумные мини-игры</div><div class="scroll-body"><br/>&nbsp;&nbsp;<a target=_blank href="http://forum.minecraft-galaxy.ru/htopic/587">Форумные мини-игры</a> — ивенты, не имеющие ограничения по времени, которые проходят исключительно на форуме. Они создаются игроками по их желанию. Это может быть игра в слова или ассоциации, или банальный счет до миллиона.</div></div>&nbsp;&nbsp;С типами ивентов мы разобрались. На данный момент их не много, в будущем будет больше. Часто повсюду задаются вопросы, я постарался собрать самые актуальные и написать небольшое FAQ.<br/><div class="scroll"><div class="scroll-head" onclick="switchTable(this);"><img src="/img/icon_plus.gif" class="_plus"> FAQ</div><div class="scroll-body"><br/><div class="scroll"><div class="scroll-head" onclick="switchTable(this);"><img src="/img/icon_plus.gif" class="_plus"> Как принять участие в конкурсе?</div><div class="scroll-body"><br/>&nbsp;&nbsp;Для того, чтобы принять участие в конкурсе необходимо зайти на <a target=_blank href="http://forum.minecraft-galaxy.ru/hforum/253">форум сообщества ивентов</a> и открыть <a target=_blank href="http://forum.minecraft-galaxy.ru/hlast/253">ленту</a>. Конкурсы, в которых вы можете принять участие помечены, как &quot;важное&quot; (желтым цветом).</div></div><div class="scroll"><div class="scroll-head" onclick="switchTable(this);"><img src="/img/icon_plus.gif" class="_plus"> Я захожу на сервер Events, но меня выкидывает и пишет, что &quot;мест нет&quot; или &quot;вы не участвуете в данном конкурсе&quot;.</div><div class="scroll-body"><br/>&nbsp;&nbsp;И то и другое означает, что принять участие вы не сможете в любом случае. Мест нет — все участки разобраны, вам просто негде строить. Вы не участвуете в конкурсе — значит, что вы пытаетесь зайти после регистрации или вы не проходите по минимальным требованием (время игры — от 5 дней).</div></div><div class="scroll"><div class="scroll-head" onclick="switchTable(this);"><img src="/img/icon_plus.gif" class="_plus"> В процессе стройки на сервере Events я умер и в итоге попал на спавн. Как попасть домой?</div><div class="scroll-body"><br/>&nbsp;&nbsp;Эта проблема решается перезаходом на сервер. Так же вам настоятельно рекомендуется пользоваться командой /homespawn.</div></div><div class="scroll"><div class="scroll-head" onclick="switchTable(this);"><img src="/img/icon_plus.gif" class="_plus"> Сколько работ я могу выкладывать в творческих конкурсах?</div><div class="scroll-body"><br/>&nbsp;&nbsp;Столько, сколько захотите. Однако участвовать будет только одна. По вашему выбору или по нашему.</div></div><div class="scroll"><div class="scroll-head" onclick="switchTable(this);"><img src="/img/icon_plus.gif" class="_plus"> Я хочу участвовать на конкурсе построек вместе с другом. Можно?</div><div class="scroll-body"><br/>&nbsp;&nbsp;Нет. Это не честно по отношению к другим участникам, у которых друга нет.</div></div><div class="scroll"><div class="scroll-head" onclick="switchTable(this);"><img src="/img/icon_plus.gif" class="_plus"> Я хочу провести свой ивент в сообществе ивентов. Как это сделать?</div><div class="scroll-body"><br/>&nbsp;&nbsp;Специально для этого открыт раздел <a target=_blank href="http://forum.minecraft-galaxy.ru/htopic/749">&quot;Ваши ивенты&quot;</a>, где вы можете проводить, что угодно. Однако раздел модерируется.</div></div><div class="scroll"><div class="scroll-head" onclick="switchTable(this);"><img src="/img/icon_plus.gif" class="_plus"> Обязательно ли в конкурсе будет победитель?</div><div class="scroll-body"><br/>&nbsp;&nbsp;В редких случаях судейская коллегия может оставить конкурс без победителей, если не окажется достаточно качественных работ.</div></div><div class="scroll"><div class="scroll-head" onclick="switchTable(this);"><img src="/img/icon_plus.gif" class="_plus"> У меня есть идея ивента, но самостоятельно я его проводить не хочу\не могу, что делать?</div><div class="scroll-body"><br/>&nbsp;&nbsp;Вы всегда можете оставить свои идеи <a target=_blank href="http://forum.minecraft-galaxy.ru/htopic/451">здесь</a> или обратиться в <a target=_blank href="http://forum.minecraft-galaxy.ru/hmain/2355">&quot;Ивент фокус группу&quot;</a>. Вам обязательно ответят.</div></div><div class="scroll"><div class="scroll-head" onclick="switchTable(this);"><img src="/img/icon_plus.gif" class="_plus"> Я заметил, что игрок жульничает (нарушает правила ивента) или нарушает конституцию галактики в процессе конкурса. Куда обратиться, чтобы его наказать?</div><div class="scroll-body"><br/>&nbsp;&nbsp;Можете написать в лс ивентмодераторам <img src="/img/user.png"/> <a href="/profilemain/206148" onmouseover="showtip(1, 206148, event)" onmouseout="hidetip()" class="girls">Hinata_Hyuga</a> или <img src="/img/user.png"/> <a href="/profilemain/618942" onmouseover="showtip(1, 618942, event)" onmouseout="hidetip()" class="eventmoder">eventmoder</a>, не забыв описание и доказательства. Жулики будут наказаны.</div></div><div class="scroll"><div class="scroll-head" onclick="switchTable(this);"><img src="/img/icon_plus.gif" class="_plus"> Какие призы?</div><div class="scroll-body"><br/>&nbsp;&nbsp;Для каждого типа конкурса разные призы:<br/>Для строительных конкурсов — драгоценные кубки: <a href="/item/881" onmouseover='showtip(2, 881, event)' onmouseout='hidetip()'><div class="access-bg-32" style="background-position: -96px -160px"></div></a><a href="/item/882" onmouseover='showtip(2, 882, event)' onmouseout='hidetip()'><div class="access-bg-32" style="background-position: -160px -160px"></div></a><a href="/item/883" onmouseover='showtip(2, 883, event)' onmouseout='hidetip()'><div class="access-bg-32" style="background-position: -128px -160px"></div></a>, за строительные ивенты по тематике &quot;Логово босса&quot;: <a href="/item/1193" onmouseover='showtip(2, 1193, event)' onmouseout='hidetip()'><div class="items3" style="background-position: -0px -64px"></div></a><a href="/item/1194" onmouseover='showtip(2, 1194, event)' onmouseout='hidetip()'><div class="items3" style="background-position: -32px -64px"></div></a><a href="/item/1195" onmouseover='showtip(2, 1195, event)' onmouseout='hidetip()'><div class="items3" style="background-position: -64px -64px"></div></a><br/>Для конкурса поделок — тематические предметы со своими свойствами. <a href="/item/888" onmouseover='showtip(2, 888, event)' onmouseout='hidetip()'><div class="access-bg-32" style="background-position: -288px -160px"></div></a><a href="/item/891" onmouseover='showtip(2, 891, event)' onmouseout='hidetip()'><div class="access-bg-32" style="background-position: -384px -160px"></div></a><a href="/item/947" onmouseover='showtip(2, 947, event)' onmouseout='hidetip()'><div class="access-bg-32" style="background-position: -64px -288px"></div></a><br/>Для конкурса скриншотов — фотокамера, которая &quot;печатает&quot; снимки: <a href="/item/887" onmouseover='showtip(2, 887, event)' onmouseout='hidetip()'><img src="/img/mc/unk.png" width="32" height="32"></a>, фотоаппарат Cambo, позволяет применить фильтр на фотографию черно белый/сепия: <a href="/item/887/1" onmouseover='showtip("2?d=1", "887", event)' onmouseout='hidetip()'><div class="access-bg-32" style="background-position: -0px -608px"></div></a><br/>Для конкурса видеороликов — видеокамера, которая транслирует отрывок из ролика-победителя: <a href="/item/885" onmouseover='showtip(2, 885, event)' onmouseout='hidetip()'><div class="access-bg-32" style="background-position: -192px -160px"></div></a>. Также: <a href="/item/953" onmouseover='showtip(2, 953, event)' onmouseout='hidetip()'><div class="access-bg-32" style="background-position: -192px -288px"></div></a><a href="/item/890" onmouseover='showtip(2, 890, event)' onmouseout='hidetip()'><div class="access-bg-32" style="background-position: -352px -160px"></div></a> <br/>Для конкурса рисунков - <a href="/item/949" onmouseover='showtip(2, 949, event)' onmouseout='hidetip()'><div class="access-bg-32" style="background-position: -128px -288px"></div></a><br/>и др.</div></div><div class="scroll"><div class="scroll-head" onclick="switchTable(this);"><img src="/img/icon_plus.gif" class="_plus"> Когда и как получать призы?</div><div class="scroll-body"><br/>&nbsp;&nbsp;После каждого конкурса проходит процесс судейства. После чего бендером высылаются призы на заказанный победителем сервер (3 дня идут).</div></div><div class="scroll"><div class="scroll-head" onclick="switchTable(this);"><img src="/img/icon_plus.gif" class="_plus"> Я не получил ответ на свой вопрос, что делать?</div><div class="scroll-body"><br/>&nbsp;&nbsp;Писать в личку <img src="/img/user.png"/> <a href="/profilemain/206148" onmouseover="showtip(1, 206148, event)" onmouseout="hidetip()" class="girls">Hinata_Hyuga</a> или <img src="/img/user.png"/> <a href="/profilemain/618942" onmouseover="showtip(1, 618942, event)" onmouseout="hidetip()" class="eventmoder">eventmoder</a>.<br/>&nbsp;&nbsp;Какие еще вопросы добавить в FAQ? О чем еще рассказать? Вы можете помочь дополнить статью. Для этого пишите <a target=_blank href="http://forum.minecraft-galaxy.ru/topic/46326">сюда</a>.</div><br/></div></div></div></div></div></div><div class="frame"><div style="padding: 5px;">Это сообщество открытое и вы в любой момент можете стать его участником. Для этого достаточно принять условия вступления, озвученные ниже:</div><div style="padding: 5px;"> <b><font color="#8d0000">Внимание!</font></b> Те, кто будет нарушать правила проведения ивентов, будут лишены возможности участвовать в ивентах вообще.<br/><br/><div style="text-align: right;">С правилами ознакомлен, вступаю...</div><br/></div><div class="tools" id="tools"><a class="button" href="/hmain/253/join?_h=token"> <img class="icon" src="/img/btns/accept.png" />Принять условия и вступить</a><div class="clear"></div></div></div></div>
+
+<div class="copyright">
+<div style="padding:7px;">Copyright 2026 by Project Galaxy team</div>
+
+		<div style="padding:7px;"> 
+			<!-- Rating@Mail.ru counter -->
+			<script type="text/javascript">
+				var _tmr = window._tmr || (window._tmr = []);
+				_tmr.push({id: "1990623", type: "pageView", start: (new Date()).getTime()});
+				(function (d, w, id) {
+					if (d.getElementById(id)) return;
+					var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+					ts.src = "https://top-fwz1.mail.ru/js/code.js";
+					var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+					if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+				})(document, window, "topmailru-code");
+			</script><noscript><div>
+				<img src="https://top-fwz1.mail.ru/counter?id=1990623;js=na" style="border:0;position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
+			</div></noscript>
+			<!-- //Rating@Mail.ru counter -->
+		</div> 
+	
+		<!-- Yandex.Metrika counter -->
+		<div style="display:none;"><script type="text/javascript">
+		(function(w, c) {
+			(w[c] = w[c] || []).push(function() {
+				try {
+					w.yaCounter12610318 = new Ya.Metrika({id:12610318, enableAll: true});
+				}
+				catch(e) { }
+			});
+		})(window, "yandex_metrika_callbacks");
+		</script></div>
+		<script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript" defer="defer"></script>
+		<noscript><div><img src="//mc.yandex.ru/watch/12610318" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+		<!-- /Yandex.Metrika counter -->
+</div>
+
+<div style="display: none; " id="user-select">
+	<div id="user-select-category">
+		<div class="item" onclick="user_select_search();"><img class="item-icon" src="/img/search.png"/> Поиск</div>
+		<div class="item" onclick="user_select_follow(5);"><img class="item-icon" src="/img/twinks.png"/> Твинки</div>
+		<div class="item" onclick="user_select_follow(6);"><img class="item-icon" src="/img/friends.png"/> Друзья</div>
+		<div class="item" onclick="user_select_follow(7);"><img class="item-icon" src="/img/admins.png"/> Администрация</div>
+	</div>
+	<div id="user-select-list">
+
+	</div>
+	<div id="user-select-search">
+		<div>Введите ник пользователя или его часть:</div>
+		<br/>
+		<div><input type="text" style="width: 180px;" id="ui-user-select"/></div>
+	</div>
+</div>
+
+
+	<script type="text/javascript" src="/js/highlight.pack.js"></script>
+	<script>
+	  hljs.initHighlightingOnLoad();
+	</script>
+  
+	<script type="text/javascript">
+		function register() {
+			window.open("/regform.html", "register", "menubar=no,location=no,width=480,height=410")
+		}
+		
+		function show_menu(obj) {
+			obj.style.display = 'block'
+			//if(obj.style.display == "none")
+			//	$(obj).show("fade")
+		}
+		
+		function hide_menu(obj) {
+			obj.style.display = 'none'
+			//$(obj).hide("fade")
+		}
+		
+		$(function () {
+			  $('.dropdown').each(function () {
+				$(this).parent().eq(0).hoverIntent({
+					timeout: 100,
+					over: function () {
+						var current = $('.dropdown:eq(0)', this);
+						current.slideDown(100);
+					},
+					out: function () {
+						var current = $('.dropdown:eq(0)', this);
+						current.fadeOut(200);
+					}
+				});
+			  });
+
+			  $('.dropdown').each(function(i, it){
+				  var list = $(it).find('li');
+				  if(list.length > 12){
+					  list.parent().addClass('large');
+						list.each(function(index, item){
+							if(index >= list.length / 2){
+								$(item).addClass('second');
+							} 
+							else{
+								$(item).addClass('first');
+							}
+						});
+						$(it).find('.first').wrapAll('<div class="first-row"/>');
+						$(it).find('.second').wrapAll('<div class="second-row"/>');
+				  }
+			  });
+			  
+		});
+	</script>
+	<style>
+
+	</style>
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-22798613-1']);
+	  _gaq.push(['_setDomainName', '.minecraft-galaxy.ru']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+	<script type="text/javascript">
+	attach_user_auto("#ui-user-select");
+</script>
+	<link rel="stylesheet" href="/map/map.css" type="text/css"/>
+	<link rel="stylesheet" href="/js/jquery-ui.css" type="text/css"/>
+	<link rel="stylesheet" href="/js/dark.css" type="text/css"/>
+</div>
+</body>
+
+</html>

@@ -1,11 +1,25 @@
 import { ForumError } from "./errors.js";
 import type { ForumHttp, ForumPage } from "./http.js";
 import { ItemResolver, parseUserExact, parseUserPrefix } from "./objects.js";
+import { navigation, load } from "./parsers/common.js";
+import { parseCommunity, parseCommunityForum, parseCommunityList, parseMyCommunities } from "./parsers/community.js";
 import { parseSections, parseTopicList } from "./parsers/topic-list.js";
-import { parsePostPage, parseTopicPage } from "./parsers/topic.js";
+import { communityFromNav, parsePostPage, parseTopicPage } from "./parsers/topic.js";
 import type { PlayerSession } from "./player-session.js";
 import { site } from "./site.js";
-import type { Post, PostView, Section, TopicList, TopicPage, TopicView, UserTopicList } from "./types.js";
+import type {
+  Community,
+  CommunityForum,
+  CommunityList,
+  CommunityTopicList,
+  Post,
+  PostView,
+  Section,
+  TopicList,
+  TopicPage,
+  TopicView,
+  UserTopicList,
+} from "./types.js";
 
 export const DEFAULT_PAGE_SIZE = 15;
 
@@ -15,6 +29,17 @@ const TOPIC_CACHE_MAX = 30;
 /** Сколько доверяем числу страниц темы, увиденному в списке тем. */
 const PAGES_HINT_TTL_MS = 10 * 60_000;
 const PAGES_HINT_MAX = 500;
+
+/**
+ * Вид темы: обычная (/topic/N) или тема сообщества (/hpost/N). id у них из
+ * разных пространств, поэтому вид — часть ключа кешей.
+ */
+export type TopicKind = "topic" | "hpost";
+interface TopicRef {
+  kind: TopicKind;
+  id: number;
+}
+const refKey = (ref: TopicRef) => `${ref.kind}:${ref.id}`;
 
 /** Как тема разложена по страницам форума. */
 interface TopicLayout {
@@ -28,16 +53,16 @@ interface TopicLayout {
 }
 
 /**
- * Чтение общего форума. Авторизация не нужна.
+ * Чтение форума и сообществ.
  *
  * Без сессии читает гостем (хост). С сессией игрока (stdio с кредами)
  * читает залогиненным, а протухшая сессия переустанавливается сама.
  *
- * Темы отдаются страницами фиксированного размера (по умолчанию 15 постов)
- * поверх пагинации форума, где размер страницы зависит от настроек игрока
- * (15…100). Номера постов (#N) в теме сквозные, включая удалённые, поэтому
- * страница v — это посты #(v-1)*size+1 … #v*size. Без номера страницы —
- * последние size постов: в больших темах обычно нужен конец.
+ * Темы (и обычные, и сообществ) отдаются страницами фиксированного размера
+ * (по умолчанию 15 постов) поверх пагинации форума, где размер страницы
+ * зависит от настроек игрока (15…100). Номера постов (#N) в теме сквозные,
+ * включая удалённые, поэтому страница v — это посты #(v-1)*size+1 … #v*size.
+ * Без номера страницы — последние size постов: в больших темах обычно нужен конец.
  *
  * Экземпляр долгоживущий: в нём кеш названий предметов, размера страницы
  * форума, числа страниц тем (из списков тем) и недавно прочитанных страниц.
@@ -47,8 +72,8 @@ export class ForumReader {
   /** Постов на странице форума у этого читателя (гость или игрок). */
   private forumPageSize?: number;
   private readonly topicCache = new Map<string, { at: number; page: TopicPage }>();
-  /** topicId → число страниц форума, увиденное в списке тем: позволяет сразу открыть последнюю. */
-  private readonly pagesHint = new Map<number, { at: number; pages: number }>();
+  /** Тема → число страниц форума, увиденное в списке тем: позволяет сразу открыть последнюю. */
+  private readonly pagesHint = new Map<string, { at: number; pages: number }>();
 
   constructor(
     private readonly http: ForumHttp,
@@ -61,8 +86,9 @@ export class ForumReader {
     return parseSections(await this.get(site.index()));
   }
 
+  /** Последние темы; под логином сюда же попадают до 10 тем из сообществ игрока (inCommunity). */
   async latestTopics(page = 1): Promise<TopicList> {
-    return this.rememberPages(parseTopicList(await this.get(site.latest(page)), page));
+    return this.rememberPages(parseTopicList(await this.get(site.latest(page)), page, ["topic", "hpost"]));
   }
 
   async sectionTopics(sectionId: number, page = 1): Promise<TopicList> {
@@ -105,17 +131,70 @@ export class ForumReader {
     return { ...this.rememberPages(list), user: { id, name } };
   }
 
-  /** page — от начала темы (с 1); без него — последние pageSize постов. */
-  async topic(topicId: number, page?: number, pageSize = DEFAULT_PAGE_SIZE): Promise<TopicView> {
+  // --- Сообщества ---
+
+  /** Список сообществ; title — поиск по подстроке названия. */
+  async communities(opts: { sort?: number; page?: number; title?: string } = {}): Promise<CommunityList> {
+    const page = opts.page ?? 1;
+    return parseCommunityList(await this.get(site.communities(opts.sort ?? 0, page, opts.title)), page);
+  }
+
+  /** Главная сообщества; под логином — ещё и состояние членства. */
+  async community(communityId: number): Promise<Community> {
+    const community = parseCommunity(await this.get(site.community(communityId)), communityId);
+    if (community.description) [community.description] = await this.items.resolve([community.description]);
+    return community;
+  }
+
+  /** Разделы форума сообщества. Только под логином. */
+  async communityForum(communityId: number): Promise<CommunityForum> {
+    return parseCommunityForum(await this.get(site.communityForum(communityId)), communityId);
+  }
+
+  /** Темы раздела сообщества. Гостю открыты только «Общие форумы». */
+  async communitySectionTopics(sectionId: number, page = 1): Promise<CommunityTopicList> {
+    const forumPage = await this.get(site.communitySection(sectionId, page));
+    const list = this.rememberPages(parseTopicList(forumPage, page, ["hpost"]));
+    const $ = load(forumPage.html);
+    return {
+      ...list,
+      community: communityFromNav($, navigation($).nav),
+      section: { id: sectionId, title: list.title },
+    };
+  }
+
+  /** Сообщества, где состоит игрок (блок в своём профиле). Только под логином. */
+  async myCommunities(): Promise<{ id: number; name: string }[]> {
+    return parseMyCommunities(await this.get(site.profileSelf()));
+  }
+
+  /** Последние темы из сообществ игрока (до 30). Только под логином. */
+  async myCommunityTopics(): Promise<TopicList> {
+    return this.rememberPages(parseTopicList(await this.get(site.myCommunityTopics()), 1, ["hpost"]));
+  }
+
+  // --- Темы ---
+
+  /**
+   * page — от начала темы (с 1); без него — последние pageSize постов.
+   * kind "hpost" — тема сообщества.
+   */
+  async topic(
+    topicId: number,
+    page?: number,
+    pageSize = DEFAULT_PAGE_SIZE,
+    kind: TopicKind = "topic",
+  ): Promise<TopicView> {
+    const ref = { kind, id: topicId };
     try {
-      return await this.topicSlice(topicId, page, pageSize);
+      return await this.topicSlice(ref, page, pageSize);
     } catch (error) {
       if (!(error instanceof PageSizeChanged)) throw error;
       // Игрок поменял число постов на странице в настройках форума: учимся заново.
       this.forumPageSize = undefined;
       this.topicCache.clear();
       this.pagesHint.clear();
-      return this.topicSlice(topicId, page, pageSize);
+      return this.topicSlice(ref, page, pageSize);
     }
   }
 
@@ -126,7 +205,7 @@ export class ForumReader {
     // На /post/N номер всегда #1; настоящий номер — на странице темы, куда ведёт ссылка.
     let number: number | undefined;
     if (topic.page) {
-      const forumPage = await this.forumTopicPage(topic.id, topic.page).catch(() => undefined);
+      const forumPage = await this.forumTopicPage({ kind: "topic", id: topic.id }, topic.page).catch(() => undefined);
       number = forumPage?.posts.find((p) => p.id === postId)?.number;
     }
     const out: Post = number !== undefined ? { ...post, number } : post;
@@ -138,8 +217,8 @@ export class ForumReader {
     };
   }
 
-  private async topicSlice(topicId: number, page: number | undefined, pageSize: number): Promise<TopicView> {
-    const layout = await this.layout(topicId);
+  private async topicSlice(ref: TopicRef, page: number | undefined, pageSize: number): Promise<TopicView> {
+    const layout = await this.layout(ref);
     const { totalPosts, last } = layout;
     const totalPages = Math.max(1, Math.ceil(totalPosts / pageSize));
 
@@ -151,14 +230,14 @@ export class ForumReader {
     } else {
       if (page > totalPages) {
         throw new ForumError(
-          `Topic ${topicId} has only ${totalPages} page(s) of ${pageSize} posts (${totalPosts} posts)`,
+          `Topic ${ref.id} has only ${totalPages} page(s) of ${pageSize} posts (${totalPosts} posts)`,
         );
       }
       from = (page - 1) * pageSize + 1;
       to = page * pageSize;
     }
 
-    const posts = await this.collect(topicId, layout, from, to);
+    const posts = await this.collect(ref, layout, from, to);
     // Посты из кеша не трогаем: названия предметов подставляются в копии.
     const copies = structuredClone(posts);
     await this.resolveItems(copies);
@@ -166,9 +245,10 @@ export class ForumReader {
     // Шапка (опрос, сообщения, читатели) есть на каждой странице форума.
     const withHeader = page === undefined || page === 1;
     return {
-      id: topicId,
+      id: ref.id,
       title: last.title,
       section: last.section,
+      community: last.community,
       ...(page === undefined ? { latest: true } : { page }),
       pageSize,
       totalPages,
@@ -179,20 +259,20 @@ export class ForumReader {
   }
 
   /** Число страниц форума, размер страницы и последняя страница темы. */
-  private async layout(topicId: number): Promise<TopicLayout> {
+  private async layout(ref: TopicRef): Promise<TopicLayout> {
     // Если тема недавно встречалась в списке — сразу идём на последнюю страницу (1 запрос).
-    const hint = this.pagesHint.get(topicId);
+    const hint = this.pagesHint.get(refKey(ref));
     if (hint && Date.now() - hint.at < PAGES_HINT_TTL_MS) {
-      const last = await this.forumTopicPage(topicId, hint.pages);
+      const last = await this.forumTopicPage(ref, hint.pages);
       // Тема могла вырасти на новую страницу форума — тогда идём обычным путём.
       if (last.posts.length > 0 && last.totalPages === hint.pages) {
         return this.makeLayout(hint.pages, last);
       }
     }
 
-    const first = await this.forumTopicPage(topicId, 1);
+    const first = await this.forumTopicPage(ref, 1);
     const forumPages = first.totalPages;
-    const last = forumPages > 1 ? await this.forumTopicPage(topicId, forumPages) : first;
+    const last = forumPages > 1 ? await this.forumTopicPage(ref, forumPages) : first;
     // Первая страница многостраничной темы всегда полная.
     return this.makeLayout(forumPages, last, forumPages > 1 ? first.posts.length : undefined);
   }
@@ -215,13 +295,13 @@ export class ForumReader {
   }
 
   /** Посты с номерами from..to, со всех нужных страниц форума. */
-  private async collect(topicId: number, layout: TopicLayout, from: number, to: number): Promise<Post[]> {
+  private async collect(ref: TopicRef, layout: TopicLayout, from: number, to: number): Promise<Post[]> {
     const { forumPages, forumPageSize: s, last } = layout;
     if (forumPages === 1) return last.posts.filter((p) => inRange(p, from, to));
 
     const posts: Post[] = [];
     for (let fp = Math.ceil(from / s); fp <= Math.min(Math.ceil(to / s), forumPages); fp++) {
-      const forumPage = fp === forumPages ? last : await this.forumTopicPage(topicId, fp);
+      const forumPage = fp === forumPages ? last : await this.forumTopicPage(ref, fp);
       const expectedFirst = (fp - 1) * s + 1;
       if (forumPage.posts[0]?.number !== undefined && forumPage.posts[0].number !== expectedFirst) {
         throw new PageSizeChanged();
@@ -232,12 +312,13 @@ export class ForumReader {
   }
 
   /** Страница темы в нумерации форума (с 1), разобранная; кешируется ненадолго. */
-  private async forumTopicPage(topicId: number, page: number): Promise<TopicPage> {
-    const key = `${topicId}/${page}`;
+  private async forumTopicPage(ref: TopicRef, page: number): Promise<TopicPage> {
+    const key = `${refKey(ref)}/${page}`;
     const hit = this.topicCache.get(key);
     if (hit && Date.now() - hit.at < TOPIC_CACHE_TTL_MS) return hit.page;
 
-    const parsed = parseTopicPage(await this.get(site.topic(topicId, page)), topicId, page);
+    const path = ref.kind === "hpost" ? site.communityTopic(ref.id, page) : site.topic(ref.id, page);
+    const parsed = parseTopicPage(await this.get(path), ref.id, page);
     if (this.topicCache.size >= TOPIC_CACHE_MAX) {
       this.topicCache.delete(this.topicCache.keys().next().value!);
     }
@@ -245,11 +326,12 @@ export class ForumReader {
     return parsed;
   }
 
-  private rememberPages(list: TopicList): TopicList {
+  private rememberPages<T extends TopicList>(list: T): T {
     const at = Date.now();
     for (const t of list.topics) {
-      this.pagesHint.delete(t.id); // переставить в конец: Map хранит порядок вставки
-      this.pagesHint.set(t.id, { at, pages: t.pages });
+      const key = refKey({ kind: t.inCommunity ? "hpost" : "topic", id: t.id });
+      this.pagesHint.delete(key); // переставить в конец: Map хранит порядок вставки
+      this.pagesHint.set(key, { at, pages: t.pages });
     }
     while (this.pagesHint.size > PAGES_HINT_MAX) this.pagesHint.delete(this.pagesHint.keys().next().value!);
     return list;

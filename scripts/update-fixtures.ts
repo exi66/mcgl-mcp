@@ -8,6 +8,12 @@
  *
  * С FORUM_LOGIN/FORUM_PASSWORD в .env дополнительно сохраняется главная под
  * игроком (main.authed.html) — для тестов определения гостя/ника.
+ *
+ * Фикстуры сообществ под игроком (community-*-can-join/-member/-blocked/-closed,
+ * community-forum-*, community-section-*, community-topic-*, profile-*,
+ * my-community-topics, latest-member) сняты вручную: часть из них требует
+ * состоять в сообществе 253, а скрипт в сообщества не вступает. Токены _h
+ * в ссылках заменены на _h=token.
  */
 import { mkdirSync, writeFileSync } from "node:fs";
 import { loadForumEnv, loadPlayerCredentials } from "../src/env.js";
@@ -45,6 +51,11 @@ const GUEST_PAGES: Record<string, string> = {
   "user-exact-xbost.txt": "/object/0/9?q=XBocT",
   "user-exact-missing.txt": "/object/0/9?q=nonexistent_zz91",
   "user-prefix-xbo.txt": "/object/0/4?q=XBo",
+  // Сообщества гостем: список, поиск, главная, форум (требует логин)
+  "community-list.html": "/teams/0/0",
+  "community-search-torg.html": "/teams/0/0?title=" + encodeURIComponent("торг"),
+  "community-253-guest.html": "/hmain/253",
+  "community-forum-253-guest.html": "/hforum/253",
 };
 
 const env = loadForumEnv();

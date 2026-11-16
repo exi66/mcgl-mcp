@@ -62,9 +62,19 @@ function parseTopicRow($: Doc, row: Node, kinds: string[]): TopicRow | undefined
 
   // Под названием: `<div><span class="admins"><span class="small">только для Модераторов</span></span></div>`,
   // в «последних» ещё и раздел: `<div class="small">Общение - <span class="vip">…только для VIP…</span></div>`.
+  // У тем сообществ (/hpost) в «последних» там же название сообщества: `<div><span class="small">Ивенты…</span></div>`.
   const info = cell.children("div").first();
-  const replyLabel = text(info.find("span.small").last().text());
+  const labels = info
+    .find("span.small")
+    .map((_, s) => text($(s).text()))
+    .get();
+  const replyLabel = labels.find((l) => /^только/i.test(l)) ?? "";
   const sectionName = text(info.clone().children().remove().end().text()).replace(/\s*-\s*$/, "") || undefined;
+  const inCommunity = target.kind === "hpost";
+  // В ленте моих сообществ раздел виден только по иконке: /files/teams/{id раздела}_forum.png.
+  const iconSection = /\/files\/teams\/(\d+)_forum\./.exec(
+    row.children("td").first().find("img").attr("src") ?? "",
+  )?.[1];
 
   const cells = row.children("td");
   return {
@@ -74,6 +84,13 @@ function parseTopicRow($: Doc, row: Node, kinds: string[]): TopicRow | undefined
     closed: link.find(".main-title-close").length > 0,
     whoCanReply: parseReplyAccess(replyLabel),
     section: info.hasClass("small") ? sectionName : undefined,
+    ...(inCommunity
+      ? {
+          inCommunity,
+          community: labels.find((l) => !/^только/i.test(l)),
+          sectionId: iconSection ? Number(iconSection) : undefined,
+        }
+      : {}),
     created: stamp(cells.eq(2)),
     replies: int(cells.eq(3).text()),
     pages: maxPage($, cell.children(".pages").first()),

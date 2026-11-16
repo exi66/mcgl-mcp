@@ -55,8 +55,11 @@ export class ForumHttp {
     this.retryDelaysMs = options.retryDelaysMs ?? [1000, 2000];
   }
 
-  get(path: string): Promise<ForumPage> {
-    return this.withHealth(() => this.withRetries(path, () => this.request(path, { method: "GET" })));
+  /** extraHeaders — например Referer: без него форум игнорирует ссылки-действия (вступить/выйти). */
+  get(path: string, extraHeaders?: Record<string, string>): Promise<ForumPage> {
+    return this.withHealth(() =>
+      this.withRetries(path, () => this.request(path, { method: "GET", headers: extraHeaders })),
+    );
   }
 
   postForm(path: string, fields: FormFields, extraHeaders?: Record<string, string>): Promise<ForumPage> {

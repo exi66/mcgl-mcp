@@ -41,6 +41,12 @@ export interface TopicRow {
   whoCanReply: ReplyAccess | (string & {});
   /** Раздел (есть только в списке последних тем). */
   section?: string;
+  /** Тема сообщества (/hpost): читать через forum_community_topic, id не пересекаются с обычными темами. */
+  inCommunity?: boolean;
+  /** Название сообщества (у тем сообществ в списке последних тем). */
+  community?: string;
+  /** id раздела сообщества (в ленте моих сообществ, по иконке раздела). */
+  sectionId?: number;
   created?: Stamp;
   replies?: number;
   /** Сколько страниц в теме. */
@@ -101,6 +107,8 @@ export interface TopicPage {
   id: number;
   title: string;
   section?: { id: number; title: string };
+  /** Сообщество (у тем сообществ, из хлебных крошек). */
+  community?: { id: number; title: string };
   page: number;
   totalPages: number;
   poll?: Poll;
@@ -121,6 +129,7 @@ export interface TopicView {
   id: number;
   title: string;
   section?: { id: number; title: string };
+  community?: { id: number; title: string };
   /** Номер страницы от начала темы; нет в режиме latest. */
   page?: number;
   latest?: boolean;
@@ -145,4 +154,69 @@ export interface PostView {
   topic: { id: number; title: string; page?: number };
   section?: { id: number; title: string };
   post: Post;
+}
+
+/** Строка списка сообществ (/teams/). */
+export interface CommunityRow {
+  id: number;
+  name: string;
+  /** Место в рейтинге сообществ. */
+  place?: number;
+  leader?: UserRef;
+  members?: number;
+  /** Открытое: вступить можно самому (если выполнены условия). Закрытое — по заявке. */
+  open: boolean;
+  topics?: number;
+  posts?: number;
+  createdAt?: string;
+}
+
+export interface CommunityList {
+  page: number;
+  /** Известно только без поиска: при поиске форум не выводит ссылки на страницы. */
+  totalPages?: number;
+  hasMore: boolean;
+  communities: CommunityRow[];
+}
+
+/**
+ * Состояние игрока относительно сообщества (только под логином):
+ * member — состоит; can_join — можно вступить; blocked — не проходит условия
+ * (причина в joinBlockedReason); closed — вступление только по заявке.
+ */
+export type Membership = "member" | "can_join" | "blocked" | "closed";
+
+export interface Community {
+  id: number;
+  name: string;
+  leader?: UserRef;
+  members?: number;
+  place?: number;
+  membership?: Membership;
+  joinBlockedReason?: string;
+  /** Описание с главной сообщества (bbCode → текст). */
+  description?: string;
+}
+
+export interface CommunitySection {
+  id: number;
+  category?: string;
+  /** Не «Общие форумы»: открыт только участникам сообщества. */
+  membersOnly: boolean;
+  title: string;
+  description?: string;
+  topics?: number;
+  replies?: number;
+  last?: Stamp;
+}
+
+export interface CommunityForum {
+  community: { id: number; title?: string };
+  sections: CommunitySection[];
+}
+
+/** Список тем раздела сообщества (/htopic/N). */
+export interface CommunityTopicList extends TopicList {
+  community?: { id: number; title: string };
+  section: { id: number; title?: string };
 }

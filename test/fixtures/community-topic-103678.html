@@ -1,0 +1,431 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta http-equiv="x-rim-auto-match" content="none">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="keywords" content="minecraft, многопользовательская, игра, game, beta, server, сервер, mmorpg, dmh"/> 
+	<meta http-equiv="description" content="Сервер игры Minecraft Galaxy"/>
+		<title>Итоги конкурса рисунков "8 марта в MCGL" - Minecraft Galaxy</title>
+
+	<link rel="stylesheet" href="/style.css?v=10" type="text/css"/>
+	<link rel="stylesheet" href="/light.css?v=5" type="text/css"/>	<link rel="stylesheet" href="/adaptive.css?v=3" type="text/css"/>
+	
+	<meta property="og:image" content="http://minecraft-galaxy.ru/img/logo_large.png"/> 
+	<script type="text/javascript" src="/js/jquery.min.js"></script> 
+	<script type="text/javascript" src="/js/jquery-ui.min.js"></script> 
+	
+	<script type="text/javascript" src="/js/jquery.autocomplete.js"></script>
+	
+	<script type="text/javascript" src="/script.js?v=9"></script>
+	<script type="text/javascript" src="/tpl/format.js"></script>
+	<script src="/map/script.js"></script>
+	
+	<script type="text/javascript" src="/js/ThreeCanvas.js"></script>
+	<script type="text/javascript" src="/js/Cube.js"></script>
+	<script type="text/javascript" src="/js/BinFileReader.js"></script>
+	
+	<style>
+		html { background-image: url('/files/teams/253_back.png') !important; background-blend-mode: unset; background-repeat: repeat; background-attachment:fixed; }
+	</style>
+	
+</head>
+
+<body onresize="change_sizes();" onload="change_sizes();">
+<div class="main-div">
+	<div class="header">
+		<div class="mobile-menu"></div>
+		<div class="main-logo"></div>		<div class="title"><a href="https://minecraft-galaxy.ru">Minecraft Galaxy</a></div>
+		<div class="title-mobile"><a href="/">MCGL</a></div>
+<div class="mobile-showen-menu-back"><div class="mobile-showen-menu"><ul class="mobilemenu"><li><a class="item mobile-menu-item" href="/">Форумы</a></li><li><a class="item mobile-menu-item" href="/forum/0">Темы ↓</a>								<ul class="dropdown-mobile">
+										<li><a class="item mobile-menu-item" href="/forum/0">Последние</a></li><li><a class="item mobile-menu-item" href="/forum/-1">Избранные</a></li><li><a class="item mobile-menu-item" href="/private/0">Личные</a></li><li><a class="item mobile-menu-item" href="/forum/-714941">Все свои</a></li><li><a class="item mobile-menu-item" href="/teamforums/">Форумы сообществ</a></li>								</ul>
+							</li><li><a class="item mobile-menu-item" href="/blog/">Новости</a></li><li><a class="item mobile-menu-item" href="/users/">Игроки ↓</a>								<ul class="dropdown-mobile">
+										<li><a class="item mobile-menu-item" href="/users/">Список</a></li><li><a class="item mobile-menu-item" href="/clans/">Кланы</a></li><li><a class="item mobile-menu-item" href="/teams/">Сообщества</a></li><li><a class="item mobile-menu-item" href="/topgalaxy/">Galaxy Forbes</a></li><li><a class="item mobile-menu-item" href="/bans/">Баны</a></li><li><a class="item mobile-menu-item" href="/mutes/0">Молчуны</a></li><li><a class="item mobile-menu-item" href="/achieves/"><img src="/img/achieve/best.png"/> Достижения</a></li><li><a class="item mobile-menu-item" href="/top/0">Топ 25</a></li><li><a class="item mobile-menu-item" href="/prodtop/">Производство</a></li><li><a class="item mobile-menu-item" href="/screens/0">Скриншоты</a></li><li><a class="item mobile-menu-item" href="/fortress/">Крепости</a></li><li><a class="item mobile-menu-item" href="/battles/">Дракон</a></li><li><a class="item mobile-menu-item" href="/eventcalendar/">События</a></li><li><a class="item mobile-menu-item" href="/plugins/">Плагины</a></li>								</ul>
+							</li><li><a class="item mobile-menu-item" href="/goldshop/"><span class="vip">Donate</span></a></li><li><a class="item mobile-menu-item" href="/wiki/">Помощь ↓</a>								<ul class="dropdown-mobile">
+										<li><a class="item mobile-menu-item" href="/wiki/530">Наши правила</a></li><li><a class="item mobile-menu-item" href="/wiki/">Wiki</a></li><li><a class="item mobile-menu-item" href="/wiki/FAQ">FAQ</a></li><li><a class="item mobile-menu-item" href="/professions/">Профессии</a></li><li><a class="item mobile-menu-item" href="/doc/9120">План разработок</a></li><li><a class="item mobile-menu-item" href="https://minecraft-galaxy.ru/install/">Установка клиента</a></li><li><a class="item mobile-menu-item" href="/items/">Блоки и предметы</a></li><li><a class="item mobile-menu-item" href="/wiki/O_серверах">О серверах</a></li><li><a class="item mobile-menu-item" href="/wiki/995">О гриферах</a></li><li><a class="item mobile-menu-item" href="/exchange/0"><img src="/img/arrow_up.png"/> Биржа <img src="/img/arrow_down.png"/></a></li>								</ul>
+							</li><li><a class="item mobile-menu-item" href="#"><img src="/img/map.png" width="10"/> Карты ↓</a>								<ul class="dropdown-mobile">
+										<li><a class="item mobile-menu-item" href="/capitals/"><span class="vip">Столицы</span></a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/1/0/">Main</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/2/0/">Guest</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/3/0/">DemoPlanet</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/5/0/">Hunter</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/6/0/">LittleBigPlanet</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/7/0/">MinerPlanet</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/8/0/">Clans</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/9/0/">MiniGames</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/10/0/">MonkeyPlanet</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/11/0/">Pirate station</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/12/0/">Nano</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/13/0/">Rookie</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/14/0/">Newbie</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/15/0/">Build</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/16/0/">Pacific</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/19/0/">Novice</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/20/0/">Team</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/22/0/">Farm</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/23/0/">Creator</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/25/0/">Prometeus</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/26/0/">Laboratory</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/28/0/">Zeus</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/29/0/">Dragon nest</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/30/0/">Atlantida</a></li>								</ul>
+							</li><li><a class="item mobile-menu-item" href="/search/">Поиск</a></li><li><a class="item mobile-menu-item" href="#"><span class="mods">Заявки</span> ↓</a>								<ul class="dropdown-mobile">
+										<li><a class="item mobile-menu-item" href="/ban/">Забанить!</a></li><li><a class="item mobile-menu-item" href="/dispute/">Жалоба на гриф</a></li><li><a class="item mobile-menu-item" href="/faq/4">Кража аккаунта</a></li><li><a class="item mobile-menu-item" href="/faq/5">Сообщить о баге</a></li><li><a class="item mobile-menu-item" href="/faq/41">Получить <span class="premium">Gold</span></a></li><li><a class="item mobile-menu-item" href="/faq/22">Апелляция банов</a></li><li><a class="item mobile-menu-item" href="/faq/0">Прочее...</a></li>								</ul>
+							</li></ul></div></div>				<div class="sms-chat-img"><a href="/smschat/"><img src="/img/sms-chat.png"></a></div>
+				<div class="sms-chat-msg" id="smschat">
+					<a href="/profilemain/637906" class="user-link eventmoder" onmouseover='showtip(1, 637906, event)' onmouseout='hidetip()'>social</a>: 15.11.26 -  20:00. Не опаздывай. Они уже ждут.<br/><a href="/profilemain/712823" class="user-link vip" onmouseover='showtip(1, 712823, event)' onmouseout='hidetip()'>Kiyote</a>: Спасибо игроку SlimeMind670 за разработку клиента для Mac OS !<br/><a href="/profilemain/277171" class="user-link vip" onmouseover='showtip(1, 277171, event)' onmouseout='hidetip()'>50_C_E_N_T</a>: Серваки легли ?<br/>				</div>
+							<div class="login-panel">
+								<script>
+					function setc(ssid) {
+						if(ssid) {
+							document.cookie = "PHPSESSID=" + ssid + "; path=/; domain=." + window.location.hostname.split(".").splice(1).join(".") + "; expires=" + new Date((new Date).getTime() + 7*24*3600*1000);
+							document.location.reload();
+						}
+						else {
+							document.location = "/guilogin/";
+						}
+					}
+					function twin() {
+						document.cookie = "PHPSESSID=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT; domain=." + window.location.hostname.split(".").splice(1).join(".");
+						document.location = "/guilogin/";
+					}
+				</script>
+				<div class="profile-panel">
+					<div class="button-container">
+						<a href="/profilemain/" class="button button-arrow"><span class="text">Capri</span><span onclick="show_submenu(this, true); return false"; class="arrow"></span></a>
+						<div class="submenu">
+							<div class="item"><a href="javascript: twin();">Зайти за твинка</a></div><div class="item"><hr></div>			<div class="item"><a href="/securitynew/714940/0">Безопасность</a></div>
+			<div class="item"><a href="/settings/">Настройки</a></div>
+			<div class="item"><a href="/login.php?l=&_h=token">Выход</a></div>
+									</div>
+					</div> 
+				</div>
+							</div>
+			</div>
+			<ul class="tabs mainmenu"><li><a class="item" href="/">Форумы</a></li><li><a class="item" href="/forum/0">Темы ↓</a>						<ul class="dropdown">
+								<li><a href="/forum/0">Последние</a></li><li><a href="/forum/-1">Избранные</a></li><li><a href="/private/0">Личные</a></li><li><a href="/forum/-714941">Все свои</a></li><li><a href="/teamforums/">Форумы сообществ</a></li>						</ul>
+					</li><li><a class="item" href="/blog/">Новости</a></li><li><a class="item" href="/users/">Игроки ↓</a>						<ul class="dropdown">
+								<li><a href="/users/">Список</a></li><li><a href="/clans/">Кланы</a></li><li><a href="/teams/">Сообщества</a></li><li><a href="/topgalaxy/">Galaxy Forbes</a></li><li><a href="/bans/">Баны</a></li><li><a href="/mutes/0">Молчуны</a></li><li><a href="/achieves/"><img src="/img/achieve/best.png"/> Достижения</a></li><li><a href="/top/0">Топ 25</a></li><li><a href="/prodtop/">Производство</a></li><li><a href="/screens/0">Скриншоты</a></li><li><a href="/fortress/">Крепости</a></li><li><a href="/battles/">Дракон</a></li><li><a href="/eventcalendar/">События</a></li><li><a href="/plugins/">Плагины</a></li>						</ul>
+					</li><li><a class="item" href="/goldshop/"><span class="vip">Donate</span></a></li><li><a class="item" href="/wiki/">Помощь ↓</a>						<ul class="dropdown">
+								<li><a href="/wiki/530">Наши правила</a></li><li><a href="/wiki/">Wiki</a></li><li><a href="/wiki/FAQ">FAQ</a></li><li><a href="/professions/">Профессии</a></li><li><a href="/doc/9120">План разработок</a></li><li><a href="https://minecraft-galaxy.ru/install/">Установка клиента</a></li><li><a href="/items/">Блоки и предметы</a></li><li><a href="/wiki/O_серверах">О серверах</a></li><li><a href="/wiki/995">О гриферах</a></li><li><a href="/exchange/0"><img src="/img/arrow_up.png"/> Биржа <img src="/img/arrow_down.png"/></a></li>						</ul>
+					</li><li><a class="item" href="#"><img src="/img/map.png" width="10"/> Карты ↓</a>						<ul class="dropdown">
+								<li><a href="/capitals/"><span class="vip">Столицы</span></a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/1/0/">Main</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/2/0/">Guest</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/3/0/">DemoPlanet</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/5/0/">Hunter</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/6/0/">LittleBigPlanet</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/7/0/">MinerPlanet</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/8/0/">Clans</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/9/0/">MiniGames</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/10/0/">MonkeyPlanet</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/11/0/">Pirate station</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/12/0/">Nano</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/13/0/">Rookie</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/14/0/">Newbie</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/15/0/">Build</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/16/0/">Pacific</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/19/0/">Novice</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/20/0/">Team</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/22/0/">Farm</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/23/0/">Creator</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/25/0/">Prometeus</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/26/0/">Laboratory</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/28/0/">Zeus</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/29/0/">Dragon nest</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/30/0/">Atlantida</a></li>						</ul>
+					</li><li><a class="item" href="/search/">Поиск</a></li><li><a class="item" href="#"><span class="mods">Заявки</span> ↓</a>						<ul class="dropdown">
+								<li><a href="/ban/">Забанить!</a></li><li><a href="/dispute/">Жалоба на гриф</a></li><li><a href="/faq/4">Кража аккаунта</a></li><li><a href="/faq/5">Сообщить о баге</a></li><li><a href="/faq/41">Получить <span class="premium">Gold</span></a></li><li><a href="/faq/22">Апелляция банов</a></li><li><a href="/faq/0">Прочее...</a></li>						</ul>
+					</li></ul><div class="right-panel"><a class="panel-link" href="/supportqueue/" title="Написать в поддержку" target=""><img src="/img/8/4449_icon25.ico" alt=""/></a><a class="panel-link" href="/lastevents/" onclick="show_twits(this);return false;" rel="" title="Лента событий"><span class="counter">10</span><img src="/img/8/4483_icon59.ico" alt=""/></a><a class="panel-link" href="/uservotes/" title="Очки голосования" target=""><img src="/img/8/4519_icon95.ico" alt=""/></a><a class="panel-link" href="/userissues/0?t=1" title="Задачи" target=""><span class="counter">55</span><img src="/img/8/4429_icon5.ico" alt=""/></a></div>				<div class="fixed-panel">
+					<div class="inner-panel">
+						<div class="button-container"><a href="/forum/0" class="button">Последние</a></div>
+						<div class="button-container"><a href="/teamforums/" class="button">Сообщества</a></div>
+						<div class="button-container">
+								<a href="/private/0" class="button button-arrow"><span class="text">Личные</span><span onclick="show_submenu(this, false); return false"; class="arrow"></span></a>
+								<div class="submenu">
+									<div class="item"><a href="/private/0?t=2">Новые </a></div>
+								</div>
+							</div> 
+						<div class="button-container"><a href="/wiki/" class="button">Wiki</a></div>
+						<div class="button-container"><a href="http://map.minecraft-galaxy.ru/" class="button">Карта</a></div>
+						<div class="button-container"><a href="/search/" class="button">Поиск</a></div>
+						
+						<div class="right-fields">
+							<div class="button-container">
+								<a href="/profilemain/" class="button button-arrow"><span class="text">Capri</span><span onclick="show_submenu(this, false); return false"; class="arrow"></span></a>
+								<div class="submenu">
+									<div class="item"><a href="javascript: twin();">Зайти за твинка</a></div><div class="item"><hr></div>			<div class="item"><a href="/securitynew/714940/0">Безопасность</a></div>
+			<div class="item"><a href="/settings/">Настройки</a></div>
+			<div class="item"><a href="/login.php?l=&_h=token">Выход</a></div>
+											</div>
+							</div> 
+						</div>
+					</div>
+				</div>
+				<div class="content"><div class="frame"><div style="padding: 5px;"><div id="text-40"> <span style="font-size: 20px;">Новичок, добро пожаловать на форумы MCGL!</span><br/><br/>Задать любой вопрос, касающийся игры, можно в <a target=_blank href="/forum/3"><span style="font-size: 16px;">Вопросах по игре</span></a>, сообществе <a target=_blank href="/hforum/1"><span style="font-size: 16px;">Хелперов</span></a>. Любые технические вопросы решаются через <a target=_blank href="/support/"><span style="font-size: 16px;">Поддержку (support)</span></a>.<br/><br/>Также рекомендуем прочитать <a target=_blank href="/wiki/"><span style="font-size: 16px;">Вики Minecraft Galaxy</span></a>, <a target=_blank href="/wiki/FAQ"><span style="font-size: 16px;">Ответы на вопросы</span></a> и вспомнить <a target=_blank href="/topic/24"><span style="font-size: 16px;">Правила серверов</span></a>.<br/><br/>Все разделы форума будут доступны только после некоторого времени, проведенного в игре.<br/></div></div></div></div><div class="tb-panel"><a class="tb-btn" id="m-6" title="Общая информация" href="/hmain/253" ><span class="icons-24" style="background-position:-0px -0px;"></span></a><a class="tb-btn" id="m-6" title="Состав" href="/hmembers/253" ><span class="icons-24" style="background-position:-72px -72px;"></span></a><a class="tb-btn" id="m-6" title="Приглашенные" href="/hinvites/253" ><span class="icons-24" style="background-position:-24px -72px;"></span></a><a class="tb-btn" id="m-6" title="Группы" href="/hsquad/253" ><span class="icons-24" style="background-position:-72px -96px;"></span></a><span class="splitter"><span></span></span><a class="tb-btn-active" id="m-6" title="Обсуждения" href="/hforum/253" ><span class="icons-24" style="background-position:-0px -72px;"></span></a><a class="tb-btn" id="m-6" title="Лента" href="/hlast/253" ><span class="icons-24" style="background-position:-48px -72px;"></span></a><a class="tb-btn" id="m-6" title="Свои темы" href="/hself/253" ><span class="icons-24" style="background-position:-168px -24px;"></span></a><a class="tb-btn" id="m-6" title="Черный список" href="/hblacklist/253" ><span class="icons-24" style="background-position:-192px -24px;"></span></a><span class="splitter"><span></span></span><a class="tb-btn" id="m-6" title="Статистика" href="/hstat/253" ><span class="icons-24" style="background-position:-72px -0px;"></span></a><a class="tb-btn" id="m-6" title="Репорт игр с арены" href="/arenagames/0" ><span class="icons-24" style="background-position:-0px -96px;"></span></a></div><div class="content"><a class="top-block" href="#" title="" target="">Вверх &uarr;</a>
+			<div class="navigate">
+				<a class="tree" style="z-index: 4;" href="/hforum/253" title="" target="">Ивенты Minecraft Galaxy</a><a class="tree" style="z-index: 3;" href="/htopic/450" title="" target="">Итоги ивентов</a><span class="treesel" style="z-index: 2;">Итоги конкурса рисунков &quot;8 марта в MCGL&quot;</span>
+				<span class="pages"><span class="hintleft">← Ctrl</span><span class="current">1</span><span class="hintright">Ctrl →</span></span>
+			</div><table class='posts' cellspacing=1 cellpadding=0>
+				<tr style='display: ;' id='row1-855786'>
+					<td class="author-row" rowspan=2>
+						<div class="login"><img src="/img/offline.png" title=""/><a class="vip" href='javascript: onPaste("[b]_Karnelius_[/b], |");'>_Karnelius_</a> <img src="/img/offline.png" title=""/></div>
+						<div class="pcount">Модератор</div>
+						<img src="http://forum.minecraft-galaxy.ru/img/avatars/626446" />
+						<div class="pcount">Ответов: 1163</div>
+						<div class="pcount"><a class="" href="/claninfo/2369" title="" target="">OXPAHA</a><br/>Начальник охраны</div>
+					</td>
+					<td class="header-row">
+						<div class="post-header"><a name="p855786"></a><a class="" href="/hmessage/855786" title="" target="">#1</a>: 2026-03-27 20:43:10 
+						<span class='post-tools'>
+							
+							
+							
+							
+							<a href='/private/0?to=626446#text'>ЛС</a> |
+							<a href='/profilemain/626446'>профиль</a> | 
+							<a href="#" onclick='quote("p1-855786", "_Karnelius_"); return false;'>цитата</a>
+						</span>
+					</div>
+					</td>
+				</tr>
+				<tr style='display: ;' id='row2-855786'>
+					<td class="msg-row">
+						<div class="post-text" id="p1-855786">
+						 <div style="text-align: center;"><img class="post-image" src="https://i.mcgl.ru/W1Y1CUzR3l"></div><br/><div><div style="margin: auto; width: 600px;"><div class=bc_quote><div style="text-align: center;">  <span style="font-size: 16px;"><b>Призёры</b><br/><img src="/img/user.png"/> <a href="/profilemain/159967" onmouseover="showtip(1, 159967, event)" onmouseout="hidetip()" class="vip">The_Aquamarine</a> <font color="#FFCC66">8.625</font> - <a href="/item/949" onmouseover='showtip(2, 949, event)' onmouseout='hidetip()'><div class="access-bg-32" style="background-position: -128px -288px"></div></a><br/><img src="/img/user.png"/> <a href="/profilemain/533406" onmouseover="showtip(1, 533406, event)" onmouseout="hidetip()" class="girls">Xaski</a> <font color="#FFCC66">8.125</font> - <a href="/item/949" onmouseover='showtip(2, 949, event)' onmouseout='hidetip()'><div class="access-bg-32" style="background-position: -128px -288px"></div></a><br/><img src="/img/user.png"/> <a href="/profilemain/84094" onmouseover="showtip(1, 84094, event)" onmouseout="hidetip()" class="platinum">GetOffMyCock</a> <font color="#FFCC66">7.5/7.125</font> - <a href="/item/949" onmouseover='showtip(2, 949, event)' onmouseout='hidetip()'><div class="access-bg-32" style="background-position: -128px -288px"></div></a> </span> </div></div></div></div><br/><br/><b>Призерам просьба указать в личные сообщения <img src="/img/user.png"/> <a href="/profilemain/626446" onmouseover="showtip(1, 626446, event)" onmouseout="hidetip()" class="vip">_Karnelius_</a> планету, на которую необходимо выслать приз.</b><br/><br/><div class="spoler"><div class="spoler-head" onclick="switchTable(this);"><img src="/img/icon_plus.gif" class="_plus"> оценки</div><div class="spoler-body"><br/><div class="scroll"><div class="scroll-head" onclick="switchTable(this);"><img src="/img/icon_plus.gif" class="_plus"> Slivaa123</div><div class="scroll-body"><a href="https://i.mcgl.ru/bekQeli4JN" onclick="return false;" target="_blank"><img class="post-image" style="cursor: pointer;" onclick="show_preview(this)" src="https://i.mcgl.ru/bekQeli4JN?p"></a><br/><table class=bc_table cellpadding=2 cellspacing=1><tr class=bc_header><td>Судья</td><td>Оценка</td><td>Комментарий</td></tr><tr class=bc_row_1><td>1</td><td>4</td><td>Средняя работа, просто перенесена моделька, с парой штрихов, остановлюсь на 4, всё таки от конкурса рисунков хочется чего то большего</td></tr><tr class=bc_row_0><td>2</td><td>5</td><td>Тематика праздника слабоватая, есть только указание &quot;8м&quot;.  Отсылка хорошая, узнаваемая. Мало похоже на открытку к 8 марта.</td></tr><tr class=bc_row_1><td>3</td><td>4.5</td><td>Красивая работа, но больше подошла бы к конкурсу подделок</td></tr><tr class=bc_row_0><td>4</td><td>2</td><td> Хорошая работа, но как она относится к 8 марта?</td></tr></table><br/><b>ИТОГО:3.875</b><br/></div></div><div class="scroll"><div class="scroll-head" onclick="switchTable(this);"><img src="/img/icon_plus.gif" class="_plus"> owin66</div><div class="scroll-body"><a href="https://i.mcgl.ru/FVOUud3Jdm" onclick="return false;" target="_blank"><img class="post-image" style="cursor: pointer;" onclick="show_preview(this)" src="https://i.mcgl.ru/FVOUud3Jdm?p"></a><br/><table class=bc_table cellpadding=2 cellspacing=1><tr class=bc_header><td>Судья</td><td>Оценка</td><td>Комментарий</td></tr><tr class=bc_row_0><td>1</td><td>2.5</td><td>Ну пусть будет 2 балл за ядерный тнт и 0,5 за прикольный букет ромашек</td></tr><tr class=bc_row_1><td>2</td><td>3</td><td>Работа смешная, и смеяться хочется и плакать. отсылка слабая. Тематика прослеживается слабо.</td></tr><tr class=bc_row_0><td>3</td><td>3</td><td>Хорошая задумка, мало детализации по сравнению с другими работами, не раскрыта тема 8го марта</td></tr><tr class=bc_row_1><td>4</td><td>5</td><td>Одновременно простоя и забавная работа</td></tr></table><br/><b>ИТОГО:3.375</b><br/></div></div><div class="scroll"><div class="scroll-head" onclick="switchTable(this);"><img src="/img/icon_plus.gif" class="_plus"> Emo</div><div class="scroll-body"><a href="https://i.mcgl.ru/yadhbqlEzy" onclick="return false;" target="_blank"><img class="post-image" style="cursor: pointer;" onclick="show_preview(this)" src="https://i.mcgl.ru/yadhbqlEzy?p"></a><br/><table class=bc_table cellpadding=2 cellspacing=1><tr class=bc_header><td>Судья</td><td>Оценка</td><td>Комментарий</td></tr><tr class=bc_row_1><td>1</td><td>7</td><td>Красивая работа, но слабо понимаю что хотел сказать автор, наступившая весна окей, совместное празднование окей, мцгл да</td></tr><tr class=bc_row_0><td>2</td><td>6</td><td>Узнаваемость хорошая, тематика отслеживается слабо, сложно догадаться что это 8 марта. Просто хорошая картинка.</td></tr><tr class=bc_row_1><td>3</td><td>5.5</td><td>Интересная работа, с хорошо подобранными цветами, тема 8е марта раскрыта посредственно</td></tr><tr class=bc_row_0><td>4</td><td>8</td><td>Приятная душевная работа с интересной идеей</td></tr></table><br/><b>ИТОГО:6.625</b><br/></div></div><div class="scroll"><div class="scroll-head" onclick="switchTable(this);"><img src="/img/icon_plus.gif" class="_plus"> Xaski</div><div class="scroll-body"><a href="https://i.mcgl.ru/mB4utDu84f" onclick="return false;" target="_blank"><img class="post-image" style="cursor: pointer;" onclick="show_preview(this)" src="https://i.mcgl.ru/mB4utDu84f?p"></a><br/><table class=bc_table cellpadding=2 cellspacing=1><tr class=bc_header><td>Судья</td><td>Оценка</td><td>Комментарий</td></tr><tr class=bc_row_0><td>1</td><td>10</td><td>Шикарная работа, идея, покрас, интерактив, множество мелких деталей, тут и масочки, и чяреная броня, и даже партиклы ожерелья</td></tr><tr class=bc_row_1><td>2</td><td>10</td><td>Усть и отсылки и тематика видна сразу. Хорошая работа, яркая, красочная.</td></tr><tr class=bc_row_0><td>3</td><td>7.5</td><td>Очень понравилась эта работа, хорошо подобраны цвета, раскрыта тема 8е марта</td></tr><tr class=bc_row_1><td>4</td><td>5</td><td>Неплохая работа без &quot;вау&quot; эффекта</td></tr></table><br/><b>ИТОГО:8.125</b><br/></div></div><div class="scroll"><div class="scroll-head" onclick="switchTable(this);"><img src="/img/icon_plus.gif" class="_plus"> GetOffMyCock</div><div class="scroll-body"><a href="https://i.mcgl.ru/ssE3IwgjcE" onclick="return false;" target="_blank"><img class="post-image" style="cursor: pointer;" onclick="show_preview(this)" src="https://i.mcgl.ru/ssE3IwgjcE?p"></a><br/><b>Первый тур голосования</b><br/><table class=bc_table cellpadding=2 cellspacing=1><tr class=bc_header><td>Судья</td><td>Оценка</td><td>Комментарий</td></tr><tr class=bc_row_1><td>1</td><td>8.5</td><td>Интересная работа, интерактивная, мцгл да, медик супер, ещё 0,5 балла понравились цветочки в инвенторе</td></tr><tr class=bc_row_0><td>2</td><td>6</td><td>Работа хорошая, отсылки хорошие, но тематика слабая, если не знать про праздник и не скажешь.</td></tr><tr class=bc_row_1><td>3</td><td>7.5</td><td>Красивая работа, детализированная, мало отсылок к 8му марта</td></tr><tr class=bc_row_0><td>4</td><td>8</td><td> Хорошая работа с необычной и интересной задумкой. Реализация также на уровне</td></tr></table><br/><b>ИТОГО:7.5</b><br/><br/><b>Второй тур голосования</b><br/><table class=bc_table cellpadding=2 cellspacing=1><tr class=bc_header><td>Судья</td><td>Оценка</td></tr><tr class=bc_row_0><td>1</td><td>8</td></tr><tr class=bc_row_1><td>2</td><td>5</td></tr><tr class=bc_row_0><td>3</td><td>7.5</td></tr><tr class=bc_row_1><td>4</td><td>8</td></tr></table><br/><b>ИТОГО:7.125</b><br/></div></div><div class="scroll"><div class="scroll-head" onclick="switchTable(this);"><img src="/img/icon_plus.gif" class="_plus"> Gari599</div><div class="scroll-body"><a href="https://i.mcgl.ru/2UbFoIZD7Y" onclick="return false;" target="_blank"><img class="post-image" style="cursor: pointer;" onclick="show_preview(this)" src="https://i.mcgl.ru/2UbFoIZD7Y?p"></a><br/><table class=bc_table cellpadding=2 cellspacing=1><tr class=bc_header><td>Судья</td><td>Оценка</td><td>Комментарий</td></tr><tr class=bc_row_1><td>1</td><td>5</td><td>Оригинальная работа, по своему атмосферная, кардинально отличается от всех предыдущих, но при всём уважение, не верится мне что это возможно нарисовать руками.</td></tr><tr class=bc_row_0><td>2</td><td>4</td><td>Отсылка узнаваемая, тематика нет, просто иконка яны.</td></tr><tr class=bc_row_1><td>3</td><td>5.5</td><td>Интересная пиксельная работа,  с хорошо подобранными цветами, тема 8е марта не раскрыта</td></tr><tr class=bc_row_0><td>4</td><td>5</td><td>Просто и понятно</td></tr></table><br/><b>ИТОГО:4.875</b><br/></div></div><div class="scroll"><div class="scroll-head" onclick="switchTable(this);"><img src="/img/icon_plus.gif" class="_plus"> -Speedy-</div><div class="scroll-body"><a href="https://i.mcgl.ru/GwAlongPw5" onclick="return false;" target="_blank"><img class="post-image" style="cursor: pointer;" onclick="show_preview(this)" src="https://i.mcgl.ru/GwAlongPw5?p"></a><br/><b>Первый тур голосования</b><br/><table class=bc_table cellpadding=2 cellspacing=1><tr class=bc_header><td>Судья</td><td>Оценка</td><td>Комментарий</td></tr><tr class=bc_row_0><td>1</td><td>6</td><td>Просто и со вкусом, работа не плохая, работа интересная, но на фоне остальных выглядит скромно</td></tr><tr class=bc_row_1><td>2</td><td>8</td><td>Отсылки есть, инж, крепость русалки. Тематика прослеживается средне.</td></tr><tr class=bc_row_0><td>3</td><td>8</td><td>Детализированная работа нарисованная от руки, с раскрытой темой 8е марта</td></tr><tr class=bc_row_1><td>4</td><td>8</td><td>Работа с отличной идеей, но реализация кажется незавершённой. Лично для меня работа была бы топ 1 удели автор ей больше времени хотя даже так она не отстаёт от других</td></tr></table><br/><b>ИТОГО:7.5</b><br/><br/><b>Второй тур голосования</b><br/><table class=bc_table cellpadding=2 cellspacing=1><tr class=bc_header><td>Судья</td><td>Оценка</td></tr><tr class=bc_row_1><td>1</td><td>6.5</td></tr><tr class=bc_row_0><td>2</td><td>5.5</td></tr><tr class=bc_row_1><td>3</td><td>6.5</td></tr><tr class=bc_row_0><td>4</td><td>7.5</td></tr></table><br/><b>ИТОГО:6.5</b><br/></div></div><div class="scroll"><div class="scroll-head" onclick="switchTable(this);"><img src="/img/icon_plus.gif" class="_plus"> The_Aquamarine</div><div class="scroll-body"><a href="https://i.mcgl.ru/Xm2wUPMPfY" onclick="return false;" target="_blank"><img class="post-image" style="cursor: pointer;" onclick="show_preview(this)" src="https://i.mcgl.ru/Xm2wUPMPfY?p"></a><br/><table class=bc_table cellpadding=2 cellspacing=1><tr class=bc_header><td>Судья</td><td>Оценка</td><td>Комментарий</td></tr><tr class=bc_row_0><td>1</td><td>10</td><td>Однозначно одна из самых лучших работ, концепция с торговкой супер, интерактивность, приятный покрас. Очень сложно решить какая из них лучше</td></tr><tr class=bc_row_1><td>2</td><td>10</td><td>Работа хорошая, отсылки хорошие.</td></tr><tr class=bc_row_0><td>3</td><td>8.5</td><td>Красочная работа нарисованная от руки, с раскрытой темой 8е марта</td></tr><tr class=bc_row_1><td>4</td><td>6</td><td>Интересно и со вкусом</td></tr></table><br/><b>ИТОГО:8.625</b><br/></div></div><div class="scroll"><div class="scroll-head" onclick="switchTable(this);"><img src="/img/icon_plus.gif" class="_plus"> 7RRR</div><div class="scroll-body"><a href="https://i.mcgl.ru/iZiSiaJhmC" onclick="return false;" target="_blank"><img class="post-image" style="cursor: pointer;" onclick="show_preview(this)" src="https://i.mcgl.ru/iZiSiaJhmC?p"></a><br/><table class=bc_table cellpadding=2 cellspacing=1><tr class=bc_header><td>Судья</td><td>Оценка</td><td>Комментарий</td></tr><tr class=bc_row_1><td>1</td><td>6.5</td><td>Работа максимально средняя, задумка неплохая, но раскрас простоват, были и лучше работы, понравилось что преподнесено в формате поздравления от другой девушки</td></tr><tr class=bc_row_0><td>2</td><td>8</td><td>Узнаваемость хорошая, тематика отслеживается средне.</td></tr><tr class=bc_row_1><td>3</td><td>7.5</td><td>Красочная работа с отсылками, с раскрытой темой 8е марта</td></tr><tr class=bc_row_0><td>4</td><td>4</td><td>Простая работа, классическая идея</td></tr></table><br/><b>ИТОГО:6.5</b><br/></div></div><div class="scroll"><div class="scroll-head" onclick="switchTable(this);"><img src="/img/icon_plus.gif" class="_plus"> _MilK_</div><div class="scroll-body"><a href="https://i.mcgl.ru/hlnX1KKqVv" onclick="return false;" target="_blank"><img class="post-image" style="cursor: pointer;" onclick="show_preview(this)" src="https://i.mcgl.ru/hlnX1KKqVv?p"></a><br/><table class=bc_table cellpadding=2 cellspacing=1><tr class=bc_header><td>Судья</td><td>Оценка</td><td>Комментарий</td></tr><tr class=bc_row_0><td>1</td><td>8.5</td><td>Интересная задумка, довольно интерактивная, цвета приятные, чуть снижу за нехватку фона, а так работа супер</td></tr><tr class=bc_row_1><td>2</td><td>10</td><td>Работа хорошая, отсылки хорошие.</td></tr><tr class=bc_row_0><td>3</td><td>6.5</td><td>Интересная задумка с рисунком от 1го лица</td></tr><tr class=bc_row_1><td>4</td><td>4</td><td> Неплохая работа, в целом ясно</td></tr></table><br/><b>ИТОГО:7.25</b><br/></div></div></div></div>
+						</div>
+						
+					</td>
+				</tr>
+				<tr style="display: ;" id="row3-855786">
+					<td class="tool-row pcount">карма: <a class="" href="/userkarma/626446" title="" target="">0</a></td>
+					<td class="tool-row"><table class="memo" cellspacing=0 cellpadding=0><tr><td><div class="udescr"> </div></td><td style="text-align: right; width: 65px;"><span class="vote">1</span><img class="finger" src="/img/th-up.png" onclick="post_single_vote(this, '/hpost/855786/vote?_h=token', 855786);" title="Понравилось"/></td></tr></table></td></tr><tr><td class="tool-row">Голосовали:</td><td class="msg-row"><a class="vote-pos" href="/profilemain/533406" title="" target="">Xaski</a></td></tr></table><table class='posts' cellspacing=1 cellpadding=0>
+				<tr style='display: ;' id='row1-855789'>
+					<td class="author-row" rowspan=2>
+						<div class="login"><img src="/img/offline.png" title=""/><a class="girls" href='javascript: onPaste("[b]Xaski[/b], |");'>Xaski</a> <img src="/img/offline.png" title=""/></div>
+						
+						<img src="http://forum.minecraft-galaxy.ru/img/avatars/533406" />
+						<div class="pcount">Ответов: 35</div>
+						<div class="pcount"><a class="" href="/claninfo/786" title="" target="">TRoN</a><br/>Xaski Mafia</div>
+					</td>
+					<td class="header-row">
+						<div class="post-header"><a name="p855789"></a><a class="" href="/hmessage/855789" title="" target="">#2</a>: 2026-03-27 20:50:34 
+						<span class='post-tools'>
+							
+							
+							
+							
+							<a href='/private/0?to=533406#text'>ЛС</a> |
+							<a href='/profilemain/533406'>профиль</a> | 
+							<a href="#" onclick='quote("p2-855789", "Xaski"); return false;'>цитата</a>
+						</span>
+					</div>
+					</td>
+				</tr>
+				<tr style='display: ;' id='row2-855789'>
+					<td class="msg-row">
+						<div class="post-text" id="p2-855789">
+						 <img src="/img/smilies/icon_cool.gif" /><br/>
+						</div>
+						
+					</td>
+				</tr>
+				<tr style="display: ;" id="row3-855789">
+					<td class="tool-row pcount">карма: <a class="" href="/userkarma/533406" title="" target=""><span class="vote-pos">1</span></a></td>
+					<td class="tool-row"><table class="memo" cellspacing=0 cellpadding=0><tr><td><div class="udescr"> <font color="#CC3300">Я не хочу быть красивым,не хочу быть богатым</font> <font color="#3399CC">Я хочу быть автоматом</font></div></td><td style="text-align: right; width: 65px;"><span class="vote">0</span><img class="finger" src="/img/th-up.png" onclick="post_single_vote(this, '/hpost/855789/vote?_h=token', 855789);" title="Понравилось"/></td></tr></table></td></tr></table><table class='posts' cellspacing=1 cellpadding=0>
+				<tr style='display: ;' id='row1-855790'>
+					<td class="author-row" rowspan=2>
+						<div class="login"><img src="/img/offline.png" title=""/><a class="vip" href='javascript: onPaste("[b]Animeshka[/b], |");'>Animeshka</a> <img src="/img/offline.png" title=""/></div>
+						
+						<img src="http://forum.minecraft-galaxy.ru/img/avatars/510496" />
+						<div class="pcount">Ответов: 55</div>
+						<div class="pcount"><a class="" href="/claninfo/2304" title="" target="">Noir Villar</a><br/>Гефест</div>
+					</td>
+					<td class="header-row">
+						<div class="post-header"><a name="p855790"></a><a class="" href="/hmessage/855790" title="" target="">#3</a>: 2026-03-27 21:08:13 
+						<span class='post-tools'>
+							
+							
+							
+							
+							<a href='/private/0?to=510496#text'>ЛС</a> |
+							<a href='/profilemain/510496'>профиль</a> | 
+							<a href="#" onclick='quote("p3-855790", "Animeshka"); return false;'>цитата</a>
+						</span>
+					</div>
+					</td>
+				</tr>
+				<tr style='display: ;' id='row2-855790'>
+					<td class="msg-row">
+						<div class="post-text" id="p3-855790">
+						 <b><u>1 РИСУНОК</u></b> - Постная работа, слабо относится к 8 марта. <b><font color="#CC3300">3 БАЛЛА</font></b><br/><b><u>2 РИСУНОК</u></b> - Наихудшая реализация из всех. <b><font color="#CC3300">1 БАЛЛ</font></b><br/><b><u>3 РИСУНОК</u></b> - Реализация хороша, слабо относится к 8 марта. <b><font color="#CC3300">5 БАЛЛОВ</font></b><br/><b><u>4 РИСУНОК</u></b> - Пять парней на одну девчонку? Уважайте себя, мужчины. <b><font color="#CC3300">6 БАЛЛОВ</font></b><br/><b><u>5 РИСУНОК</u></b> - Реализация хороша, малышка накачала своими соками какого-то счастливчика, слабо относится к 8 марта. <b><font color="#CC3300">7 БАЛЛОВ</font></b><br/><b><u>6 РИСУНОК</u></b> - Реализация норм, нулевое отношение к 8 марта. <b><font color="#CC3300">3 БАЛЛА</font></b><br/><b><u>7 РИСУНОК</u></b> - Было бы норм, если бы листок не пыл помят сракой шрека. <b><font color="#CC3300">5 БАЛЛОВ</font></b><br/><b><u>8 РИСУНОК</u></b> - Наилучшая работа, ларек с цветами, продавец - тематика соблюдена на 100 баллов. <b><font color="#CC3300">9 БАЛЛОВ</font></b><br/><b><u>9 РИСУНОК</u></b> - Тоже крайне неплохая работа, реализация выше среднего, тематика соблюдена на 100 баллов. <b><font color="#CC3300">8 БАЛЛОВ</font></b><br/><b><u>10 РИСУНОК</u></b> - Реализация хромает, сломана перспектива первого лица, глаза у Яны наполнены пустотой, а не радостью, тематика соблюдена на 100 баллов. <b><font color="#CC3300">7 БАЛЛОВ</font></b><br/>
+						</div>
+						
+					</td>
+				</tr>
+				<tr style="display: ;" id="row3-855790">
+					<td class="tool-row pcount">карма: <a class="" href="/userkarma/510496" title="" target=""><span class="vote-neg">-5</span></a></td>
+					<td class="tool-row"><table class="memo" cellspacing=0 cellpadding=0><tr><td><div class="udescr"> </div></td><td style="text-align: right; width: 65px;"><span class="vote">0</span><img class="finger" src="/img/th-up.png" onclick="post_single_vote(this, '/hpost/855790/vote?_h=token', 855790);" title="Понравилось"/></td></tr></table></td></tr></table><table class='posts' cellspacing=1 cellpadding=0>
+				<tr style='display: ;' id='row1-855791'>
+					<td class="author-row" rowspan=2>
+						<div class="login"><img src="/img/offline.png" title=""/><a class="platinum" href='javascript: onPaste("[b]Blista[/b], |");'>Blista</a> <img src="/img/offline.png" title=""/></div>
+						
+						<img src="http://forum.minecraft-galaxy.ru/img/avatars/590473" />
+						<div class="pcount">Ответов: 334</div>
+						<div class="pcount"><a class="" href="/claninfo/786" title="" target="">TRoN</a><br/>Iso Blista</div>
+					</td>
+					<td class="header-row">
+						<div class="post-header"><a name="p855791"></a><a class="" href="/hmessage/855791" title="" target="">#4</a>: 2026-03-27 22:25:53 
+						<span class='post-tools'>
+							
+							
+							
+							
+							<a href='/private/0?to=590473#text'>ЛС</a> |
+							<a href='/profilemain/590473'>профиль</a> | 
+							<a href="#" onclick='quote("p4-855791", "Blista"); return false;'>цитата</a>
+						</span>
+					</div>
+					</td>
+				</tr>
+				<tr style='display: ;' id='row2-855791'>
+					<td class="msg-row">
+						<div class="post-text" id="p4-855791">
+						 Классно что кто-то занялся ивентами<br/>
+						</div>
+						
+					</td>
+				</tr>
+				<tr style="display: ;" id="row3-855791">
+					<td class="tool-row pcount">карма: <a class="" href="/userkarma/590473" title="" target=""><span class="vote-pos">19</span></a></td>
+					<td class="tool-row"><table class="memo" cellspacing=0 cellpadding=0><tr><td><div class="udescr"> | <a target="_blank" href="/topic/73293"><font color="#87ceeb">[В помощь садоводам] Алгоритм роста растений</font></a></div></td><td style="text-align: right; width: 65px;"><span class="vote">1</span><img class="finger" src="/img/th-up.png" onclick="post_single_vote(this, '/hpost/855791/vote?_h=token', 855791);" title="Понравилось"/></td></tr></table></td></tr><tr><td class="tool-row">Голосовали:</td><td class="msg-row"><a class="vote-pos" href="/profilemain/533406" title="" target="">Xaski</a></td></tr></table><table class='posts' cellspacing=1 cellpadding=0>
+				<tr style='display: ;' id='row1-855839'>
+					<td class="author-row" rowspan=2>
+						<div class="login"><img src="/img/offline.png" title=""/><a class="vip" href='javascript: onPaste("[b]_Karnelius_[/b], |");'>_Karnelius_</a> <img src="/img/offline.png" title=""/></div>
+						<div class="pcount">Модератор</div>
+						<img src="http://forum.minecraft-galaxy.ru/img/avatars/626446" />
+						<div class="pcount">Ответов: 1163</div>
+						<div class="pcount"><a class="" href="/claninfo/2369" title="" target="">OXPAHA</a><br/>Начальник охраны</div>
+					</td>
+					<td class="header-row">
+						<div class="post-header"><a name="p855839"></a><a class="" href="/hmessage/855839" title="" target="">#5</a>: 2026-03-31 23:15:51 
+						<span class='post-tools'>
+							
+							
+							
+							
+							<a href='/private/0?to=626446#text'>ЛС</a> |
+							<a href='/profilemain/626446'>профиль</a> | 
+							<a href="#" onclick='quote("p5-855839", "_Karnelius_"); return false;'>цитата</a>
+						</span>
+					</div>
+					</td>
+				</tr>
+				<tr style='display: ;' id='row2-855839'>
+					<td class="msg-row">
+						<div class="post-text" id="p5-855839">
+						 Все призы отправлены. Всем спасибо за участие!<br/>
+						</div>
+						
+					</td>
+				</tr>
+				<tr style="display: ;" id="row3-855839">
+					<td class="tool-row pcount">карма: <a class="" href="/userkarma/626446" title="" target="">0</a></td>
+					<td class="tool-row"><table class="memo" cellspacing=0 cellpadding=0><tr><td><div class="udescr"> </div></td><td style="text-align: right; width: 65px;"><span class="vote">1</span><img class="finger" src="/img/th-up.png" onclick="post_single_vote(this, '/hpost/855839/vote?_h=token', 855839);" title="Понравилось"/></td></tr></table></td></tr><tr><td class="tool-row">Голосовали:</td><td class="msg-row"><a class="vote-pos" href="/profilemain/533406" title="" target="">Xaski</a></td></tr></table>
+			<div class="navigate">
+				<a class="tree" style="z-index: 4;" href="/hforum/253" title="" target="">Ивенты Minecraft Galaxy</a><a class="tree" style="z-index: 3;" href="/htopic/450" title="" target="">Итоги ивентов</a><span class="treesel" style="z-index: 2;">Итоги конкурса рисунков &quot;8 марта в MCGL&quot;</span>
+				<span class="pages"><span class="hintleft">← Ctrl</span><span class="current">1</span><span class="hintright">Ctrl →</span></span>
+			</div><div class="form-panel" id="form-panel"><form action="" method="post"  onsubmit="$(this).find('.submit').attr('disabled','disabled')" ><input type="hidden" name="form"/><table class="msg-form"><tr><td  colspan="2"><input type="hidden" name="addpost" value=""/></td></tr><tr><td colspan="2"><div class="title">Сообщение</div><div class="control"><div id="formatTools">...</div><textarea  name="text" style="height: 200px;" id="message"></textarea></div></td></tr><tr><td colspan="2"><div class="tools"><input onclick="block_button(this);" type="submit" class="submit" value="Отправить"/></div></td></tr></table></form></div><div class="tools" id="tools"><a class="button" href="javascript: htopic_favorite(103678);"> <img class="icon" src="/img/btns/nofav.png"  id="fav"/>Избранное</a><a class="button" href="javascript: htopic_sub(103678);"> <img class="icon" src="/img/btns/nofav.png"  id="sub"/>Подписаться</a><div class="clear"></div></div></div>
+
+<div class="copyright">
+<div style="padding:7px;">Copyright 2026 by Project Galaxy team</div>
+
+		<div style="padding:7px;"> 
+			<!-- Rating@Mail.ru counter -->
+			<script type="text/javascript">
+				var _tmr = window._tmr || (window._tmr = []);
+				_tmr.push({id: "1990623", type: "pageView", start: (new Date()).getTime()});
+				(function (d, w, id) {
+					if (d.getElementById(id)) return;
+					var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+					ts.src = "https://top-fwz1.mail.ru/js/code.js";
+					var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+					if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+				})(document, window, "topmailru-code");
+			</script><noscript><div>
+				<img src="https://top-fwz1.mail.ru/counter?id=1990623;js=na" style="border:0;position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
+			</div></noscript>
+			<!-- //Rating@Mail.ru counter -->
+		</div> 
+	
+		<!-- Yandex.Metrika counter -->
+		<div style="display:none;"><script type="text/javascript">
+		(function(w, c) {
+			(w[c] = w[c] || []).push(function() {
+				try {
+					w.yaCounter12610318 = new Ya.Metrika({id:12610318, enableAll: true});
+				}
+				catch(e) { }
+			});
+		})(window, "yandex_metrika_callbacks");
+		</script></div>
+		<script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript" defer="defer"></script>
+		<noscript><div><img src="//mc.yandex.ru/watch/12610318" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+		<!-- /Yandex.Metrika counter -->
+</div>
+
+<div style="display: none; " id="user-select">
+	<div id="user-select-category">
+		<div class="item" onclick="user_select_search();"><img class="item-icon" src="/img/search.png"/> Поиск</div>
+		<div class="item" onclick="user_select_follow(5);"><img class="item-icon" src="/img/twinks.png"/> Твинки</div>
+		<div class="item" onclick="user_select_follow(6);"><img class="item-icon" src="/img/friends.png"/> Друзья</div>
+		<div class="item" onclick="user_select_follow(7);"><img class="item-icon" src="/img/admins.png"/> Администрация</div>
+	</div>
+	<div id="user-select-list">
+
+	</div>
+	<div id="user-select-search">
+		<div>Введите ник пользователя или его часть:</div>
+		<br/>
+		<div><input type="text" style="width: 180px;" id="ui-user-select"/></div>
+	</div>
+</div>
+
+
+	<script type="text/javascript" src="/js/highlight.pack.js"></script>
+	<script>
+	  hljs.initHighlightingOnLoad();
+	</script>
+  
+	<script type="text/javascript">
+		function register() {
+			window.open("/regform.html", "register", "menubar=no,location=no,width=480,height=410")
+		}
+		
+		function show_menu(obj) {
+			obj.style.display = 'block'
+			//if(obj.style.display == "none")
+			//	$(obj).show("fade")
+		}
+		
+		function hide_menu(obj) {
+			obj.style.display = 'none'
+			//$(obj).hide("fade")
+		}
+		
+		$(function () {
+			  $('.dropdown').each(function () {
+				$(this).parent().eq(0).hoverIntent({
+					timeout: 100,
+					over: function () {
+						var current = $('.dropdown:eq(0)', this);
+						current.slideDown(100);
+					},
+					out: function () {
+						var current = $('.dropdown:eq(0)', this);
+						current.fadeOut(200);
+					}
+				});
+			  });
+
+			  $('.dropdown').each(function(i, it){
+				  var list = $(it).find('li');
+				  if(list.length > 12){
+					  list.parent().addClass('large');
+						list.each(function(index, item){
+							if(index >= list.length / 2){
+								$(item).addClass('second');
+							} 
+							else{
+								$(item).addClass('first');
+							}
+						});
+						$(it).find('.first').wrapAll('<div class="first-row"/>');
+						$(it).find('.second').wrapAll('<div class="second-row"/>');
+				  }
+			  });
+			  
+		});
+	</script>
+	<style>
+
+	</style>
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-22798613-1']);
+	  _gaq.push(['_setDomainName', '.minecraft-galaxy.ru']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+	<script type="text/javascript">
+	attach_user_auto("#ui-user-select");
+</script>
+	<link rel="stylesheet" href="/map/map.css" type="text/css"/>
+	<link rel="stylesheet" href="/js/jquery-ui.css" type="text/css"/>
+	<link rel="stylesheet" href="/js/dark.css" type="text/css"/>
+</div>
+</body>
+
+</html>

@@ -2,10 +2,12 @@ import { readFileSync } from "node:fs";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { InMemoryTransport } from "@modelcontextprotocol/sdk/inMemory.js";
 import { describe, expect, test } from "vitest";
+import { PlayerSession } from "../../src/forum/player-session.js";
 import { ForumReader } from "../../src/forum/reader.js";
 import { createMcpServer } from "../../src/mcp/server.js";
 import { startFakeForum } from "../helpers/fake-forum.js";
 import { fixture } from "../helpers/fixtures.js";
+import { startLoginForum } from "../helpers/login-forum.js";
 
 /** Путь на форуме → фикстура. */
 const PAGES: Record<string, string> = {
@@ -47,10 +49,13 @@ describe("MCP server", () => {
     const { client } = await connect();
     const { tools } = await client.listTools();
     expect(tools.map((t) => t.name).sort()).toEqual([
+      "forum_community_topics",
       "forum_find_users",
+      "forum_get_community",
       "forum_get_post",
       "forum_get_topic",
       "forum_latest_topics",
+      "forum_list_communities",
       "forum_list_sections",
       "forum_list_topics",
       "forum_user_topics",
@@ -138,5 +143,35 @@ describe("player tools", () => {
     const users = (await call(client, "forum_find_users", { prefix: "XBo", limit: 2 })).json();
     expect(users).toHaveLength(2);
     expect(users[0]).toEqual({ id: 20304, name: "XBocT", group: "platinum" });
+  });
+});
+
+describe("community tools", () => {
+  test("player tools are registered only with a player session", async () => {
+    const forum = await startLoginForum();
+    const http = forum.http();
+    const session = new PlayerSession(http, { login: "Capri", password: "secret" });
+    const server = createMcpServer({ reader: new ForumReader(http, session), session });
+    const client = new Client({ name: "test", version: "0" });
+    const [clientSide, serverSide] = InMemoryTransport.createLinkedPair();
+    await Promise.all([server.connect(serverSide), client.connect(clientSide)]);
+
+    const tools = (await client.listTools()).tools;
+    const names = tools.map((t) => t.name);
+    for (const name of [
+      "forum_community_sections",
+      "forum_community_topic",
+      "forum_my_communities",
+      "forum_my_community_topics",
+      "forum_join_community",
+      "forum_leave_community",
+    ]) {
+      expect(names).toContain(name);
+    }
+    // Действия помечены как изменяющие и просят подтверждения пользователя.
+    for (const t of tools.filter((t) => /join|leave/.test(t.name))) {
+      expect(t.annotations?.readOnlyHint).toBe(false);
+      expect(t.description).toMatch(/confirm/);
+    }
   });
 });

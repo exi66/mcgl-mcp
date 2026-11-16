@@ -1,0 +1,265 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta http-equiv="x-rim-auto-match" content="none">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="keywords" content="minecraft, многопользовательская, игра, game, beta, server, сервер, mmorpg, dmh"/> 
+	<meta http-equiv="description" content="Сервер игры Minecraft Galaxy"/>
+		<title>Последние - Minecraft Galaxy</title>
+
+	<link rel="stylesheet" href="/style.css?v=10" type="text/css"/>
+	<link rel="stylesheet" href="/light.css?v=5" type="text/css"/>	<link rel="stylesheet" href="/adaptive.css?v=3" type="text/css"/>
+	
+	<meta property="og:image" content="http://minecraft-galaxy.ru/img/logo_large.png"/> 
+	<script type="text/javascript" src="/js/jquery.min.js"></script> 
+	<script type="text/javascript" src="/js/jquery-ui.min.js"></script> 
+	
+	<script type="text/javascript" src="/js/jquery.autocomplete.js"></script>
+	
+	<script type="text/javascript" src="/script.js?v=9"></script>
+	<script type="text/javascript" src="/tpl/format.js"></script>
+	<script src="/map/script.js"></script>
+	
+	<script type="text/javascript" src="/js/ThreeCanvas.js"></script>
+	<script type="text/javascript" src="/js/Cube.js"></script>
+	<script type="text/javascript" src="/js/BinFileReader.js"></script>
+	
+	<style>
+			</style>
+	
+</head>
+
+<body onresize="change_sizes();" onload="change_sizes();">
+<div class="main-div">
+	<div class="header">
+		<div class="mobile-menu"></div>
+		<div class="main-logo"></div>		<div class="title"><a href="https://minecraft-galaxy.ru">Minecraft Galaxy</a></div>
+		<div class="title-mobile"><a href="/">MCGL</a></div>
+<div class="mobile-showen-menu-back"><div class="mobile-showen-menu"><ul class="mobilemenu"><li><a class="item mobile-menu-item" href="/">Форумы</a></li><li><a class="item mobile-menu-item" href="/forum/0">Темы ↓</a>								<ul class="dropdown-mobile">
+										<li><a class="item mobile-menu-item" href="/forum/0">Последние</a></li><li><a class="item mobile-menu-item" href="/forum/-1">Избранные</a></li><li><a class="item mobile-menu-item" href="/private/0">Личные</a></li><li><a class="item mobile-menu-item" href="/forum/-714941">Все свои</a></li><li><a class="item mobile-menu-item" href="/teamforums/">Форумы сообществ</a></li>								</ul>
+							</li><li><a class="item mobile-menu-item" href="/blog/">Новости</a></li><li><a class="item mobile-menu-item" href="/users/">Игроки ↓</a>								<ul class="dropdown-mobile">
+										<li><a class="item mobile-menu-item" href="/users/">Список</a></li><li><a class="item mobile-menu-item" href="/clans/">Кланы</a></li><li><a class="item mobile-menu-item" href="/teams/">Сообщества</a></li><li><a class="item mobile-menu-item" href="/topgalaxy/">Galaxy Forbes</a></li><li><a class="item mobile-menu-item" href="/bans/">Баны</a></li><li><a class="item mobile-menu-item" href="/mutes/0">Молчуны</a></li><li><a class="item mobile-menu-item" href="/achieves/"><img src="/img/achieve/best.png"/> Достижения</a></li><li><a class="item mobile-menu-item" href="/top/0">Топ 25</a></li><li><a class="item mobile-menu-item" href="/prodtop/">Производство</a></li><li><a class="item mobile-menu-item" href="/screens/0">Скриншоты</a></li><li><a class="item mobile-menu-item" href="/fortress/">Крепости</a></li><li><a class="item mobile-menu-item" href="/battles/">Дракон</a></li><li><a class="item mobile-menu-item" href="/eventcalendar/">События</a></li><li><a class="item mobile-menu-item" href="/plugins/">Плагины</a></li>								</ul>
+							</li><li><a class="item mobile-menu-item" href="/goldshop/"><span class="vip">Donate</span></a></li><li><a class="item mobile-menu-item" href="/wiki/">Помощь ↓</a>								<ul class="dropdown-mobile">
+										<li><a class="item mobile-menu-item" href="/wiki/530">Наши правила</a></li><li><a class="item mobile-menu-item" href="/wiki/">Wiki</a></li><li><a class="item mobile-menu-item" href="/wiki/FAQ">FAQ</a></li><li><a class="item mobile-menu-item" href="/professions/">Профессии</a></li><li><a class="item mobile-menu-item" href="/doc/9120">План разработок</a></li><li><a class="item mobile-menu-item" href="https://minecraft-galaxy.ru/install/">Установка клиента</a></li><li><a class="item mobile-menu-item" href="/items/">Блоки и предметы</a></li><li><a class="item mobile-menu-item" href="/wiki/O_серверах">О серверах</a></li><li><a class="item mobile-menu-item" href="/wiki/995">О гриферах</a></li><li><a class="item mobile-menu-item" href="/exchange/0"><img src="/img/arrow_up.png"/> Биржа <img src="/img/arrow_down.png"/></a></li>								</ul>
+							</li><li><a class="item mobile-menu-item" href="#"><img src="/img/map.png" width="10"/> Карты ↓</a>								<ul class="dropdown-mobile">
+										<li><a class="item mobile-menu-item" href="/capitals/"><span class="vip">Столицы</span></a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/1/0/">Main</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/2/0/">Guest</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/3/0/">DemoPlanet</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/5/0/">Hunter</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/6/0/">LittleBigPlanet</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/7/0/">MinerPlanet</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/8/0/">Clans</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/9/0/">MiniGames</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/10/0/">MonkeyPlanet</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/11/0/">Pirate station</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/12/0/">Nano</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/13/0/">Rookie</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/14/0/">Newbie</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/15/0/">Build</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/16/0/">Pacific</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/19/0/">Novice</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/20/0/">Team</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/22/0/">Farm</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/23/0/">Creator</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/25/0/">Prometeus</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/26/0/">Laboratory</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/28/0/">Zeus</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/29/0/">Dragon nest</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/30/0/">Atlantida</a></li>								</ul>
+							</li><li><a class="item mobile-menu-item" href="/search/">Поиск</a></li><li><a class="item mobile-menu-item" href="#"><span class="mods">Заявки</span> ↓</a>								<ul class="dropdown-mobile">
+										<li><a class="item mobile-menu-item" href="/ban/">Забанить!</a></li><li><a class="item mobile-menu-item" href="/dispute/">Жалоба на гриф</a></li><li><a class="item mobile-menu-item" href="/faq/4">Кража аккаунта</a></li><li><a class="item mobile-menu-item" href="/faq/5">Сообщить о баге</a></li><li><a class="item mobile-menu-item" href="/faq/41">Получить <span class="premium">Gold</span></a></li><li><a class="item mobile-menu-item" href="/faq/22">Апелляция банов</a></li><li><a class="item mobile-menu-item" href="/faq/0">Прочее...</a></li>								</ul>
+							</li></ul></div></div>				<div class="sms-chat-img"><a href="/smschat/"><img src="/img/sms-chat.png"></a></div>
+				<div class="sms-chat-msg" id="smschat">
+					<a href="/profilemain/637906" class="user-link eventmoder" onmouseover='showtip(1, 637906, event)' onmouseout='hidetip()'>social</a>: 15.11.26 -  20:00. Не опаздывай. Они уже ждут.<br/><a href="/profilemain/712823" class="user-link vip" onmouseover='showtip(1, 712823, event)' onmouseout='hidetip()'>Kiyote</a>: Спасибо игроку SlimeMind670 за разработку клиента для Mac OS !<br/><a href="/profilemain/277171" class="user-link vip" onmouseover='showtip(1, 277171, event)' onmouseout='hidetip()'>50_C_E_N_T</a>: Серваки легли ?<br/>				</div>
+							<div class="login-panel">
+								<script>
+					function setc(ssid) {
+						if(ssid) {
+							document.cookie = "PHPSESSID=" + ssid + "; path=/; domain=." + window.location.hostname.split(".").splice(1).join(".") + "; expires=" + new Date((new Date).getTime() + 7*24*3600*1000);
+							document.location.reload();
+						}
+						else {
+							document.location = "/guilogin/";
+						}
+					}
+					function twin() {
+						document.cookie = "PHPSESSID=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT; domain=." + window.location.hostname.split(".").splice(1).join(".");
+						document.location = "/guilogin/";
+					}
+				</script>
+				<div class="profile-panel">
+					<div class="button-container">
+						<a href="/profilemain/" class="button button-arrow"><span class="text">Capri</span><span onclick="show_submenu(this, true); return false"; class="arrow"></span></a>
+						<div class="submenu">
+							<div class="item"><a href="javascript: twin();">Зайти за твинка</a></div><div class="item"><hr></div>			<div class="item"><a href="/securitynew/714940/0">Безопасность</a></div>
+			<div class="item"><a href="/settings/">Настройки</a></div>
+			<div class="item"><a href="/login.php?l=&_h=token">Выход</a></div>
+									</div>
+					</div> 
+				</div>
+							</div>
+			</div>
+			<ul class="tabs mainmenu"><li><a class="item" href="/">Форумы</a></li><li><a class="item" href="/forum/0">Темы ↓</a>						<ul class="dropdown">
+								<li><a href="/forum/0">Последние</a></li><li><a href="/forum/-1">Избранные</a></li><li><a href="/private/0">Личные</a></li><li><a href="/forum/-714941">Все свои</a></li><li><a href="/teamforums/">Форумы сообществ</a></li>						</ul>
+					</li><li><a class="item" href="/blog/">Новости</a></li><li><a class="item" href="/users/">Игроки ↓</a>						<ul class="dropdown">
+								<li><a href="/users/">Список</a></li><li><a href="/clans/">Кланы</a></li><li><a href="/teams/">Сообщества</a></li><li><a href="/topgalaxy/">Galaxy Forbes</a></li><li><a href="/bans/">Баны</a></li><li><a href="/mutes/0">Молчуны</a></li><li><a href="/achieves/"><img src="/img/achieve/best.png"/> Достижения</a></li><li><a href="/top/0">Топ 25</a></li><li><a href="/prodtop/">Производство</a></li><li><a href="/screens/0">Скриншоты</a></li><li><a href="/fortress/">Крепости</a></li><li><a href="/battles/">Дракон</a></li><li><a href="/eventcalendar/">События</a></li><li><a href="/plugins/">Плагины</a></li>						</ul>
+					</li><li><a class="item" href="/goldshop/"><span class="vip">Donate</span></a></li><li><a class="item" href="/wiki/">Помощь ↓</a>						<ul class="dropdown">
+								<li><a href="/wiki/530">Наши правила</a></li><li><a href="/wiki/">Wiki</a></li><li><a href="/wiki/FAQ">FAQ</a></li><li><a href="/professions/">Профессии</a></li><li><a href="/doc/9120">План разработок</a></li><li><a href="https://minecraft-galaxy.ru/install/">Установка клиента</a></li><li><a href="/items/">Блоки и предметы</a></li><li><a href="/wiki/O_серверах">О серверах</a></li><li><a href="/wiki/995">О гриферах</a></li><li><a href="/exchange/0"><img src="/img/arrow_up.png"/> Биржа <img src="/img/arrow_down.png"/></a></li>						</ul>
+					</li><li><a class="item" href="#"><img src="/img/map.png" width="10"/> Карты ↓</a>						<ul class="dropdown">
+								<li><a href="/capitals/"><span class="vip">Столицы</span></a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/1/0/">Main</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/2/0/">Guest</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/3/0/">DemoPlanet</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/5/0/">Hunter</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/6/0/">LittleBigPlanet</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/7/0/">MinerPlanet</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/8/0/">Clans</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/9/0/">MiniGames</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/10/0/">MonkeyPlanet</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/11/0/">Pirate station</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/12/0/">Nano</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/13/0/">Rookie</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/14/0/">Newbie</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/15/0/">Build</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/16/0/">Pacific</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/19/0/">Novice</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/20/0/">Team</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/22/0/">Farm</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/23/0/">Creator</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/25/0/">Prometeus</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/26/0/">Laboratory</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/28/0/">Zeus</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/29/0/">Dragon nest</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/30/0/">Atlantida</a></li>						</ul>
+					</li><li><a class="item" href="/search/">Поиск</a></li><li><a class="item" href="#"><span class="mods">Заявки</span> ↓</a>						<ul class="dropdown">
+								<li><a href="/ban/">Забанить!</a></li><li><a href="/dispute/">Жалоба на гриф</a></li><li><a href="/faq/4">Кража аккаунта</a></li><li><a href="/faq/5">Сообщить о баге</a></li><li><a href="/faq/41">Получить <span class="premium">Gold</span></a></li><li><a href="/faq/22">Апелляция банов</a></li><li><a href="/faq/0">Прочее...</a></li>						</ul>
+					</li></ul><div class="right-panel"><a class="panel-link" href="/supportqueue/" title="Написать в поддержку" target=""><img src="/img/8/4449_icon25.ico" alt=""/></a><a class="panel-link" href="/lastevents/" onclick="show_twits(this);return false;" rel="" title="Лента событий"><span class="counter">10</span><img src="/img/8/4483_icon59.ico" alt=""/></a><a class="panel-link" href="/uservotes/" title="Очки голосования" target=""><img src="/img/8/4519_icon95.ico" alt=""/></a><a class="panel-link" href="/userissues/0?t=1" title="Задачи" target=""><span class="counter">55</span><img src="/img/8/4429_icon5.ico" alt=""/></a></div>				<div class="fixed-panel">
+					<div class="inner-panel">
+						<div class="button-container"><a href="/forum/0" class="button">Последние</a></div>
+						<div class="button-container"><a href="/teamforums/" class="button">Сообщества</a></div>
+						<div class="button-container">
+								<a href="/private/0" class="button button-arrow"><span class="text">Личные</span><span onclick="show_submenu(this, false); return false"; class="arrow"></span></a>
+								<div class="submenu">
+									<div class="item"><a href="/private/0?t=2">Новые </a></div>
+								</div>
+							</div> 
+						<div class="button-container"><a href="/wiki/" class="button">Wiki</a></div>
+						<div class="button-container"><a href="http://map.minecraft-galaxy.ru/" class="button">Карта</a></div>
+						<div class="button-container"><a href="/search/" class="button">Поиск</a></div>
+						
+						<div class="right-fields">
+							<div class="button-container">
+								<a href="/profilemain/" class="button button-arrow"><span class="text">Capri</span><span onclick="show_submenu(this, false); return false"; class="arrow"></span></a>
+								<div class="submenu">
+									<div class="item"><a href="javascript: twin();">Зайти за твинка</a></div><div class="item"><hr></div>			<div class="item"><a href="/securitynew/714940/0">Безопасность</a></div>
+			<div class="item"><a href="/settings/">Настройки</a></div>
+			<div class="item"><a href="/login.php?l=&_h=token">Выход</a></div>
+											</div>
+							</div> 
+						</div>
+					</div>
+				</div>
+				<div class="content"><div class="frame"><div style="padding: 5px;"><div id="text-40"> <span style="font-size: 20px;">Новичок, добро пожаловать на форумы MCGL!</span><br/><br/>Задать любой вопрос, касающийся игры, можно в <a target=_blank href="/forum/3"><span style="font-size: 16px;">Вопросах по игре</span></a>, сообществе <a target=_blank href="/hforum/1"><span style="font-size: 16px;">Хелперов</span></a>. Любые технические вопросы решаются через <a target=_blank href="/support/"><span style="font-size: 16px;">Поддержку (support)</span></a>.<br/><br/>Также рекомендуем прочитать <a target=_blank href="/wiki/"><span style="font-size: 16px;">Вики Minecraft Galaxy</span></a>, <a target=_blank href="/wiki/FAQ"><span style="font-size: 16px;">Ответы на вопросы</span></a> и вспомнить <a target=_blank href="/topic/24"><span style="font-size: 16px;">Правила серверов</span></a>.<br/><br/>Все разделы форума будут доступны только после некоторого времени, проведенного в игре.<br/></div></div></div></div><div class="content"><a class="top-block" href="#" title="" target="">Вверх &uarr;</a>
+			<div class="navigate">
+				<a class="tree" style="z-index: 3;" href="/main/" title="" target="">Форумы</a><span class="treesel" style="z-index: 2;">Последние</span>
+				<span class="pages"><span class="hintleft">← Ctrl</span><span class="current">1</span><a href="/forum/0/1">2</a><a href="/forum/0/2">3</a><a href="/forum/0/3">4</a><a href="/forum/0/4">5</a><span class="hintright">Ctrl →</span></span>
+			</div><table class="topics topic-table"><tr><td class="icon"></td><td class="name">Название</td><td class="author">Автор</td><td class="counter">Ответов</td><td class="datetime">Последнее</td></tr><tr><td class="author-row"><img src="/img/topic_6.png" alt=""/></td><td class="text-row"><a class="t-0" href="/topic/134107" title="" target=""><span class="main-title">Розыгрыш на Survival (9)</span></a><span class="pages"></span><div class="small">Общение</div></td><td class="author-row"><div><a href="/profilemain/233440" class="user-link platinum" onmouseover='showtip(1, 233440, event)' onmouseout='hidetip()'>PhD</a></div><span class="date">2026-11-15 18:00:59</span></td><td class="author-row">25</td><td class="author-row"><div><a href="/profilemain/691954" class="user-link guest" onmouseover='showtip(1, 691954, event)' onmouseout='hidetip()'>ZeTeTiK</a></div><span class="date">2026-11-16 09:18:36</span></td></tr><tr><td class="author-row"><img src="/img/topic_5.png" alt=""/></td><td class="text-row"><a class="t-0" href="/topic/134101" title="" target=""><span class="main-title">НЕДЕЛЯ ОДНОЙ НАКЛЕЙКИ: &quot;СЕВЕРУСА СНЕЙПА&quot;</span></a><span class="pages"></span><div class="small">Общение</div></td><td class="author-row"><div><a href="/profilemain/714893" class="user-link girls" onmouseover='showtip(1, 714893, event)' onmouseout='hidetip()'>pozziittiivo</a></div><span class="date">2026-11-11 17:45:45</span></td><td class="author-row">7</td><td class="author-row"><div><a href="/profilemain/714652" class="user-link platinum" onmouseover='showtip(1, 714652, event)' onmouseout='hidetip()'>3OPBEH</a></div><span class="date">2026-11-16 07:07:31</span></td></tr><tr><td class="author-row"><img src="/img/topic_2.png" alt=""/></td><td class="text-row"><a class="t-0" href="/topic/134091" title="" target=""><span class="main-title">Битва Мобов 15.11.2026 - Хэллоуинская ночь</span></a><span class="pages"></span><div class="small">Общение</div></td><td class="author-row"><div><a href="/profilemain/637906" class="user-link eventmoder" onmouseover='showtip(1, 637906, event)' onmouseout='hidetip()'>social</a></div><span class="date">2026-11-06 17:52:14</span></td><td class="author-row">21</td><td class="author-row"><div><a href="/profilemain/704835" class="user-link girls" onmouseover='showtip(1, 704835, event)' onmouseout='hidetip()'>AGRESSOR</a></div><span class="date">2026-11-15 21:10:26</span></td></tr><tr><td class="author-row"><img src="/img/topic_6.png" alt=""/></td><td class="text-row"><a class="t-0" href="/topic/134098" title="" target=""><span class="main-title">Что за бизнес?</span></a><span class="pages"></span><div class="small">Общение</div></td><td class="author-row"><div><a href="/profilemain/400573" class="user-link platinum" onmouseover='showtip(1, 400573, event)' onmouseout='hidetip()'>3lo-</a></div><span class="date">2026-11-10 19:06:29</span></td><td class="author-row">18</td><td class="author-row"><div><a href="/profilemain/400573" class="user-link platinum" onmouseover='showtip(1, 400573, event)' onmouseout='hidetip()'>3lo-</a></div><span class="date">2026-11-15 18:54:57</span></td></tr><tr><td class="author-row"><img src="/img/topic_5.png" alt=""/></td><td class="text-row"><a class="t-0" href="/topic/134106" title="" target=""><span class="main-title">НЕДЕЛЯ ОДНОЙ НАКЛЕЙКИ: &quot;ДИАДЕМА&quot;</span></a><span class="pages"></span><div class="small">Общение</div></td><td class="author-row"><div><a href="/profilemain/714893" class="user-link girls" onmouseover='showtip(1, 714893, event)' onmouseout='hidetip()'>pozziittiivo</a></div><span class="date">2026-11-15 17:10:10</span></td><td class="author-row">0</td><td class="author-row"><div><a href="/profilemain/714893" class="user-link girls" onmouseover='showtip(1, 714893, event)' onmouseout='hidetip()'>pozziittiivo</a></div><span class="date">2026-11-15 17:10:10</span></td></tr><tr><td class="author-row"><img src="/img/topic_1.png" alt=""/></td><td class="text-row"><a class="t-0" href="/topic/134073" title="" target=""><span class="main-title-close">Небольшой розыгрыш на пирате (8)</span></a><span class="pages"></span><div class="small">Общение</div></td><td class="author-row"><div><a href="/profilemain/233440" class="user-link platinum" onmouseover='showtip(1, 233440, event)' onmouseout='hidetip()'>PhD</a></div><span class="date">2026-10-24 21:21:57</span></td><td class="author-row">33</td><td class="author-row"><div><a href="/profilemain/233440" class="user-link platinum" onmouseover='showtip(1, 233440, event)' onmouseout='hidetip()'>PhD</a></div><span class="date">2026-11-15 16:44:14</span></td></tr><tr><td class="author-row"><img src="/img/topic_5.png" alt=""/></td><td class="text-row"><a class="t-0" href="/topic/134105" title="" target=""><span class="main-title">Защита города</span></a><span class="pages"></span><div class="small">Вопросы по игре</div></td><td class="author-row"><div><a href="/profilemain/435863" class="user-link vip" onmouseover='showtip(1, 435863, event)' onmouseout='hidetip()'>_KingX_</a></div><span class="date">2026-11-15 11:11:17</span></td><td class="author-row">6</td><td class="author-row"><div><a href="/profilemain/713649" class="user-link premium" onmouseover='showtip(1, 713649, event)' onmouseout='hidetip()'>XaCKu</a></div><span class="date">2026-11-15 13:54:20</span></td></tr><tr><td class="author-row"></td><td class="text-row"><a class="t-0" href="/topic/134102" title="" target=""><span class="main-title">Ну и че тут?</span></a><span class="pages"></span><div class="small">Общение</div></td><td class="author-row"><div><a href="/profilemain/12120" class="user-link vip" onmouseover='showtip(1, 12120, event)' onmouseout='hidetip()'>LogaN</a></div><span class="date">2026-11-11 22:19:37</span></td><td class="author-row">12</td><td class="author-row"><div><a href="/profilemain/216835" class="user-link vip" onmouseover='showtip(1, 216835, event)' onmouseout='hidetip()'>Angel</a></div><span class="date">2026-11-15 00:41:19</span></td></tr><tr><td class="author-row"></td><td class="text-row"><a class="t-0" href="/topic/134104" title="" target=""><span class="main-title">ПАЦАН1337 ютуберскае ремесло...</span></a><span class="pages"></span><div class="small">Общение</div></td><td class="author-row"><div><a href="/profilemain/690398" class="user-link vip" onmouseover='showtip(1, 690398, event)' onmouseout='hidetip()'>Kunteynir</a></div><span class="date">2026-11-13 09:25:42</span></td><td class="author-row">8</td><td class="author-row"><div><a href="/profilemain/284763" class="user-link girls" onmouseover='showtip(1, 284763, event)' onmouseout='hidetip()'>MaJIuHa</a></div><span class="date">2026-11-14 16:03:05</span></td></tr><tr><td class="author-row"></td><td class="text-row"><a class="t-0" href="/topic/134103" title="" target=""><span class="main-title">Нет инфы о зоне</span></a><span class="pages"></span><div class="small">Вопросы по игре</div></td><td class="author-row"><div><a href="/profilemain/335243" class="user-link guest" onmouseover='showtip(1, 335243, event)' onmouseout='hidetip()'>Bifrok</a></div><span class="date">2026-11-12 02:19:28</span></td><td class="author-row">3</td><td class="author-row"><div><a href="/profilemain/503280" class="user-link vip" onmouseover='showtip(1, 503280, event)' onmouseout='hidetip()'>ZM0T</a></div><span class="date">2026-11-13 13:56:31</span></td></tr><tr><td class="author-row"><img src="/img/topic_2.png" alt=""/></td><td class="text-row"><a class="t-0" href="/topic/133010" title="" target=""><span class="main-title">Причина тряски?</span></a><span class="pages"></span><div class="small">Общение - <span class="vip"><span class="small">только для VIP</span></span></div></td><td class="author-row"><div><a href="/profilemain/203999" class="user-link vip" onmouseover='showtip(1, 203999, event)' onmouseout='hidetip()'>.SumraK.</a></div><span class="date">2024-09-29 14:54:38</span></td><td class="author-row">92</td><td class="author-row"><div><a href="/profilemain/260227" class="user-link vip" onmouseover='showtip(1, 260227, event)' onmouseout='hidetip()'>Chronosphere</a></div><span class="date">2026-11-12 09:53:56</span></td></tr><tr><td class="author-row"><img src="/img/topic_5.png" alt=""/></td><td class="text-row"><a class="t-0" href="/topic/133996" title="" target=""><span class="main-title">[1.6.4][Apple Silicon процессоры М-Серии] Minecraft Galaxy - неофициальный ARM64-порт</span></a><span class="pages"></span><div class="small">Разработка</div></td><td class="author-row"><div><a href="/profilemain/287854" class="user-link vip" onmouseover='showtip(1, 287854, event)' onmouseout='hidetip()'>SlimeMind670</a></div><span class="date">2026-09-03 19:09:35</span></td><td class="author-row">25</td><td class="author-row"><div><a href="/profilemain/712823" class="user-link vip" onmouseover='showtip(1, 712823, event)' onmouseout='hidetip()'>Kiyote</a></div><span class="date">2026-11-12 06:56:02</span></td></tr><tr><td class="author-row"><img src="/img/topic_6.png" alt=""/></td><td class="text-row"><a class="t-0" href="/topic/134100" title="" target=""><span class="main-title">Скин эльфа</span></a><span class="pages"></span><div class="small">Вопросы по игре</div></td><td class="author-row"><div><a href="/profilemain/713460" class="user-link vip" onmouseover='showtip(1, 713460, event)' onmouseout='hidetip()'>Budda</a></div><span class="date">2026-11-11 14:00:17</span></td><td class="author-row">5</td><td class="author-row"><div><a href="/profilemain/713460" class="user-link vip" onmouseover='showtip(1, 713460, event)' onmouseout='hidetip()'>Budda</a></div><span class="date">2026-11-11 19:28:07</span></td></tr><tr><td class="author-row"></td><td class="text-row"><a class="t-0" href="/topic/134099" title="" target=""><span class="main-title">Проблема с соединением</span></a><span class="pages"></span><div class="small">Поддержка</div></td><td class="author-row"><div><a href="/profilemain/610070" class="user-link vip" onmouseover='showtip(1, 610070, event)' onmouseout='hidetip()'>Raizzy</a></div><span class="date">2026-11-10 23:12:53</span></td><td class="author-row">0</td><td class="author-row"><div><a href="/profilemain/610070" class="user-link vip" onmouseover='showtip(1, 610070, event)' onmouseout='hidetip()'>Raizzy</a></div><span class="date">2026-11-10 23:12:53</span></td></tr><tr><td class="author-row"><img src="/img/topic_4.png" alt=""/></td><td class="text-row"><a class="t-0" href="/topic/134096" title="" target=""><span class="main-title-close">[Решено] Нет доступа по моему IP-адресу. [HELP]</span></a><span class="pages"></span><div class="small">Поддержка - <span class="admins"><span class="small">только для Модераторов</span></span></div></td><td class="author-row"><div><a href="/profilemain/713329" class="user-link guest" onmouseover='showtip(1, 713329, event)' onmouseout='hidetip()'>Pika</a></div><span class="date">2026-11-08 21:16:42</span></td><td class="author-row">1</td><td class="author-row"><div><a href="/profilemain/60011" class="user-link vip" onmouseover='showtip(1, 60011, event)' onmouseout='hidetip()'>alexandrKova</a></div><span class="date">2026-11-10 14:44:03</span></td></tr><tr><td class="author-row"></td><td class="text-row"><a class="t-0" href="/topic/134097" title="" target=""><span class="main-title">Не могу зайти на связку планет Advance</span></a><span class="pages"></span><div class="small">Поддержка</div></td><td class="author-row"><div><a href="/profilemain/648756" class="user-link vip" onmouseover='showtip(1, 648756, event)' onmouseout='hidetip()'>Regioner</a></div><span class="date">2026-11-10 10:10:08</span></td><td class="author-row">2</td><td class="author-row"><div><a href="/profilemain/648756" class="user-link vip" onmouseover='showtip(1, 648756, event)' onmouseout='hidetip()'>Regioner</a></div><span class="date">2026-11-10 13:50:13</span></td></tr><tr><td class="author-row"></td><td class="text-row"><a class="t-0" href="/topic/134094" title="" target=""><span class="main-title">Хэллоуин</span></a><span class="pages"></span><div class="small">Вопросы по игре</div></td><td class="author-row"><div><a href="/profilemain/400573" class="user-link platinum" onmouseover='showtip(1, 400573, event)' onmouseout='hidetip()'>3lo-</a></div><span class="date">2026-11-08 17:38:03</span></td><td class="author-row">17</td><td class="author-row"><div><a href="/profilemain/400573" class="user-link platinum" onmouseover='showtip(1, 400573, event)' onmouseout='hidetip()'>3lo-</a></div><span class="date">2026-11-10 09:02:03</span></td></tr><tr><td class="author-row"><img src="/img/topic_4.png" alt=""/></td><td class="text-row"><a class="t-0" href="/topic/134095" title="" target=""><span class="main-title">Стык городов</span></a><span class="pages"></span><div class="small">Общение</div></td><td class="author-row"><div><a href="/profilemain/704715" class="user-link vip" onmouseover='showtip(1, 704715, event)' onmouseout='hidetip()'>Ame</a></div><span class="date">2026-11-08 19:22:42</span></td><td class="author-row">12</td><td class="author-row"><div><a href="/profilemain/653199" class="user-link vip" onmouseover='showtip(1, 653199, event)' onmouseout='hidetip()'>dronzhl997</a></div><span class="date">2026-11-09 08:55:58</span></td></tr><tr><td class="author-row"></td><td class="text-row"><a class="t-0" href="/topic/134093" title="" target=""><span class="main-title">1</span></a><span class="pages"></span><div class="small">Вопросы по игре</div></td><td class="author-row"><div><a href="/profilemain/80555" class="user-link girls" onmouseover='showtip(1, 80555, event)' onmouseout='hidetip()'>Gribnik1337</a></div><span class="date">2026-11-08 14:53:37</span></td><td class="author-row">1</td><td class="author-row"><div><a href="/profilemain/259589" class="user-link vip" onmouseover='showtip(1, 259589, event)' onmouseout='hidetip()'>Gulamov02</a></div><span class="date">2026-11-08 18:22:42</span></td></tr><tr><td class="author-row"><img src="/img/topic_4.png" alt=""/></td><td class="text-row"><a class="t-0" href="/topic/131056" title="" target=""><span class="main-title">Предлагаю изменить настройки онлайн карты</span></a><span class="pages"></span><div class="small">Предложения</div></td><td class="author-row"><div><a href="/profilemain/210109" class="user-link vip" onmouseover='showtip(1, 210109, event)' onmouseout='hidetip()'>Krutovitas</a></div><span class="date">2021-06-07 20:14:08</span></td><td class="author-row">18</td><td class="author-row"><div><a href="/profilemain/36910" class="user-link platinum" onmouseover='showtip(1, 36910, event)' onmouseout='hidetip()'>zed1</a></div><span class="date">2026-11-08 15:29:41</span></td></tr></table>
+			<div class="navigate">
+				<a class="tree" style="z-index: 3;" href="/main/" title="" target="">Форумы</a><span class="treesel" style="z-index: 2;">Последние</span>
+				<span class="pages"><span class="hintleft">← Ctrl</span><span class="current">1</span><a href="/forum/0/1">2</a><a href="/forum/0/2">3</a><a href="/forum/0/3">4</a><a href="/forum/0/4">5</a><span class="hintright">Ctrl →</span></span>
+			</div><div style="padding: 5px;"><a class="vip" href="/teamforums/" title="" target="">Форумы сообществ</a></div><table class="topics topic-table"><tr><td class="icon"></td><td class="name">Название</td><td class="author">Автор</td><td class="counter">Ответов</td><td class="datetime">Последнее</td></tr><tr><td class="author-row"><img src="/files/teams/450_forum.png"/></td><td class="text-row"><a class="t-0" href="/hpost/103678" title="" target=""><span class="main-title-close">Итоги конкурса рисунков &quot;8 марта в MCGL&quot;</span></a><span class="pages"></span><div><span class="small">Ивенты Minecraft Galaxy</span></div></td><td class="author-row"><div><a href="/profilemain/626446" class="user-link vip" onmouseover='showtip(1, 626446, event)' onmouseout='hidetip()'>_Karnelius_</a></div><span class="date">2026-03-27 20:43:10</span></td><td class="author-row">4</td><td class="author-row"><div><a href="/profilemain/626446" class="user-link vip" onmouseover='showtip(1, 626446, event)' onmouseout='hidetip()'>_Karnelius_</a></div><span class="date">2026-03-31 23:15:51</span></td></tr><tr><td class="author-row"><img src="/files/teams/449_forum.png"/></td><td class="text-row"><a class="t-0" href="/hpost/103637" title="" target=""><span class="main-title-close">Конкурс рисунков &quot;8 марта в MCGL&quot;</span></a><span class="pages"></span><div><span class="small">Ивенты Minecraft Galaxy</span></div></td><td class="author-row"><div><a href="/profilemain/626446" class="user-link vip" onmouseover='showtip(1, 626446, event)' onmouseout='hidetip()'>_Karnelius_</a></div><span class="date">2026-03-01 17:17:53</span></td><td class="author-row">7</td><td class="author-row"><div><a href="/profilemain/626446" class="user-link vip" onmouseover='showtip(1, 626446, event)' onmouseout='hidetip()'>_Karnelius_</a></div><span class="date">2026-03-23 11:52:14</span></td></tr><tr><td class="author-row"><img src="/files/teams/450_forum.png"/></td><td class="text-row"><a class="t-0" href="/hpost/103620" title="" target=""><span class="main-title-close">Итоги конкурса поделок &quot;лучшая валентинка&quot;</span></a><span class="pages"></span><div><span class="small">Ивенты Minecraft Galaxy</span></div></td><td class="author-row"><div><a href="/profilemain/626446" class="user-link vip" onmouseover='showtip(1, 626446, event)' onmouseout='hidetip()'>_Karnelius_</a></div><span class="date">2026-02-25 21:56:35</span></td><td class="author-row">4</td><td class="author-row"><div><a href="/profilemain/704715" class="user-link vip" onmouseover='showtip(1, 704715, event)' onmouseout='hidetip()'>Ame</a></div><span class="date">2026-02-27 14:35:51</span></td></tr><tr><td class="author-row"><img src="/files/teams/449_forum.png"/></td><td class="text-row"><a class="t-0" href="/hpost/103592" title="" target=""><span class="main-title-close">Конкурс поделок: лучшая валентинка</span></a><span class="pages"></span><div><span class="small">Ивенты Minecraft Galaxy</span></div></td><td class="author-row"><div><a href="/profilemain/626446" class="user-link vip" onmouseover='showtip(1, 626446, event)' onmouseout='hidetip()'>_Karnelius_</a></div><span class="date">2026-02-07 16:41:31</span></td><td class="author-row">11</td><td class="author-row"><div><a href="/profilemain/626446" class="user-link vip" onmouseover='showtip(1, 626446, event)' onmouseout='hidetip()'>_Karnelius_</a></div><span class="date">2026-02-22 19:17:45</span></td></tr><tr><td class="author-row"><img src="/files/teams/450_forum.png"/></td><td class="text-row"><a class="t-0" href="/hpost/102711" title="" target=""><span class="main-title-close">Итоги конкурса рисунков &quot;Летний отдых в MCGL&quot;</span></a><span class="pages"></span><div><span class="small">Ивенты Minecraft Galaxy</span></div></td><td class="author-row"><div><a href="/profilemain/693274" class="user-link vip" onmouseover='showtip(1, 693274, event)' onmouseout='hidetip()'>moder</a></div><span class="date">2024-08-28 16:46:54</span></td><td class="author-row">7</td><td class="author-row"><div><a href="/profilemain/693274" class="user-link vip" onmouseover='showtip(1, 693274, event)' onmouseout='hidetip()'>moder</a></div><span class="date">2024-08-30 15:28:22</span></td></tr><tr><td class="author-row"><img src="/files/teams/449_forum.png"/></td><td class="text-row"><a class="t-0" href="/hpost/102633" title="" target=""><span class="main-title-close">Конкурс рисунков &quot;Летний отдых в MCGL&quot; (31.07.2024 - 21.08.2024)</span></a><span class="pages"></span><div><span class="small">Ивенты Minecraft Galaxy</span></div></td><td class="author-row"><div><a href="/profilemain/693274" class="user-link vip" onmouseover='showtip(1, 693274, event)' onmouseout='hidetip()'>moder</a></div><span class="date">2024-07-31 10:31:47</span></td><td class="author-row">29</td><td class="author-row"><div><a href="/profilemain/693274" class="user-link vip" onmouseover='showtip(1, 693274, event)' onmouseout='hidetip()'>moder</a></div><span class="date">2024-08-28 16:47:33</span></td></tr><tr><td class="author-row"><img src="/files/teams/449_forum.png"/></td><td class="text-row"><a class="t-0" href="/hpost/102696" title="" target=""><span class="main-title-close">Кроссворд 24/08/2024 20:00</span></a><span class="pages"></span><div><span class="small">Ивенты Minecraft Galaxy</span></div></td><td class="author-row"><div><a href="/profilemain/618942" class="user-link eventmoder" onmouseover='showtip(1, 618942, event)' onmouseout='hidetip()'>GalaxyEvent</a></div><span class="date">2024-08-24 19:52:57</span></td><td class="author-row">0</td><td class="author-row"><div><a href="/profilemain/618942" class="user-link eventmoder" onmouseover='showtip(1, 618942, event)' onmouseout='hidetip()'>GalaxyEvent</a></div><span class="date">2024-08-24 19:52:57</span></td></tr><tr><td class="author-row"><img src="/files/teams/604_forum.png"/></td><td class="text-row"><a class="t-0" href="/hpost/102597" title="" target=""><span class="main-title-close">Конкурс статуй: мифы и легенды</span></a><span class="pages"><a class="" href="/hpost/102597/0" title="" target="">1</a> <a class="" href="/hpost/102597/1" title="" target="">2</a> </span><div><span class="small">Ивенты Minecraft Galaxy</span></div></td><td class="author-row"><div><a href="/profilemain/626446" class="user-link vip" onmouseover='showtip(1, 626446, event)' onmouseout='hidetip()'>_Karnelius_</a></div><span class="date">2024-07-09 23:06:07</span></td><td class="author-row">101</td><td class="author-row"><div><a href="/profilemain/618942" class="user-link eventmoder" onmouseover='showtip(1, 618942, event)' onmouseout='hidetip()'>GalaxyEvent</a></div><span class="date">2024-08-10 23:06:59</span></td></tr><tr><td class="author-row"><img src="/files/teams/450_forum.png"/></td><td class="text-row"><a class="t-0" href="/hpost/102648" title="" target=""><span class="main-title-close">Итоги конкурса статуй &quot;Мифы и легенды&quot;</span></a><span class="pages"></span><div><span class="small">Ивенты Minecraft Galaxy</span></div></td><td class="author-row"><div><a href="/profilemain/626446" class="user-link vip" onmouseover='showtip(1, 626446, event)' onmouseout='hidetip()'>_Karnelius_</a></div><span class="date">2024-08-08 17:30:28</span></td><td class="author-row">11</td><td class="author-row"><div><a href="/profilemain/50668" class="user-link vip" onmouseover='showtip(1, 50668, event)' onmouseout='hidetip()'>Papkin</a></div><span class="date">2024-08-09 11:18:04</span></td></tr><tr><td class="author-row"><img src="/files/teams/587_forum.png"/></td><td class="text-row"><a class="t-1" href="/hpost/7998" title="" target=""><span class="main-title">Игра &quot;Обломай желание&quot;</span></a><span class="pages">... <a class="" href="/hpost/7998/11" title="" target="">12</a> <a class="" href="/hpost/7998/12" title="" target="">13</a> <a class="" href="/hpost/7998/13" title="" target="">14</a> <a class="" href="/hpost/7998/14" title="" target="">15</a> <a class="" href="/hpost/7998/15" title="" target="">16</a> <a class="" href="/hpost/7998/16" title="" target="">17</a> </span><div><span class="small">Ивенты Minecraft Galaxy</span></div></td><td class="author-row"><div><a href="/profilemain/5358" class="user-link vip" onmouseover='showtip(1, 5358, event)' onmouseout='hidetip()'>ForceG</a></div><span class="date">2013-01-05 21:22:06</span></td><td class="author-row">1657</td><td class="author-row"><div><a href="/profilemain/689091" class="user-link vip" onmouseover='showtip(1, 689091, event)' onmouseout='hidetip()'>ZezusXIV</a></div><span class="date">2024-04-11 19:29:53</span></td></tr></table></div>
+
+<div class="copyright">
+<div style="padding:7px;">Copyright 2026 by Project Galaxy team</div>
+
+		<div style="padding:7px;"> 
+			<!-- Rating@Mail.ru counter -->
+			<script type="text/javascript">
+				var _tmr = window._tmr || (window._tmr = []);
+				_tmr.push({id: "1990623", type: "pageView", start: (new Date()).getTime()});
+				(function (d, w, id) {
+					if (d.getElementById(id)) return;
+					var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+					ts.src = "https://top-fwz1.mail.ru/js/code.js";
+					var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+					if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+				})(document, window, "topmailru-code");
+			</script><noscript><div>
+				<img src="https://top-fwz1.mail.ru/counter?id=1990623;js=na" style="border:0;position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
+			</div></noscript>
+			<!-- //Rating@Mail.ru counter -->
+		</div> 
+	
+		<!-- Yandex.Metrika counter -->
+		<div style="display:none;"><script type="text/javascript">
+		(function(w, c) {
+			(w[c] = w[c] || []).push(function() {
+				try {
+					w.yaCounter12610318 = new Ya.Metrika({id:12610318, enableAll: true});
+				}
+				catch(e) { }
+			});
+		})(window, "yandex_metrika_callbacks");
+		</script></div>
+		<script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript" defer="defer"></script>
+		<noscript><div><img src="//mc.yandex.ru/watch/12610318" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+		<!-- /Yandex.Metrika counter -->
+</div>
+
+<div style="display: none; " id="user-select">
+	<div id="user-select-category">
+		<div class="item" onclick="user_select_search();"><img class="item-icon" src="/img/search.png"/> Поиск</div>
+		<div class="item" onclick="user_select_follow(5);"><img class="item-icon" src="/img/twinks.png"/> Твинки</div>
+		<div class="item" onclick="user_select_follow(6);"><img class="item-icon" src="/img/friends.png"/> Друзья</div>
+		<div class="item" onclick="user_select_follow(7);"><img class="item-icon" src="/img/admins.png"/> Администрация</div>
+	</div>
+	<div id="user-select-list">
+
+	</div>
+	<div id="user-select-search">
+		<div>Введите ник пользователя или его часть:</div>
+		<br/>
+		<div><input type="text" style="width: 180px;" id="ui-user-select"/></div>
+	</div>
+</div>
+
+
+	<script type="text/javascript" src="/js/highlight.pack.js"></script>
+	<script>
+	  hljs.initHighlightingOnLoad();
+	</script>
+  
+	<script type="text/javascript">
+		function register() {
+			window.open("/regform.html", "register", "menubar=no,location=no,width=480,height=410")
+		}
+		
+		function show_menu(obj) {
+			obj.style.display = 'block'
+			//if(obj.style.display == "none")
+			//	$(obj).show("fade")
+		}
+		
+		function hide_menu(obj) {
+			obj.style.display = 'none'
+			//$(obj).hide("fade")
+		}
+		
+		$(function () {
+			  $('.dropdown').each(function () {
+				$(this).parent().eq(0).hoverIntent({
+					timeout: 100,
+					over: function () {
+						var current = $('.dropdown:eq(0)', this);
+						current.slideDown(100);
+					},
+					out: function () {
+						var current = $('.dropdown:eq(0)', this);
+						current.fadeOut(200);
+					}
+				});
+			  });
+
+			  $('.dropdown').each(function(i, it){
+				  var list = $(it).find('li');
+				  if(list.length > 12){
+					  list.parent().addClass('large');
+						list.each(function(index, item){
+							if(index >= list.length / 2){
+								$(item).addClass('second');
+							} 
+							else{
+								$(item).addClass('first');
+							}
+						});
+						$(it).find('.first').wrapAll('<div class="first-row"/>');
+						$(it).find('.second').wrapAll('<div class="second-row"/>');
+				  }
+			  });
+			  
+		});
+	</script>
+	<style>
+
+	</style>
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-22798613-1']);
+	  _gaq.push(['_setDomainName', '.minecraft-galaxy.ru']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+	<script type="text/javascript">
+	attach_user_auto("#ui-user-select");
+</script>
+	<link rel="stylesheet" href="/map/map.css" type="text/css"/>
+	<link rel="stylesheet" href="/js/jquery-ui.css" type="text/css"/>
+	<link rel="stylesheet" href="/js/dark.css" type="text/css"/>
+</div>
+</body>
+
+</html>

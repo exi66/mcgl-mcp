@@ -22,6 +22,25 @@ export const site = {
   topic: (topicId: number, page: number) => `/topic/${topicId}/${page - 1}`,
   /** Отдельный пост. */
   post: (postId: number) => `/post/${postId}`,
+
+  /**
+   * Список сообществ. sort: 0 — по рейтингу, 1 — по названию, 2 — по темам, 3 — по дате создания,
+   * 4 — по постам. title — поиск по подстроке названия (страницы листаются, но ссылок на них нет).
+   */
+  communities: (sort: number, page: number, title?: string) =>
+    `/teams/${sort}/${page - 1}${title ? `?title=${encodeURIComponent(title)}` : ""}`,
+  /** Главная сообщества: шапка, описание, кнопки вступить/выйти. */
+  community: (communityId: number) => `/hmain/${communityId}`,
+  /** Форум сообщества (разделы по категориям). Только под логином. */
+  communityForum: (communityId: number) => `/hforum/${communityId}`,
+  /** Раздел форума сообщества. id раздела общий для всех сообществ. */
+  communitySection: (sectionId: number, page: number) => `/htopic/${sectionId}/${page - 1}`,
+  /** Тема сообщества. id тоже общий для всех сообществ. */
+  communityTopic: (topicId: number, page: number) => `/hpost/${topicId}/${page - 1}`,
+  /** Темы из сообществ, где состоит игрок (до 30). Только под логином. */
+  myCommunityTopics: () => "/teamforums/",
+  /** Свой профиль: в блоке «Сообщества» — где состоит игрок. */
+  profileSelf: () => "/profilemain/",
   /** Темы игрока. В URL id игрока + 1 со знаком минус: игрок 714893 → /forum/-714894. */
   userTopics: (userId: number, page: number) => `/forum/-${userId + 1}/${page - 1}`,
   /** Точный поиск игрока по нику (без учёта регистра): [{'id':'714893','login':'nick'}], нет такого → player$0. */

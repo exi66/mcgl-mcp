@@ -138,6 +138,13 @@ function sectionFromNav($: Doc, nav: Node): { id: number; title: string } | unde
   return section;
 }
 
+/** Сообщество из хлебных крошек: ссылка /hforum/N (у разделов и тем сообществ). */
+export function communityFromNav($: Doc, nav: Node): { id: number; title: string } | undefined {
+  const link = nav.find('a.tree[href^="/hforum/"]').first();
+  const target = parseForumHref(link.attr("href"));
+  return target ? { id: target.id, title: text(link.text()) } : undefined;
+}
+
 export function parseTopicPage(page: ForumPage, topicId: number, pageNum: number): TopicPage {
   const $ = load(page.html);
   const { nav, title, totalPages } = navigation($);
@@ -155,6 +162,7 @@ export function parseTopicPage(page: ForumPage, topicId: number, pageNum: number
     id: topicId,
     title,
     section: sectionFromNav($, nav),
+    community: communityFromNav($, nav),
     page: pageNum,
     totalPages: Math.max(totalPages, pageNum),
     poll: parsePoll($),
