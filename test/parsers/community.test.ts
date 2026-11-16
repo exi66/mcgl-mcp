@@ -137,3 +137,11 @@ describe("my communities", () => {
     expect(regular.every((t) => t.section && !t.community)).toBe(true);
   });
 });
+
+test("community description never carries action links with a token", () => {
+  const html = `<html><body><div class="content"><div class="frame"><b>Club</b> Лидер: <a class="user-link" href="/profilemain/1">L</a>, участников: 1, место: 2</div>
+    <div id="info">Hello <a href="/hmain/3810/leave?_h=abc12">Покинуть</a> and <a href="/wiki/1">wiki</a></div></div></body></html>`;
+  const c = parseCommunity({ url: "", status: 200, html }, 3810);
+  expect(c.description).toBe("Hello and wiki (https://forum.minecraft-galaxy.ru/wiki/1)");
+  expect(c.description).not.toMatch(/_h=|Покинуть/);
+});

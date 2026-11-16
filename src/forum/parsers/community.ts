@@ -81,7 +81,10 @@ export function parseCommunity(page: ForumPage, communityId: number): Community 
     throw new ForumError(alertText($) ?? `Community ${communityId} not found`);
   }
   const headerText = text(header.text());
-  const info = $("#info").first();
+  // Владелец может вставить в описание кнопки «Покинуть»/«Вступить» — ссылки-действия с одноразовым
+  // токеном _h. Их не отдаём: токен не должен попадать к агенту, а действия есть отдельными инструментами.
+  const info = $("#info").first().clone();
+  info.find('a[href*="_h="]').remove();
 
   return {
     id: communityId,
