@@ -270,8 +270,11 @@ export class ForumReader {
     page?: number,
     pageSize = DEFAULT_PAGE_SIZE,
     kind: TopicKind = "topic",
+    opts: { fresh?: boolean } = {},
   ): Promise<TopicView> {
     const ref = { kind, id: topicId };
+    // fresh — мимо кешей (после своего поста страницы темы и число её страниц устарели).
+    if (opts.fresh) this.forgetTopic(ref);
     try {
       return await this.topicSlice(ref, page, pageSize);
     } catch (error) {
@@ -410,6 +413,12 @@ export class ForumReader {
     }
     this.topicCache.set(key, { at: Date.now(), page: parsed });
     return parsed;
+  }
+
+  private forgetTopic(ref: TopicRef): void {
+    const prefix = `${refKey(ref)}/`;
+    for (const key of [...this.topicCache.keys()]) if (key.startsWith(prefix)) this.topicCache.delete(key);
+    this.pagesHint.delete(refKey(ref));
   }
 
   private rememberPages<T extends TopicList>(list: T): T {

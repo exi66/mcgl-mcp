@@ -7,6 +7,7 @@ export interface SynthPost {
   id: number;
   deleted?: boolean;
   text?: string;
+  author?: string;
 }
 
 export function topicHtml(opts: {
@@ -26,7 +27,7 @@ export function topicHtml(opts: {
       p.deleted
         ? `<table class="posts"><tr><td class="msg-row"><a href="/post/${p.id}">#${p.number}</a>: Этот пост был удален</td></tr></table>`
         : `<table class='posts'>
-            <tr><td class="author-row" rowspan=2><div class="login"><a class="vip" href='javascript: onPaste("x");'>user${p.number}</a></div>
+            <tr><td class="author-row" rowspan=2><div class="login"><a class="vip" href='javascript: onPaste("x");'>${p.author ?? `user${p.number}`}</a></div>
               <div class="pcount">Ответов: 1</div></td>
             <td class="header-row"><div class="post-header"><a name="p${p.id}"></a><a href="/post/${p.id}">#${p.number}</a>: 2026-01-01 10:00:00
               <span class='post-tools'><a href='/profilemain/${p.number}'>профиль</a></span></div></td></tr>

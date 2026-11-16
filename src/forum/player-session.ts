@@ -26,6 +26,11 @@ export interface PlayerCredentials {
 export class PlayerSession {
   private loginInFlight?: Promise<string>;
   private username?: string;
+
+  /** Ник, под которым сессия залогинена (после первого входа). */
+  get nick(): string | undefined {
+    return this.username;
+  }
   private loginFailure?: LoginFailedError;
 
   constructor(
