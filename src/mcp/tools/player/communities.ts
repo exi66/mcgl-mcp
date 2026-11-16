@@ -39,15 +39,6 @@ export const communityTopic = definePlayerTool({
     jsonResult(await reader.topic(topicId, page, pageSize, "hpost")),
 });
 
-export const myCommunities = definePlayerTool({
-  name: "forum_my_communities",
-  title: "My communities",
-  description: "Communities the logged-in player is a member of: id and name.",
-  inputSchema: {},
-  annotations: readOnly,
-  handler: async (_args, { reader }) => jsonResult(await reader.myCommunities()),
-});
-
 export const myCommunityTopics = definePlayerTool({
   name: "forum_my_community_topics",
   title: "Topics from my communities",
@@ -85,7 +76,6 @@ export const leaveCommunity = definePlayerTool({
 export const playerCommunityTools = [
   communitySections,
   communityTopic,
-  myCommunities,
   myCommunityTopics,
   joinCommunity,
   leaveCommunity,

@@ -220,3 +220,45 @@ export interface CommunityTopicList extends TopicList {
   community?: { id: number; title: string };
   section: { id: number; title?: string };
 }
+
+/** Главная профиля игрока (/profilemain/N). Только то, что видно и в чужом профиле. */
+export interface Profile {
+  id: number;
+  name: string;
+  /** Привилегии (покупные и системные); "girls" — только цвет ника. */
+  groups: string[];
+  /** «Информация»: регистрация, последний вход, сообщения, темы, очки… (подписи форума как есть). */
+  info: Record<string, string>;
+  /** «Игровые достижения»: профессия, раса, время игры, место в топе… */
+  game: Record<string, string>;
+  /** «Активность»: статус в игре и на форуме. */
+  activity: Record<string, string>;
+  /** «Ресурсы»: валюта на бирже, Platinum, Gold. */
+  resources: Record<string, string>;
+  clan?: { id: number; name: string; squad?: string };
+  communities: { id: number; name: string }[];
+}
+
+/** Разделы профиля, общие для своего и чужого профиля. */
+export const PROFILE_SECTIONS = [
+  "bans",
+  "freezes",
+  "warnings",
+  "karma",
+  "votes",
+  "friends",
+  "game_logins",
+  "forum_logins",
+  "achievements",
+  "screenshots",
+  "zones",
+] as const;
+export type ProfileSectionName = (typeof PROFILE_SECTIONS)[number];
+
+export interface ProfileSectionPage {
+  user: { id: number; name?: string };
+  section: ProfileSectionName;
+  page: number;
+  totalPages: number;
+  data: unknown;
+}

@@ -161,7 +161,9 @@ describe("community tools", () => {
     for (const name of [
       "forum_community_sections",
       "forum_community_topic",
-      "forum_my_communities",
+      "forum_get_profile",
+      "forum_profile_section",
+      "forum_zone_info",
       "forum_my_community_topics",
       "forum_join_community",
       "forum_leave_community",
@@ -173,5 +175,28 @@ describe("community tools", () => {
       expect(t.annotations?.readOnlyHint).toBe(false);
       expect(t.description).toMatch(/confirm/);
     }
+  });
+});
+
+describe("profile tools", () => {
+  test("own profile: id is resolved from the logged-in nick, then read like anyone else's", async () => {
+    const forum = await startLoginForum({
+      extra: (req) => {
+        if (req.path === "/object/0/9?q=Capri") return { body: "[{'id':'714940','login':'Capri'}]" };
+        if (req.path === "/profilemain/714940") return { body: fixture("profile-member.html") };
+      },
+    });
+    const http = forum.http();
+    const session = new PlayerSession(http, { login: "Capri", password: "secret" });
+    const server = createMcpServer({ reader: new ForumReader(http, session), session });
+    const client = new Client({ name: "test", version: "0" });
+    const [clientSide, serverSide] = InMemoryTransport.createLinkedPair();
+    await Promise.all([server.connect(serverSide), client.connect(clientSide)]);
+
+    const profile = (await call(client, "forum_get_profile")).json();
+    expect(profile).toMatchObject({ id: 714940, name: "Capri", communities: [{ id: 253 }] });
+    // Свой профиль — по числовому id (как чужой), а не /profilemain/ без id.
+    expect(forum.requests.map((r) => r.path)).toContain("/profilemain/714940");
+    expect(forum.requests.map((r) => r.path)).not.toContain("/profilemain/");
   });
 });

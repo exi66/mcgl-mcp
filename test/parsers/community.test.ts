@@ -6,7 +6,6 @@ import {
   parseCommunity,
   parseCommunityForum,
   parseCommunityList,
-  parseMyCommunities,
 } from "../../src/forum/parsers/community.js";
 import { parseTopicList } from "../../src/forum/parsers/topic-list.js";
 import { communityFromNav, parseTopicPage } from "../../src/forum/parsers/topic.js";
@@ -120,11 +119,6 @@ describe("community sections and topics", () => {
 });
 
 describe("my communities", () => {
-  test("profile block", () => {
-    expect(parseMyCommunities(page("profile-member.html"))).toEqual([{ id: 253, name: "Ивенты Minecraft Galaxy" }]);
-    expect(parseMyCommunities(page("profile-no-communities.html"))).toEqual([]);
-  });
-
   test("/teamforums/: community topics with the section id from the icon", () => {
     const list = parseTopicList(page("my-community-topics.html"), 1, ["hpost"]);
     expect(list.topics.length).toBeGreaterThan(10);

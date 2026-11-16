@@ -14,6 +14,9 @@
  * my-community-topics, latest-member) сняты вручную: часть из них требует
  * состоять в сообществе 253, а скрипт в сообщества не вступает. Токены _h
  * в ссылках заменены на _h=token.
+ *
+ * Фикстуры профилей (test/fixtures/profile/) тоже сняты вручную под игроком и
+ * обезличены scripts/anonymize-fixture.ts: это данные настоящих игроков.
  */
 import { mkdirSync, writeFileSync } from "node:fs";
 import { loadForumEnv, loadPlayerCredentials } from "../src/env.js";

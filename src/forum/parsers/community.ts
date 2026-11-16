@@ -135,22 +135,6 @@ export function parseCommunityForum(page: ForumPage, communityId: number): Commu
   return { community: { id: communityId, title }, sections };
 }
 
-/** Блок «Сообщества» в своём профиле: ссылки /hmain/N. */
-export function parseMyCommunities(page: ForumPage): { id: number; name: string }[] {
-  const $ = load(page.html);
-  const block = $(".profile-block")
-    .filter((_, b) => text($(b).children(".head").text()) === "Сообщества")
-    .first();
-  return block
-    .find('a[href^="/hmain/"]')
-    .map((_, a) => {
-      const target = parseForumHref($(a).attr("href"));
-      return target ? { id: target.id, name: text($(a).text()) } : undefined;
-    })
-    .get()
-    .filter((c): c is { id: number; name: string } => c !== undefined);
-}
-
 /** Ссылка-действие на главной сообщества: /hmain/N/join?_h=… или /leave?_h=… (токен одноразовый). */
 export function actionLink(page: ForumPage, action: "join" | "leave"): string | undefined {
   return load(page.html)(`a[href*="/${action}?_h="]`).first().attr("href");

@@ -2,7 +2,14 @@ import { ForumError } from "./errors.js";
 import type { ForumHttp, ForumPage } from "./http.js";
 import { ItemResolver, parseUserExact, parseUserPrefix } from "./objects.js";
 import { navigation, load } from "./parsers/common.js";
-import { parseCommunity, parseCommunityForum, parseCommunityList, parseMyCommunities } from "./parsers/community.js";
+import { parseCommunity, parseCommunityForum, parseCommunityList } from "./parsers/community.js";
+import {
+  PROFILE_SECTION_PATHS,
+  parseProfile,
+  parseProfileSection,
+  parseZoneInfo,
+  parseZoneResidents,
+} from "./parsers/profile.js";
 import { parseSections, parseTopicList } from "./parsers/topic-list.js";
 import { communityFromNav, parsePostPage, parseTopicPage } from "./parsers/topic.js";
 import type { PlayerSession } from "./player-session.js";
@@ -14,6 +21,9 @@ import type {
   CommunityTopicList,
   Post,
   PostView,
+  Profile,
+  ProfileSectionName,
+  ProfileSectionPage,
   Section,
   TopicList,
   TopicPage,
@@ -29,6 +39,8 @@ const TOPIC_CACHE_MAX = 30;
 /** Сколько доверяем числу страниц темы, увиденному в списке тем. */
 const PAGES_HINT_TTL_MS = 10 * 60_000;
 const PAGES_HINT_MAX = 500;
+/** Приваты форум отдаёт одной страницей (бывает 400+), листаем сами. */
+const ZONES_PAGE_SIZE = 50;
 
 /**
  * Вид темы: обычная (/topic/N) или тема сообщества (/hpost/N). id у них из
@@ -72,6 +84,8 @@ export class ForumReader {
   /** Постов на странице форума у этого читателя (гость или игрок). */
   private forumPageSize?: number;
   private readonly topicCache = new Map<string, { at: number; page: TopicPage }>();
+  /** id залогиненного игрока (узнаётся по нику один раз). */
+  private ownUserId?: number;
   /** Тема → число страниц форума, увиденное в списке тем: позволяет сразу открыть последнюю. */
   private readonly pagesHint = new Map<string, { at: number; pages: number }>();
 
@@ -102,25 +116,7 @@ export class ForumReader {
 
   /** Темы, созданные игроком. Игрок задаётся id или точным ником (регистр не важен). */
   async userTopics(user: { id?: number; nick?: string }, page = 1): Promise<UserTopicList> {
-    let id = user.id;
-    if (id === undefined) {
-      const nick = user.nick?.trim() ?? "";
-      const found = nick ? parseUserExact((await this.http.get(site.userExact(nick))).html) : undefined;
-      if (!found) {
-        // Подсказки: ники с тем же началом; при опечатке в середине — по первым 4 буквам.
-        let prefix = nick;
-        let similar = nick ? await this.findUsers(nick, 10) : [];
-        if (similar.length === 0 && nick.length > 4) {
-          prefix = nick.slice(0, 4);
-          similar = await this.findUsers(prefix, 10);
-        }
-        throw new ForumError(
-          `Player "${nick}" not found.` +
-            (similar.length ? ` Nicks starting with "${prefix}": ${similar.map((u) => u.name).join(", ")}` : ""),
-        );
-      }
-      id = found.id;
-    }
+    const id = await this.userIdOf(user);
 
     const list = parseTopicList(await this.get(site.userTopics(id, page)), page);
     if (list.topics.length === 0 && page > 1) {
@@ -129,6 +125,67 @@ export class ForumReader {
     // Заголовок страницы: «Темы пользователя <ник>».
     const name = list.title?.replace(/^Темы пользователя\s+/, "") ?? user.nick ?? String(id);
     return { ...this.rememberPages(list), user: { id, name } };
+  }
+
+  // --- Игроки и профили ---
+
+  /** id игрока по точному нику (без учёта регистра); если нет — ошибка с похожими никами. */
+  async resolveUserId(nick: string): Promise<number> {
+    const clean = nick.trim();
+    const found = clean ? parseUserExact((await this.http.get(site.userExact(clean))).html) : undefined;
+    if (found) return found.id;
+    // Подсказки: ники с тем же началом; при опечатке в середине — по первым 4 буквам.
+    let prefix = clean;
+    let similar = clean ? await this.findUsers(clean, 10) : [];
+    if (similar.length === 0 && clean.length > 4) {
+      prefix = clean.slice(0, 4);
+      similar = await this.findUsers(prefix, 10);
+    }
+    throw new ForumError(
+      `Player "${clean}" not found.` +
+        (similar.length ? ` Nicks starting with "${prefix}": ${similar.map((u) => u.name).join(", ")}` : ""),
+    );
+  }
+
+  /** Игрок по id или нику; без них — сам залогиненный игрок. */
+  private async userIdOf(user: { id?: number; nick?: string }): Promise<number> {
+    if (user.id !== undefined) return user.id;
+    if (user.nick?.trim()) return this.resolveUserId(user.nick);
+    if (!this.session) throw new ForumError("Pass nick or userId");
+    // Свой профиль читаем по числовому id: так форум показывает его как чужой, без IP и железа.
+    this.ownUserId ??= await this.resolveUserId(await this.session.whoami());
+    return this.ownUserId;
+  }
+
+  /** Главная профиля. Профили видны только под логином. */
+  async profile(user: { id?: number; nick?: string } = {}): Promise<Profile> {
+    const id = await this.userIdOf(user);
+    return parseProfile(await this.get(site.profile(id)), id);
+  }
+
+  /** Раздел профиля (баны, заходы, приваты…). Приваты листаются здесь, по ZONES_PAGE_SIZE. */
+  async profileSection(
+    user: { id?: number; nick?: string },
+    section: ProfileSectionName,
+    page = 1,
+  ): Promise<ProfileSectionPage> {
+    const id = await this.userIdOf(user);
+    const local = section === "zones";
+    const forumPage = await this.get(site.profileSection(PROFILE_SECTION_PATHS[section], id, local ? 1 : page));
+    let { totalPages, data } = parseProfileSection(forumPage, section);
+    if (local && Array.isArray(data)) {
+      totalPages = Math.max(1, Math.ceil(data.length / ZONES_PAGE_SIZE));
+      data = data.slice((page - 1) * ZONES_PAGE_SIZE, page * ZONES_PAGE_SIZE);
+    }
+    if (page > totalPages) throw new ForumError(`Section ${section} of player ${id} has only ${totalPages} page(s)`);
+    return { user: { id }, section, page, totalPages, data };
+  }
+
+  /** Детали привата и кто в нём прописан (у скрытого привата жителей не видно). */
+  async zone(zoneId: number) {
+    const info = parseZoneInfo(await this.get(site.zone(zoneId)), zoneId);
+    const residents = parseZoneResidents(await this.get(site.zoneResidents(zoneId)));
+    return { ...info, residents };
   }
 
   // --- Сообщества ---
@@ -161,11 +218,6 @@ export class ForumReader {
       community: communityFromNav($, navigation($).nav),
       section: { id: sectionId, title: list.title },
     };
-  }
-
-  /** Сообщества, где состоит игрок (блок в своём профиле). Только под логином. */
-  async myCommunities(): Promise<{ id: number; name: string }[]> {
-    return parseMyCommunities(await this.get(site.profileSelf()));
   }
 
   /** Последние темы из сообществ игрока (до 30). Только под логином. */

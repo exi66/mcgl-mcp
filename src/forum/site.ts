@@ -37,6 +37,14 @@ export const site = {
   communitySection: (sectionId: number, page: number) => `/htopic/${sectionId}/${page - 1}`,
   /** Тема сообщества. id тоже общий для всех сообществ. */
   communityTopic: (topicId: number, page: number) => `/hpost/${topicId}/${page - 1}`,
+  /** Главная профиля игрока. Профили видны только под логином. */
+  profile: (userId: number) => `/profilemain/${userId}`,
+  /** Раздел профиля игрока (баны, заходы, приваты…), страница с 1. */
+  profileSection: (path: string, userId: number, page: number) => `/${path}/${userId}/${page - 1}`,
+  /** Детали привата (видны всем, кроме скрытых — у них нет владельца и координат). */
+  zone: (zoneId: number) => `/zoneinfo/${zoneId}`,
+  /** Кто прописан в привате. У скрытого привата закрыто. */
+  zoneResidents: (zoneId: number) => `/zonebuilders/${zoneId}`,
   /** Темы из сообществ, где состоит игрок (до 30). Только под логином. */
   myCommunityTopics: () => "/teamforums/",
   /** Свой профиль: в блоке «Сообщества» — где состоит игрок. */
