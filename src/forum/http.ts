@@ -117,7 +117,9 @@ export class ForumHttp {
 
       const location = res.headers.get("location");
       if (res.status >= 300 && res.status < 400 && location) {
-        await res.body?.cancel();
+        // Тело редиректа дочитываем, а не обрываем: cancel() рвёт keep-alive соединение,
+        // и следующий запрос может попасть на закрывающийся сокет.
+        await res.arrayBuffer().catch(() => undefined);
         url = new URL(location, url).toString();
         // 301/302/303 после POST браузеры превращают в GET, повторяем это поведение.
         current = res.status === 307 || res.status === 308 ? current : { method: "GET" };
