@@ -20,13 +20,13 @@ export const FORUM_RULES = `Not allowed on the forum (posts, topics, communities
 - links to third-party software, cracks, keys;
 - sorting out personal conflicts in public (use PMs or a closed community);
 - advertising anything outside the project or other similar servers; mass ads to users;
-- trading game items, gold, services or accounts for real money (or inviting to Skype etc. for it); selling accounts outside the forum auction;
+- trading game items, Gold (the in-game currency), services or accounts for real money (or inviting to Skype etc. for it); selling accounts outside the forum auction;
 - sharing or using cheats, exploits, account hacking;
 - topics in the wrong section or with a title that does not match the content; garish or heavy images; non-news topics in "Новости";
 - garish avatars or signatures, external images in signatures;
 - politics and religion;
 - anything illegal under Russian law, promoting drugs;
-- begging for gold or money;
+- begging for Gold or any game or real money;
 - fake or pointless support requests;
 - insulting the server, administration or moderators; publicly discussing their actions or punishments (appeals only by the punished player via /requestunban/); impersonating staff; lying to staff;
 - disrupting the forum (flash mobs and the like); publicly discussing event organizers.
