@@ -33,6 +33,11 @@ export const site = {
   community: (communityId: number) => `/hmain/${communityId}`,
   /** Форум сообщества (разделы по категориям). Только под логином. */
   communityForum: (communityId: number) => `/hforum/${communityId}`,
+  /** Состав сообщества по 20. f: 1 группа, 2 темы, 3 сообщения, 4 вступил, 5 последнее сообщение; >0 — по убыванию. */
+  communityMembers: (communityId: number, page: number, sort = 0) =>
+    `/hmembers/${communityId}/${page - 1}${sort ? `?f=${sort}` : ""}`,
+  /** Чёрный список сообщества. */
+  communityBlacklist: (communityId: number, page: number) => `/hblacklist/${communityId}/${page - 1}`,
   /** Раздел форума сообщества. id раздела общий для всех сообществ. */
   communitySection: (sectionId: number, page: number) => `/htopic/${sectionId}/${page - 1}`,
   /** Тема сообщества. id тоже общий для всех сообществ. */

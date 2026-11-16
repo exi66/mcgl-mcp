@@ -50,4 +50,35 @@ export const communityTopics = definePublicTool({
   handler: async ({ sectionId, page }, { reader }) => jsonResult(await reader.communitySectionTopics(sectionId, page)),
 });
 
-export const communityTools = [listCommunities, getCommunity, communityTopics];
+const MEMBER_SORT = { joined: 0, group: 1, topics: 2, posts: 3, last_post: 5 } as const;
+
+export const communityMembers = definePublicTool({
+  name: "forum_community_members",
+  title: "Community members",
+  description:
+    "Members of a community, 20 per page: user, online (the game server the player is on right now; " +
+    "absent = not in game), group inside the community, topics and posts in it, joined, lastPost (last post in the community). " +
+    "sort: joined (newest members first), last_post (most recently active first), posts, topics, group. " +
+    "For a big community do not page through everything: a few pages sorted by last_post cover the active members.",
+  inputSchema: {
+    communityId: z.number().int().positive(),
+    sort: z.enum(["joined", "last_post", "posts", "topics", "group"]).default("joined"),
+    page,
+  },
+  annotations: readOnly,
+  handler: async ({ communityId, sort, page }, { reader }) =>
+    jsonResult(await reader.communityMembers(communityId, page, MEMBER_SORT[sort])),
+});
+
+export const communityBlacklist = definePublicTool({
+  name: "forum_community_blacklist",
+  title: "Community blacklist",
+  description:
+    "A community's blacklist, newest first: user, reason (free text written by the community), when added. " +
+    "Blacklisted players cannot join the community or read its forum.",
+  inputSchema: { communityId: z.number().int().positive(), page },
+  annotations: readOnly,
+  handler: async ({ communityId, page }, { reader }) => jsonResult(await reader.communityBlacklist(communityId, page)),
+});
+
+export const communityTools = [listCommunities, getCommunity, communityTopics, communityMembers, communityBlacklist];

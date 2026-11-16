@@ -17,6 +17,8 @@
  *
  * Фикстуры профилей (test/fixtures/profile/) тоже сняты вручную под игроком и
  * обезличены scripts/anonymize-fixture.ts: это данные настоящих игроков.
+ * Так же сняты состав и чёрный список сообществ (test/fixtures/community/);
+ * ники в свободном тексте причин чёрного списка заменены вручную.
  */
 import { mkdirSync, writeFileSync } from "node:fs";
 import { loadForumEnv, loadPlayerCredentials } from "../src/env.js";

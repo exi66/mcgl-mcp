@@ -12,7 +12,13 @@ import {
   type PlayerCard,
 } from "./objects.js";
 import { navigation, load } from "./parsers/common.js";
-import { parseCommunity, parseCommunityForum, parseCommunityList } from "./parsers/community.js";
+import {
+  parseCommunity,
+  parseCommunityBlacklist,
+  parseCommunityForum,
+  parseCommunityList,
+  parseCommunityMembers,
+} from "./parsers/community.js";
 import {
   PROFILE_SECTION_PATHS,
   parseProfile,
@@ -28,7 +34,9 @@ import type { PlayerSession } from "./player-session.js";
 import { site } from "./site.js";
 import type {
   Community,
+  CommunityBlacklist,
   CommunityForum,
+  CommunityMembers,
   CommunityList,
   CommunityTopicList,
   Post,
@@ -289,6 +297,21 @@ export class ForumReader {
     const community = { ...parseCommunity(page, communityId), ...card };
     if (community.description) [community.description] = await this.items.resolve([community.description]);
     return community;
+  }
+
+  /** Состав сообщества (виден и гостю). sort — параметр f форума, 0 — новые участники первыми. */
+  async communityMembers(communityId: number, page = 1, sort = 0): Promise<CommunityMembers> {
+    const path = site.communityMembers(communityId, page, sort);
+    const list = parseCommunityMembers(await this.get(path), communityId, page);
+    if (list.members.length === 0 && page > 1) {
+      throw new ForumError(`Community ${communityId} has only ${list.totalPages} pages of members`);
+    }
+    return list;
+  }
+
+  /** Чёрный список сообщества (виден и гостю). */
+  async communityBlacklist(communityId: number, page = 1): Promise<CommunityBlacklist> {
+    return parseCommunityBlacklist(await this.get(site.communityBlacklist(communityId, page)), communityId, page);
   }
 
   /** Разделы форума сообщества. Только под логином. */

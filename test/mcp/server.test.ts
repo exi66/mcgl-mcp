@@ -49,6 +49,8 @@ describe("MCP server", () => {
     const { client } = await connect();
     const { tools } = await client.listTools();
     expect(tools.map((t) => t.name).sort()).toEqual([
+      "forum_community_blacklist",
+      "forum_community_members",
       "forum_community_topics",
       "forum_find_users",
       "forum_get_clan",

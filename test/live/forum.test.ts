@@ -45,6 +45,8 @@ describe("live forum (guest)", () => {
     expect((await reader.clan(2369)).name).toBeTruthy();
     expect((await reader.staff()).moderators.length).toBeGreaterThan(0);
     expect((await reader.community(253)).topics).toBeGreaterThan(0);
+    expect((await reader.communityMembers(391, 1, 5)).members.length).toBeGreaterThan(0);
+    expect((await reader.communityBlacklist(391)).entries.length).toBeGreaterThan(0);
   });
 });
 

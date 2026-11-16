@@ -203,6 +203,33 @@ export interface Community {
   open?: boolean;
 }
 
+export interface CommunityMember {
+  user: UserRef;
+  /** Сервер, где игрок сейчас в игре; нет — не в игре. */
+  online?: string;
+  /** Группа внутри сообщества (/hsquad/). */
+  group?: string;
+  topics?: number;
+  posts?: number;
+  joined?: string;
+  /** Время последнего сообщения в сообществе. */
+  lastPost?: string;
+}
+
+export interface CommunityMembers {
+  community: { id: number; name?: string };
+  page: number;
+  totalPages: number;
+  members: CommunityMember[];
+}
+
+export interface CommunityBlacklist {
+  community: { id: number; name?: string };
+  page: number;
+  totalPages: number;
+  entries: { user: UserRef; reason?: string; added?: string }[];
+}
+
 export interface CommunitySection {
   id: number;
   category?: string;

@@ -5,7 +5,17 @@
 import { ForumError, ParseError } from "../errors.js";
 import type { ForumPage } from "../http.js";
 import { parseForumHref } from "../site.js";
-import type { Community, CommunityForum, CommunityList, CommunityRow, CommunitySection, Membership } from "../types.js";
+import type {
+  Community,
+  CommunityBlacklist,
+  CommunityForum,
+  CommunityList,
+  CommunityMember,
+  CommunityMembers,
+  CommunityRow,
+  CommunitySection,
+  Membership,
+} from "../types.js";
 import { alertText, int, isGuestPage, load, maxPage, stamp, text, userRef } from "./common.js";
 import { postHtmlToText } from "./content.js";
 
@@ -141,4 +151,82 @@ export function parseCommunityForum(page: ForumPage, communityId: number): Commu
 /** Ссылка-действие на главной сообщества: /hmain/N/join?_h=… или /leave?_h=… (токен одноразовый). */
 export function actionLink(page: ForumPage, action: "join" | "leave"): string | undefined {
   return load(page.html)(`a[href*="/${action}?_h="]`).first().attr("href");
+}
+
+/** Название сообщества из `<title>` («Клуб гарантов - Minecraft Galaxy»). */
+function communityTitle($: ReturnType<typeof load>): string | undefined {
+  return text($("title").first().text()).replace(/\s+-\s+Minecraft Galaxy$/, "") || undefined;
+}
+
+/** Таблица списка без строки заголовков. Нет таблицы — алерт форума или ошибка разбора. */
+function tableRows($: ReturnType<typeof load>, page: ForumPage, what: string) {
+  const table = $(".content table.topics").first();
+  if (!table.length) {
+    const alert = alertText($);
+    if (alert) throw new ForumError(alert);
+    throw new ParseError(what, page.url);
+  }
+  return table.find("tr").slice(1);
+}
+
+function pagesOf($: ReturnType<typeof load>, pageNum: number): number {
+  return Math.max(maxPage($, $(".navigate .pages").first()), pageNum);
+}
+
+/**
+ * /hmembers/{id}/{стр}?f=: состав сообщества по 20. Колонки: ник, Online (название сервера,
+ * где игрок сейчас в игре, или offline), группа внутри сообщества, темы, сообщения,
+ * когда вступил, время последнего сообщения в сообществе («(отсутствует)»), управление.
+ */
+export function parseCommunityMembers(page: ForumPage, communityId: number, pageNum: number): CommunityMembers {
+  const $ = load(page.html);
+  const members: CommunityMember[] = [];
+  tableRows($, page, `community ${communityId} members`).each((_, tr) => {
+    const cells = $(tr).children("td");
+    const user = userRef(cells.eq(0).find("a.user-link").first());
+    if (!user) return;
+    const online = text(cells.eq(1).text());
+    const lastPost = text(cells.eq(6).text());
+    // У лидера и заместителей группа — выпадающий список, берём выбранный пункт.
+    const select = cells.eq(2).find("select");
+    const group = select.length ? text(select.find("option[selected]").text()) : text(cells.eq(2).text());
+    members.push({
+      user,
+      online: online && online !== "offline" ? online : undefined,
+      group: group && group !== "(не задана)" ? group : undefined,
+      topics: int(cells.eq(3).text()),
+      posts: int(cells.eq(4).text()),
+      joined: text(cells.eq(5).text()) || undefined,
+      lastPost: /^\d{4}-/.test(lastPost) ? lastPost : undefined,
+    });
+  });
+  return {
+    community: { id: communityId, name: communityTitle($) },
+    page: pageNum,
+    totalPages: pagesOf($, pageNum),
+    members,
+  };
+}
+
+/** /hblacklist/{id}/{стр}: ник, причина, когда добавлен. */
+export function parseCommunityBlacklist(page: ForumPage, communityId: number, pageNum: number): CommunityBlacklist {
+  const $ = load(page.html);
+  const entries: CommunityBlacklist["entries"] = [];
+  tableRows($, page, `community ${communityId} blacklist`).each((_, tr) => {
+    const cells = $(tr).children("td");
+    const user = userRef(cells.eq(0).find("a.user-link").first());
+    if (!user) return;
+    const reason = text(cells.eq(1).text());
+    entries.push({
+      user,
+      reason: reason && reason !== "(не указан)" ? reason : undefined,
+      added: text(cells.eq(2).text()) || undefined,
+    });
+  });
+  return {
+    community: { id: communityId, name: communityTitle($) },
+    page: pageNum,
+    totalPages: pagesOf($, pageNum),
+    entries,
+  };
 }
