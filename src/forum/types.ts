@@ -196,6 +196,11 @@ export interface Community {
   joinBlockedReason?: string;
   /** Описание с главной сообщества (bbCode → текст). */
   description?: string;
+  /** Из /object/{id}/3: когда создано, сколько тем и постов, открыт ли набор (вступить самому). */
+  created?: string;
+  topics?: number;
+  posts?: number;
+  open?: boolean;
 }
 
 export interface CommunitySection {

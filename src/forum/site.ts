@@ -71,6 +71,8 @@ export const site = {
   userTopics: (userId: number, page: number) => `/forum/-${userId + 1}/${page - 1}`,
   /** Точный поиск игрока по нику (без учёта регистра): [{'id':'714893','login':'nick'}], нет такого → player$0. */
   userExact: (nick: string) => `/object/0/9?q=${encodeURIComponent(nick)}`,
+  /** Подсказка форума об объекте: 1 игрок, 3 сообщество, 7 администрация, 8 хелперы, 10 клан. */
+  object: (id: number, type: number) => `/object/${id}/${type}`,
   /** Поиск игроков по началу ника: строки "nick|group|id". */
   userPrefix: (prefix: string) => `/object/0/4?q=${encodeURIComponent(prefix)}`,
 

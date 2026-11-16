@@ -36,6 +36,16 @@ describe("live forum (guest)", () => {
       expect(post.topic.id).toBe(topic.id);
     }
   });
+
+  test("object cards: player, clan, staff, community summary", async () => {
+    const player = await reader.playerCard({ nick: "admin" });
+    expect(player).toMatchObject({ id: 1, name: "admin" });
+    expect(player.forumPosts).toBeGreaterThan(0);
+
+    expect((await reader.clan(2369)).name).toBeTruthy();
+    expect((await reader.staff()).moderators.length).toBeGreaterThan(0);
+    expect((await reader.community(253)).topics).toBeGreaterThan(0);
+  });
 });
 
 const credentials = loadPlayerCredentials();

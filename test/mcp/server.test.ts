@@ -51,7 +51,9 @@ describe("MCP server", () => {
     expect(tools.map((t) => t.name).sort()).toEqual([
       "forum_community_topics",
       "forum_find_users",
+      "forum_get_clan",
       "forum_get_community",
+      "forum_get_player_card",
       "forum_get_post",
       "forum_get_screenshot",
       "forum_get_topic",
@@ -59,6 +61,7 @@ describe("MCP server", () => {
       "forum_list_communities",
       "forum_list_screenshots",
       "forum_list_sections",
+      "forum_list_staff",
       "forum_list_topics",
       "forum_user_topics",
     ]);

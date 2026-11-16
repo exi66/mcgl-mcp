@@ -1,6 +1,16 @@
 import { ForumError } from "./errors.js";
 import type { ForumHttp, ForumPage } from "./http.js";
-import { ItemResolver, parseUserExact, parseUserPrefix } from "./objects.js";
+import {
+  ItemResolver,
+  parseClanCard,
+  parseCommunityCard,
+  parseObjectItems,
+  parsePlayerCard,
+  parseUserExact,
+  parseUserPrefix,
+  type ClanCard,
+  type PlayerCard,
+} from "./objects.js";
 import { navigation, load } from "./parsers/common.js";
 import { parseCommunity, parseCommunityForum, parseCommunityList } from "./parsers/community.js";
 import {
@@ -166,6 +176,33 @@ export class ForumReader {
     return this.ownUserId;
   }
 
+  /** Карточка игрока из подсказки форума: видна и гостю. */
+  async playerCard(user: { id?: number; nick?: string }): Promise<PlayerCard> {
+    const id = await this.userIdOf(user);
+    const card = parsePlayerCard((await this.http.get(site.object(id, 1))).html);
+    if (!card) throw new ForumError(`Player ${id} not found`);
+    return card;
+  }
+
+  /** Клан по id (id — из профиля игрока). */
+  async clan(clanId: number): Promise<ClanCard> {
+    const clan = parseClanCard((await this.http.get(site.object(clanId, 10))).html);
+    if (!clan) throw new ForumError(`Clan ${clanId} not found`);
+    return clan;
+  }
+
+  /** Администрация и модераторы (`group` admins/mods) и хелперы. */
+  async staff() {
+    const list = async (type: number) =>
+      parseObjectItems((await this.http.get(site.object(0, type))).html).map((o) => ({
+        id: Number(o.id),
+        name: o.login,
+        group: o.group || undefined,
+      }));
+    const [moderators, helpers] = await Promise.all([list(7), list(8)]);
+    return { moderators, helpers };
+  }
+
   /** Главная профиля. Профили видны только под логином. */
   async profile(user: { id?: number; nick?: string } = {}): Promise<Profile> {
     const id = await this.userIdOf(user);
@@ -241,7 +278,15 @@ export class ForumReader {
 
   /** Главная сообщества; под логином — ещё и состояние членства. */
   async community(communityId: number): Promise<Community> {
-    const community = parseCommunity(await this.get(site.community(communityId)), communityId);
+    const [page, card] = await Promise.all([
+      this.get(site.community(communityId)),
+      // Сводка из подсказки форума: дата создания, темы, посты, открыт ли набор. Не критична.
+      this.http
+        .get(site.object(communityId, 3))
+        .then((p) => parseCommunityCard(p.html))
+        .catch(() => undefined),
+    ]);
+    const community = { ...parseCommunity(page, communityId), ...card };
     if (community.description) [community.description] = await this.items.resolve([community.description]);
     return community;
   }

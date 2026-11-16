@@ -25,7 +25,8 @@ export const getCommunity = definePublicTool({
   name: "forum_get_community",
   title: "Community",
   description:
-    "A community's main page: name, leader, members, rating place, description. When logged in also " +
+    "A community's main page: name, leader, members, rating place, created, topics, posts, open (anyone may join), " +
+    "description. When logged in also " +
     "membership: member | can_join | blocked (joinBlockedReason, e.g. not enough playtime) | closed (by application). " +
     "Its forum sections: forum_community_sections (requires login).",
   inputSchema: { communityId: z.number().int().positive() },

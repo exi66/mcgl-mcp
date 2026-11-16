@@ -5,7 +5,9 @@ const logger = createLogger("objects");
 
 /**
  * Эндпоинт всплывающих подсказок форума: `/object/{id}/{type}`.
- * Тип 1 — игрок, 2 — предмет (`?d=` — метадата), 3 — сообщество.
+ * Тип 1 — игрок, 2 — предмет (`?d=` — метадата), 3 — сообщество, 4 — игроки по началу ника,
+ * 5/6 — свои твинки/друзья (не используем), 7 — администрация и модераторы, 8 — хелперы,
+ * 9 — игрок по точному нику, 10 — клан. Обработчик — pages/object.php в исходниках движка.
  * Ответ — JS-объект в одинарных кавычках (форум делает ему eval), пустой ответ — нет такого объекта:
  *   {'_type':'2','id':'41','title':'Золотой блок','info':'Используется для декора…'}
  */
@@ -40,6 +42,104 @@ export function parseUserPrefix(raw: string): { id: number; name: string; group?
     .map((line) => line.trim().split("|"))
     .filter(([name, , id]) => name && !/^player\$\d+$/.test(name) && Number(id) > 0)
     .map(([name, group, id]) => ({ id: Number(id), name, group: group || undefined }));
+}
+
+/**
+ * Списки `/object/0/7` и `/object/0/8`: `{'_type':7, 'items':[{'id':'1','login':'admin','group':'admins'},…]}`.
+ * Внешний объект не в формате parseObjectLiteral (ключ `_type` без кавычек у значения), поэтому берём элементы.
+ */
+export function parseObjectItems(raw: string): Record<string, string>[] {
+  const list = /'items'\s*:\s*\[([\s\S]*)\]/.exec(raw)?.[1] ?? "";
+  return [...list.matchAll(/\{[^{}]*\}/g)].map(([item]) => parseObjectLiteral(item)).filter((o) => o !== undefined);
+}
+
+/** Профессии в игре (`prof` в карточке игрока), по /professions/ и иконкам /img/prof/N.png. 0 — без профессии. */
+export const PROFESSIONS: Record<number, string> = {
+  1: "Чернорабочий",
+  2: "Кузнец",
+  3: "Строитель",
+  4: "Шахтёр",
+  5: "Охотник",
+  6: "Инженер",
+  7: "Медик",
+};
+
+const num = (value: string | undefined) => {
+  const n = Number(value);
+  return value !== undefined && value !== "" && Number.isFinite(n) ? n : undefined;
+};
+
+export interface PlayerCard {
+  id: number;
+  name: string;
+  registered?: string;
+  lastLogin?: string;
+  profession?: string;
+  blocksPlaced?: number;
+  blocksBroken?: number;
+  forumRating?: number;
+  forumPosts?: number;
+  /** Действующие баны (не снятые) и все за всё время. */
+  activeBans?: number;
+  bansTotal?: number;
+}
+
+/** Карточка игрока `/object/{id}/1` — видна и гостю (в отличие от профиля). */
+export function parsePlayerCard(raw: string): PlayerCard | undefined {
+  const o = parseObjectLiteral(raw);
+  const id = num(o?.id);
+  if (!o?.login || !id) return undefined;
+  const prof = num(o.prof);
+  return {
+    id,
+    name: o.login,
+    registered: o.register || undefined,
+    lastLogin: o.last_login || undefined,
+    profession: prof ? (PROFESSIONS[prof] ?? `#${prof}`) : undefined,
+    blocksPlaced: num(o.make),
+    blocksBroken: num(o.crush),
+    forumRating: num(o.rating),
+    forumPosts: num(o.posts),
+    activeBans: num(o.bans),
+    bansTotal: num(o.bansall),
+  };
+}
+
+export interface ClanCard {
+  id: number;
+  name: string;
+  leader?: string;
+  members?: number;
+  place?: number;
+  wars?: number;
+  unions?: number;
+  level?: number;
+}
+
+/** Клан `/object/{id}/10`: войны и союзы — число активных. */
+export function parseClanCard(raw: string): ClanCard | undefined {
+  const o = parseObjectLiteral(raw);
+  const id = num(o?.id);
+  if (!o?.name || !id) return undefined;
+  return {
+    id,
+    name: o.name,
+    leader: o.leader || undefined,
+    members: num(o.members),
+    place: num(o.place),
+    wars: num(o.wars),
+    unions: num(o.unions),
+    level: num(o.level),
+  };
+}
+
+/** Сводка сообщества `/object/{id}/3`: дата создания, темы, посты, открыт ли набор (`public`). */
+export function parseCommunityCard(
+  raw: string,
+): { created?: string; topics?: number; posts?: number; open: boolean } | undefined {
+  const o = parseObjectLiteral(raw);
+  if (!o?.name) return undefined;
+  return { created: o.time || undefined, topics: num(o.topics), posts: num(o.posts), open: o.public === "1" };
 }
 
 export interface ItemInfo {

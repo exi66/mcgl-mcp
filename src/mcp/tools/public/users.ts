@@ -36,6 +36,46 @@ export const userTopics = definePublicTool({
   },
 });
 
+export const getPlayerCard = definePublicTool({
+  name: "forum_get_player_card",
+  title: "Player card",
+  description:
+    "Short public card of a player (no login needed): registration and last login dates, in-game profession, " +
+    "blocks placed/broken, forum rating and post count, active bans and bans in total. Give nick or userId. " +
+    "The full profile (clan, communities, sections) is forum_get_profile and requires login.",
+  inputSchema: {
+    nick: z.string().trim().min(1).max(32).optional(),
+    userId: z.number().int().positive().optional(),
+  },
+  annotations: readOnly,
+  handler: async ({ nick, userId }, { reader }) => {
+    if (!nick && !userId) throw new ForumError("Pass nick or userId");
+    return jsonResult(await reader.playerCard({ id: userId, nick }));
+  },
+});
+
+export const getClan = definePublicTool({
+  name: "forum_get_clan",
+  title: "Clan",
+  description:
+    "An in-game clan by id (take it from a player's profile, forum_get_profile clan.id): name, leader, members, " +
+    "rating place, number of active wars and unions, level.",
+  inputSchema: { clanId: z.number().int().positive() },
+  annotations: readOnly,
+  handler: async ({ clanId }, { reader }) => jsonResult(await reader.clan(clanId)),
+});
+
+export const listStaff = definePublicTool({
+  name: "forum_list_staff",
+  title: "Server staff",
+  description:
+    "Server staff: moderators (group 'admins' = administrator, 'mods' = moderator) and helpers " +
+    "(players who help newcomers; their group is just their privilege).",
+  inputSchema: {},
+  annotations: readOnly,
+  handler: async (_args, { reader }) => jsonResult(await reader.staff()),
+});
+
 export const getScreenshot = definePublicTool({
   name: "forum_get_screenshot",
   title: "Screenshot",
@@ -77,4 +117,4 @@ export const listScreenshots = definePublicTool({
     ),
 });
 
-export const userTools = [findUsers, userTopics, getScreenshot, listScreenshots];
+export const userTools = [findUsers, userTopics, getPlayerCard, getClan, listStaff, getScreenshot, listScreenshots];
