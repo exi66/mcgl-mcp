@@ -128,3 +128,44 @@ describe("zone details", () => {
     expect(parseZoneResidents(fx("zonebuilders-hidden"))).toBeUndefined();
   });
 });
+
+describe("screenshot", () => {
+  test("card: title, author, section, rating, full image", async () => {
+    const { parseScreenshot } = await import("../../src/forum/parsers/screenshot.js");
+    expect(parseScreenshot(fx("screeninfo"), 149215)).toEqual({
+      id: 149215,
+      title: "sr",
+      author: { name: "GalaxyEvent", id: 618942, group: "eventmoder" },
+      section: "Игровые",
+      rating: 0,
+      image: "https://forum.minecraft-galaxy.ru/png/GalaxyEvent/sr.jpg",
+    });
+  });
+
+  test("comments use the post format", async () => {
+    const { parseScreenshotComments } = await import("../../src/forum/parsers/screenshot.js");
+    const { totalPages, comments } = parseScreenshotComments(fx("screencomments"), 1);
+    expect(totalPages).toBe(1);
+    expect(comments.length).toBeGreaterThan(10);
+    expect(comments[0]).toMatchObject({ number: 1, id: 117595, text: "This is Noir Villar!" });
+  });
+});
+
+describe("screenshot gallery", () => {
+  test("tiles: id from show_screen(), title, author, rating, comments, position; page count", async () => {
+    const { parseScreenshotGallery } = await import("../../src/forum/parsers/screenshot.js");
+    const g = parseScreenshotGallery(fx("screens-gallery"), 1);
+    expect(g.totalPages).toBeGreaterThan(1000);
+    expect(g.screenshots).toHaveLength(12);
+    expect(g.screenshots[0]).toMatchObject({ id: 191694, title: "Mob", rating: 7, comments: 3, position: "116,120" });
+    expect(g.screenshots[0].author?.name).toMatch(/^Player\d+$/);
+  });
+});
+
+test("gallery 'works'/'other': tiles open via show_custom_screen, id still found", async () => {
+  const { parseScreenshotGallery } = await import("../../src/forum/parsers/screenshot.js");
+  const g = parseScreenshotGallery(fx("screens-works"), 1);
+  expect(g.screenshots).toHaveLength(12);
+  expect(g.screenshots[0]).toMatchObject({ id: 191033, title: "МайклМайерс", comments: 0 });
+  expect(g.screenshots[0].position).toBeUndefined();
+});

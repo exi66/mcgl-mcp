@@ -10,6 +10,7 @@ import {
   parseZoneInfo,
   parseZoneResidents,
 } from "./parsers/profile.js";
+import { parseScreenshot, parseScreenshotComments, parseScreenshotGallery } from "./parsers/screenshot.js";
 import { parseSections, parseTopicList } from "./parsers/topic-list.js";
 import { communityFromNav, parsePostPage, parseTopicPage } from "./parsers/topic.js";
 import type { PlayerSession } from "./player-session.js";
@@ -39,6 +40,10 @@ const TOPIC_CACHE_MAX = 30;
 /** Сколько доверяем числу страниц темы, увиденному в списке тем. */
 const PAGES_HINT_TTL_MS = 10 * 60_000;
 const PAGES_HINT_MAX = 500;
+/** Разделы галереи скриншотов. */
+export const SCREENSHOT_CATEGORIES = { game: "screens", other: "screensother", works: "screensworks" } as const;
+/** Фильтры галереи: число в URL. */
+export const SCREENSHOT_FILTERS = { all: 0, best: 1, best_week: 2, discussed: 6, discussed_week: 7 } as const;
 /** Приваты форум отдаёт одной страницей (бывает 400+), листаем сами. */
 const ZONES_PAGE_SIZE = 50;
 
@@ -186,6 +191,35 @@ export class ForumReader {
     const info = parseZoneInfo(await this.get(site.zone(zoneId)), zoneId);
     const residents = parseZoneResidents(await this.get(site.zoneResidents(zoneId)));
     return { ...info, residents };
+  }
+
+  /** Галерея скриншотов: категория, фильтр, автор (ник или id). Доступна и гостю. */
+  async screenshotGallery(opts: {
+    category?: keyof typeof SCREENSHOT_CATEGORIES;
+    filter?: keyof typeof SCREENSHOT_FILTERS;
+    author?: { id?: number; nick?: string };
+    page?: number;
+  }) {
+    const page = opts.page ?? 1;
+    const userId = opts.author?.id ?? (opts.author?.nick ? await this.resolveUserId(opts.author.nick) : undefined);
+    const path = site.screenshotGallery(
+      SCREENSHOT_CATEGORIES[opts.category ?? "game"],
+      SCREENSHOT_FILTERS[opts.filter ?? "all"],
+      page,
+      userId,
+    );
+    return parseScreenshotGallery(await this.get(path), page);
+  }
+
+  /** Скриншот и страница комментариев к нему (названия предметов подставлены). */
+  async screenshot(screenshotId: number, commentsPage = 1) {
+    const info = parseScreenshot(await this.get(site.screenshot(screenshotId)), screenshotId);
+    const comments = parseScreenshotComments(
+      await this.get(site.screenshotComments(screenshotId, commentsPage)),
+      commentsPage,
+    );
+    await this.resolveItems(comments.comments);
+    return { ...info, comments };
   }
 
   // --- Сообщества ---

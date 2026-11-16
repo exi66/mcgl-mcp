@@ -41,6 +41,15 @@ export const site = {
   profile: (userId: number) => `/profilemain/${userId}`,
   /** Раздел профиля игрока (баны, заходы, приваты…), страница с 1. */
   profileSection: (path: string, userId: number, page: number) => `/${path}/${userId}/${page - 1}`,
+  /** Скриншот игрока: карточка и комментарии (доступны и гостю). */
+  screenshot: (screenshotId: number) => `/screeninfo/${screenshotId}`,
+  screenshotComments: (screenshotId: number, page: number) => `/screencomments/${screenshotId}/${page - 1}`,
+  /**
+   * Галерея скриншотов. category: game (/screens), other (/screensother), works (/screensworks).
+   * filter: 0 все, 1 лучшие, 2 лучшие за неделю, 6 обсуждаемые, 7 обсуждаемые за неделю. userId — один автор.
+   */
+  screenshotGallery: (category: string, filter: number, page: number, userId?: number) =>
+    `/${category}/${filter}/${page - 1}${userId ? `?u=${userId}` : ""}`,
   /** Детали привата (видны всем, кроме скрытых — у них нет владельца и координат). */
   zone: (zoneId: number) => `/zoneinfo/${zoneId}`,
   /** Кто прописан в привате. У скрытого привата закрыто. */

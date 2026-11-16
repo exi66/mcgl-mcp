@@ -76,7 +76,7 @@ function parsePost($: Doc, table: Node): Post | undefined {
   };
 }
 
-function parsePosts($: Doc): Post[] {
+export function parsePosts($: Doc): Post[] {
   return $("table.posts")
     .map((_, t) => parsePost($, $(t)))
     .get()

@@ -1,0 +1,971 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta http-equiv="x-rim-auto-match" content="none">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="keywords" content="minecraft, многопользовательская, игра, game, beta, server, сервер, mmorpg, dmh"/> 
+	<meta http-equiv="description" content="Сервер игры Minecraft Galaxy"/>
+		<title>Комментарии к скриншоту - Minecraft Galaxy</title>
+
+	<link rel="stylesheet" href="/style.css?v=10" type="text/css"/>
+	<link rel="stylesheet" href="/red.css?v=5" type="text/css"/>	<link rel="stylesheet" href="/adaptive.css?v=3" type="text/css"/>
+	
+	<meta property="og:image" content="http://minecraft-galaxy.ru/img/logo_large.png"/> 
+	<script type="text/javascript" src="/js/jquery.min.js"></script> 
+	<script type="text/javascript" src="/js/jquery-ui.min.js"></script> 
+	
+	<script type="text/javascript" src="/js/jquery.autocomplete.js"></script>
+	
+	<script type="text/javascript" src="/script.js?v=9"></script>
+	<script type="text/javascript" src="/tpl/format.js"></script>
+	<script src="/map/script.js"></script>
+	
+	<script type="text/javascript" src="/js/ThreeCanvas.js"></script>
+	<script type="text/javascript" src="/js/Cube.js"></script>
+	<script type="text/javascript" src="/js/BinFileReader.js"></script>
+	
+	<style>
+			</style>
+	
+</head>
+
+<body onresize="change_sizes();" onload="change_sizes();">
+<div class="main-div">
+	<div class="header">
+		<div class="mobile-menu"></div>
+		<div class="main-logo"></div>		<div class="title"><a href="https://minecraft-galaxy.ru">Minecraft Galaxy</a></div>
+		<div class="title-mobile"><a href="/">MCGL</a></div>
+<div class="mobile-showen-menu-back"><div class="mobile-showen-menu"><ul class="mobilemenu"><li><a class="item mobile-menu-item" href="/">Форумы</a></li><li><a class="item mobile-menu-item" href="/forum/0">Темы ↓</a>								<ul class="dropdown-mobile">
+										<li><a class="item mobile-menu-item" href="/forum/0">Последние</a></li><li><a class="item mobile-menu-item" href="/forum/-1">Избранные</a></li><li><a class="item mobile-menu-item" href="/private/0">Личные</a></li><li><a class="item mobile-menu-item" href="/forum/-210">Все свои</a></li><li><a class="item mobile-menu-item" href="/teamforums/">Форумы сообществ</a></li>								</ul>
+							</li><li><a class="item mobile-menu-item" href="/blog/">Новости</a></li><li><a class="item mobile-menu-item" href="/users/">Игроки ↓</a>								<ul class="dropdown-mobile">
+										<li><a class="item mobile-menu-item" href="/users/">Список</a></li><li><a class="item mobile-menu-item" href="/clans/">Кланы</a></li><li><a class="item mobile-menu-item" href="/teams/">Сообщества</a></li><li><a class="item mobile-menu-item" href="/topgalaxy/">Galaxy Forbes</a></li><li><a class="item mobile-menu-item" href="/bans/">Баны</a></li><li><a class="item mobile-menu-item" href="/mutes/0">Молчуны</a></li><li><a class="item mobile-menu-item" href="/achieves/"><img src="/img/achieve/best.png"/> Достижения</a></li><li><a class="item mobile-menu-item" href="/top/0">Топ 25</a></li><li><a class="item mobile-menu-item" href="/prodtop/">Производство</a></li><li><a class="item mobile-menu-item" href="/screens/0">Скриншоты</a></li><li><a class="item mobile-menu-item" href="/fortress/">Крепости</a></li><li><a class="item mobile-menu-item" href="/battles/">Дракон</a></li><li><a class="item mobile-menu-item" href="/eventcalendar/">События</a></li><li><a class="item mobile-menu-item" href="/plugins/">Плагины</a></li>								</ul>
+							</li><li><a class="item mobile-menu-item" href="/goldshop/"><span class="vip">Donate</span></a></li><li><a class="item mobile-menu-item" href="/wiki/">Помощь ↓</a>								<ul class="dropdown-mobile">
+										<li><a class="item mobile-menu-item" href="/wiki/530">Наши правила</a></li><li><a class="item mobile-menu-item" href="/wiki/">Wiki</a></li><li><a class="item mobile-menu-item" href="/wiki/FAQ">FAQ</a></li><li><a class="item mobile-menu-item" href="/professions/">Профессии</a></li><li><a class="item mobile-menu-item" href="/doc/9120">План разработок</a></li><li><a class="item mobile-menu-item" href="https://minecraft-galaxy.ru/install/">Установка клиента</a></li><li><a class="item mobile-menu-item" href="/items/">Блоки и предметы</a></li><li><a class="item mobile-menu-item" href="/wiki/O_серверах">О серверах</a></li><li><a class="item mobile-menu-item" href="/wiki/995">О гриферах</a></li><li><a class="item mobile-menu-item" href="/exchange/0"><img src="/img/arrow_up.png"/> Биржа <img src="/img/arrow_down.png"/></a></li>								</ul>
+							</li><li><a class="item mobile-menu-item" href="#"><img src="/img/map.png" width="10"/> Карты ↓</a>								<ul class="dropdown-mobile">
+										<li><a class="item mobile-menu-item" href="/capitals/"><span class="vip">Столицы</span></a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/1/0/">Main</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/2/0/">Guest</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/3/0/">DemoPlanet</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/5/0/">Hunter</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/6/0/">LittleBigPlanet</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/7/0/">MinerPlanet</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/8/0/">Clans</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/9/0/">MiniGames</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/10/0/">MonkeyPlanet</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/11/0/">Pirate station</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/12/0/">Nano</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/13/0/">Rookie</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/14/0/">Newbie</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/15/0/">Build</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/16/0/">Pacific</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/19/0/">Novice</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/20/0/">Team</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/22/0/">Farm</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/23/0/">Creator</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/25/0/">Prometeus</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/26/0/">Laboratory</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/28/0/">Zeus</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/29/0/">Dragon nest</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/30/0/">Atlantida</a></li>								</ul>
+							</li><li><a class="item mobile-menu-item" href="/search/">Поиск</a></li><li><a class="item mobile-menu-item" href="/registration/">Регистрация</a></li></ul></div></div><div class="sms-chat-msg"></div>			<div class="login-panel">
+									<div class="profile-panel">
+						<div class="button-container">
+							<a href="/guilogin/" class="button">Войти</a>
+						</div>
+					</div>
+								</div>
+			</div>
+			<ul class="tabs mainmenu"><li><a class="item" href="/">Форумы</a></li><li><a class="item" href="/forum/0">Темы ↓</a>						<ul class="dropdown">
+								<li><a href="/forum/0">Последние</a></li><li><a href="/forum/-1">Избранные</a></li><li><a href="/private/0">Личные</a></li><li><a href="/forum/-210">Все свои</a></li><li><a href="/teamforums/">Форумы сообществ</a></li>						</ul>
+					</li><li><a class="item" href="/blog/">Новости</a></li><li><a class="item" href="/users/">Игроки ↓</a>						<ul class="dropdown">
+								<li><a href="/users/">Список</a></li><li><a href="/clans/">Кланы</a></li><li><a href="/teams/">Сообщества</a></li><li><a href="/topgalaxy/">Galaxy Forbes</a></li><li><a href="/bans/">Баны</a></li><li><a href="/mutes/0">Молчуны</a></li><li><a href="/achieves/"><img src="/img/achieve/best.png"/> Достижения</a></li><li><a href="/top/0">Топ 25</a></li><li><a href="/prodtop/">Производство</a></li><li><a href="/screens/0">Скриншоты</a></li><li><a href="/fortress/">Крепости</a></li><li><a href="/battles/">Дракон</a></li><li><a href="/eventcalendar/">События</a></li><li><a href="/plugins/">Плагины</a></li>						</ul>
+					</li><li><a class="item" href="/goldshop/"><span class="vip">Donate</span></a></li><li><a class="item" href="/wiki/">Помощь ↓</a>						<ul class="dropdown">
+								<li><a href="/wiki/530">Наши правила</a></li><li><a href="/wiki/">Wiki</a></li><li><a href="/wiki/FAQ">FAQ</a></li><li><a href="/professions/">Профессии</a></li><li><a href="/doc/9120">План разработок</a></li><li><a href="https://minecraft-galaxy.ru/install/">Установка клиента</a></li><li><a href="/items/">Блоки и предметы</a></li><li><a href="/wiki/O_серверах">О серверах</a></li><li><a href="/wiki/995">О гриферах</a></li><li><a href="/exchange/0"><img src="/img/arrow_up.png"/> Биржа <img src="/img/arrow_down.png"/></a></li>						</ul>
+					</li><li><a class="item" href="#"><img src="/img/map.png" width="10"/> Карты ↓</a>						<ul class="dropdown">
+								<li><a href="/capitals/"><span class="vip">Столицы</span></a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/1/0/">Main</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/2/0/">Guest</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/3/0/">DemoPlanet</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/5/0/">Hunter</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/6/0/">LittleBigPlanet</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/7/0/">MinerPlanet</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/8/0/">Clans</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/9/0/">MiniGames</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/10/0/">MonkeyPlanet</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/11/0/">Pirate station</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/12/0/">Nano</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/13/0/">Rookie</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/14/0/">Newbie</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/15/0/">Build</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/16/0/">Pacific</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/19/0/">Novice</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/20/0/">Team</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/22/0/">Farm</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/23/0/">Creator</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/25/0/">Prometeus</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/26/0/">Laboratory</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/28/0/">Zeus</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/29/0/">Dragon nest</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/30/0/">Atlantida</a></li>						</ul>
+					</li><li><a class="item" href="/search/">Поиск</a></li><li><a class="item" href="/registration/">Регистрация</a></li></ul><div class="tb-panel"><a class="tb-btn" id="m-2" title="Общая информация" href="/screeninfo/186951" ><span class="icons-24" style="background-position:-0px -0px;"></span></a><a class="tb-btn-active" id="m-2" title="Комментарии" href="/screencomments/186951" ><span class="icons-24" style="background-position:-96px -24px;"></span></a></div><div class="content"><a class="top-block" href="#" title="" target="">Вверх &uarr;</a>
+			<div class="navigate">
+				<span class="treesel" style="z-index: 2;">Страницы: </span>
+				<span class="pages"><span class="hintleft">← Ctrl</span><span class="current">1</span><span class="hintright">Ctrl →</span></span>
+			</div><table class='posts' cellspacing=1 cellpadding=0>
+				<tr style='display: ;' id='row1-117595'>
+					<td class="author-row" rowspan=2>
+						<div class="login"><img src="/img/offline.png" title=""/><a class="girls" href='javascript: onPaste("[b]Player005[/b], |");'>Player005</a> <img src="/img/offline.png" title=""/></div>
+						
+						<img src="http://forum.minecraft-galaxy.ru/img/avatars/9000001" />
+						<div class="pcount">Ответов: 460</div>
+						<div class="pcount"><a class="" href="/claninfo/2304" title="" target="">Noir Villar</a><br/>Арес</div>
+					</td>
+					<td class="header-row">
+						<div class="post-header"><a name="p117595"></a>#1: 2024-08-18 15:29:59 
+						<span class='post-tools'>
+							
+							
+							
+							
+							<a href='/private/0?to=9000001#text'>ЛС</a> |
+							<a href='/profilemain/9000001'>Player001</a> | 
+							<a href="#" onclick='quote("p1-117595", "Player005"); return false;'>цитата</a>
+						</span>
+					</div>
+					</td>
+				</tr>
+				<tr style='display: ;' id='row2-117595'>
+					<td class="msg-row">
+						<div class="post-text" id="p1-117595">
+						 This is Noir Villar! <img src="/img/smilies/icon_cool.gif" /><br/>
+						</div>
+						
+					</td>
+				</tr>
+				<tr style="display: ;" id="row3-117595">
+					<td class="tool-row pcount">карма: <a class="" href="/userkarma/9000001" title="" target=""><span class="vote-neg">-77</span></a></td>
+					<td class="tool-row"><table class="memo" cellspacing=0 cellpadding=0><tr><td><div class="udescr"> <div style="text-align: center;"><b>You</b><font color="#CC3300"><b>Tube</b></font> <font color="#FFCC66">:</font> <i><font color="#99CC00"><b><a target="_blank" href="https://www.youtube.com/channel/UC1mPA_yMQ0sbmxS5PkfwoeQ?disable_polymer=true">^^PooPs production</a></b></font></i></div></div></td><td style="text-align: right; width: 65px;"></td></tr></table></td></tr></table><table class='posts' cellspacing=1 cellpadding=0>
+				<tr style='display: ;' id='row1-117596'>
+					<td class="author-row" rowspan=2>
+						<div class="login"><img src="/img/offline.png" title=""/><a class="girls" href='javascript: onPaste("[b]Player006[/b], |");'>Player006</a> <img src="/img/offline.png" title=""/></div>
+						
+						<img src="http://forum.minecraft-galaxy.ru/img/avatars/9000002" />
+						<div class="pcount">Ответов: 24</div>
+						<div class="pcount"><a class="" href="/claninfo/2163" title="" target="">Nameless</a><br/>Владыка Тьмы</div>
+					</td>
+					<td class="header-row">
+						<div class="post-header"><a name="p117596"></a>#2: 2024-08-18 15:51:38 
+						<span class='post-tools'>
+							
+							
+							
+							
+							<a href='/private/0?to=9000002#text'>ЛС</a> |
+							<a href='/profilemain/9000002'>Player001</a> | 
+							<a href="#" onclick='quote("p2-117596", "Player006"); return false;'>цитата</a>
+						</span>
+					</div>
+					</td>
+				</tr>
+				<tr style='display: ;' id='row2-117596'>
+					<td class="msg-row">
+						<div class="post-text" id="p2-117596">
+						 Noir Villar-нет ничего невозможного.<br/>
+						</div>
+						
+					</td>
+				</tr>
+				<tr style="display: ;" id="row3-117596">
+					<td class="tool-row pcount">карма: <a class="" href="/userkarma/9000002" title="" target=""><span class="vote-neg">-9</span></a></td>
+					<td class="tool-row"><table class="memo" cellspacing=0 cellpadding=0><tr><td><div class="udescr"> <a target="_blank" href="https://forum.minecraft-galaxy.ru/claninfo/2163"><font color="#999999">Nameless</font></a></div></td><td style="text-align: right; width: 65px;"></td></tr></table></td></tr></table><table class='posts' cellspacing=1 cellpadding=0>
+				<tr style='display: ;' id='row1-117598'>
+					<td class="author-row" rowspan=2>
+						<div class="login"><img src="/img/offline.png" title=""/><a class="vip" href='javascript: onPaste("[b]Player007[/b], |");'>Player007</a> <img src="/img/offline.png" title=""/></div>
+						
+						<img src="http://forum.minecraft-galaxy.ru/img/avatars/9000003" />
+						<div class="pcount">Ответов: 442</div>
+						<div class="pcount"><a class="" href="/claninfo/2163" title="" target="">Nameless</a><br/>Темный Властелин</div>
+					</td>
+					<td class="header-row">
+						<div class="post-header"><a name="p117598"></a>#3: 2024-08-18 16:49:29 
+						<span class='post-tools'>
+							
+							
+							
+							
+							<a href='/private/0?to=9000003#text'>ЛС</a> |
+							<a href='/profilemain/9000003'>Player001</a> | 
+							<a href="#" onclick='quote("p3-117598", "Player007"); return false;'>цитата</a>
+						</span>
+					</div>
+					</td>
+				</tr>
+				<tr style='display: ;' id='row2-117598'>
+					<td class="msg-row">
+						<div class="post-text" id="p3-117598">
+						 Ладно)<br/>
+						</div>
+						
+					</td>
+				</tr>
+				<tr style="display: ;" id="row3-117598">
+					<td class="tool-row pcount">карма: <a class="" href="/userkarma/9000003" title="" target=""><span class="vote-pos">4</span></a></td>
+					<td class="tool-row"><table class="memo" cellspacing=0 cellpadding=0><tr><td><div class="udescr"> </div></td><td style="text-align: right; width: 65px;"></td></tr></table></td></tr></table><table class='posts' cellspacing=1 cellpadding=0>
+				<tr style='display: ;' id='row1-117599'>
+					<td class="author-row" rowspan=2>
+						<div class="login"><img src="/img/offline.png" title=""/><a class="platinum" href='javascript: onPaste("[b]Player008[/b], |");'>Player008</a> <img src="/img/offline.png" title=""/></div>
+						
+						<img src="http://forum.minecraft-galaxy.ru/img/avatars/9000004" />
+						<div class="pcount">Ответов: 3818</div>
+						<div class="pcount"><a class="" href="/claninfo/93" title="" target="">Monte Carlo</a><br/>лидер</div>
+					</td>
+					<td class="header-row">
+						<div class="post-header"><a name="p117599"></a>#4: 2024-08-18 18:05:52 
+						<span class='post-tools'>
+							
+							
+							
+							
+							<a href='/private/0?to=9000004#text'>ЛС</a> |
+							<a href='/profilemain/9000004'>Player001</a> | 
+							<a href="#" onclick='quote("p4-117599", "Player008"); return false;'>цитата</a>
+						</span>
+					</div>
+					</td>
+				</tr>
+				<tr style='display: ;' id='row2-117599'>
+					<td class="msg-row">
+						<div class="post-text" id="p4-117599">
+						 <div class="scroll"><div class="scroll-head" onclick="switchTable(this);"><img src="/img/icon_plus.gif" class="_plus"> Просьба Лосю передать картинку лично в руки, ответ на его тему которую он постил когда ливнул из МК в НоилВилар</div><div class="scroll-body"><img class="post-image" src="https://sun9-77.userapi.com/impg/sxz3Zc5wlAly3YyionLU-I8vz5_65TT07JgyQA/W9EHiUvpDlk.jpg?size=1670x783&amp;quality=96&amp;sign=4a948f88f4700614840dde8106f71f69&amp;type=album"></div></div>
+						</div>
+						
+					</td>
+				</tr>
+				<tr style="display: ;" id="row3-117599">
+					<td class="tool-row pcount">карма: <a class="" href="/userkarma/9000004" title="" target=""><span class="vote-pos">208</span></a></td>
+					<td class="tool-row"><table class="memo" cellspacing=0 cellpadding=0><tr><td><div class="udescr"> </div></td><td style="text-align: right; width: 65px;"></td></tr></table></td></tr></table><table class='posts' cellspacing=1 cellpadding=0>
+				<tr style='display: ;' id='row1-117600'>
+					<td class="author-row" rowspan=2>
+						<div class="login"><img src="/img/offline.png" title=""/><a class="girls" href='javascript: onPaste("[b]Player009[/b], |");'>Player009</a> <img src="/img/offline.png" title=""/></div>
+						
+						<img src="http://forum.minecraft-galaxy.ru/img/avatars/9000005" />
+						<div class="pcount">Ответов: 1251</div>
+						<div class="pcount"><a class="" href="/claninfo/2205" title="" target="">Nilfgaard</a><br/>Главный заместитель</div>
+					</td>
+					<td class="header-row">
+						<div class="post-header"><a name="p117600"></a>#5: 2024-08-18 18:19:03 
+						<span class='post-tools'>
+							
+							
+							
+							
+							<a href='/private/0?to=9000005#text'>ЛС</a> |
+							<a href='/profilemain/9000005'>Player001</a> | 
+							<a href="#" onclick='quote("p5-117600", "Player009"); return false;'>цитата</a>
+						</span>
+					</div>
+					</td>
+				</tr>
+				<tr style='display: ;' id='row2-117600'>
+					<td class="msg-row">
+						<div class="post-text" id="p5-117600">
+						 <b>Player008</b>, жёстко ты, Володь, выдал<br/>
+						</div>
+						
+					</td>
+				</tr>
+				<tr style="display: ;" id="row3-117600">
+					<td class="tool-row pcount">карма: <a class="" href="/userkarma/9000005" title="" target=""><span class="vote-neg">-57</span></a></td>
+					<td class="tool-row"><table class="memo" cellspacing=0 cellpadding=0><tr><td><div class="udescr"> <font color="#CC3300"><b><a target="_blank" href="https://forum.minecraft-galaxy.ru/hmain/2556">Официальное сообщество строителей MCGL</a></b></font>|<img src="/img/user.png"/> <a href="/profilemain/9000006">Player002</a></div></td><td style="text-align: right; width: 65px;"></td></tr></table></td></tr></table><table class='posts' cellspacing=1 cellpadding=0>
+				<tr style='display: ;' id='row1-117601'>
+					<td class="author-row" rowspan=2>
+						<div class="login"><img src="/img/offline.png" title=""/><a class="platinum" href='javascript: onPaste("[b]Player010[/b], |");'>Player010</a> <img src="/img/offline.png" title=""/></div>
+						
+						<img src="http://forum.minecraft-galaxy.ru/img/avatars/9000007" />
+						<div class="pcount">Ответов: 2462</div>
+						<div class="pcount"><a class="" href="/claninfo/2304" title="" target="">Noir Villar</a><br/>Аполлон</div>
+					</td>
+					<td class="header-row">
+						<div class="post-header"><a name="p117601"></a>#6: 2024-08-18 18:27:26 
+						<span class='post-tools'>
+							
+							
+							
+							
+							<a href='/private/0?to=9000007#text'>ЛС</a> |
+							<a href='/profilemain/9000007'>Player001</a> | 
+							<a href="#" onclick='quote("p6-117601", "Player010"); return false;'>цитата</a>
+						</span>
+					</div>
+					</td>
+				</tr>
+				<tr style='display: ;' id='row2-117601'>
+					<td class="msg-row">
+						<div class="post-text" id="p6-117601">
+						 <b>Player008</b>, Вовка прости меня конечно, но если на оформление вашего клана наложить наше, мы от этого вами не станем)<br/><br/>для тех кто не в теме <a target="_blank" href="https://forum.minecraft-galaxy.ru/claninfo/451">https://forum.minecraft-galaxy.ru/claninfo/451</a><br/>
+						</div>
+						
+					</td>
+				</tr>
+				<tr style="display: ;" id="row3-117601">
+					<td class="tool-row pcount">карма: <a class="" href="/userkarma/9000007" title="" target=""><span class="vote-neg">-39</span></a></td>
+					<td class="tool-row"><table class="memo" cellspacing=0 cellpadding=0><tr><td><div class="udescr"> <a target="_blank" href="http://nick-name.ru/nickname/id951336/"><font color="#FFCC66"><b>Через тернии к звездам.</b></font></a> <a target="_blank" href="https://forum.minecraft-galaxy.ru/hmain/3000"><font color="#CC3300">Аренда игровых аккаунтов.</font></a></div></td><td style="text-align: right; width: 65px;"></td></tr></table></td></tr></table><table class='posts' cellspacing=1 cellpadding=0>
+				<tr style='display: ;' id='row1-117602'>
+					<td class="author-row" rowspan=2>
+						<div class="login"><img src="/img/offline.png" title=""/><a class="girls" href='javascript: onPaste("[b]Player009[/b], |");'>Player009</a> <img src="/img/offline.png" title=""/></div>
+						
+						<img src="http://forum.minecraft-galaxy.ru/img/avatars/9000005" />
+						<div class="pcount">Ответов: 1251</div>
+						<div class="pcount"><a class="" href="/claninfo/2205" title="" target="">Nilfgaard</a><br/>Главный заместитель</div>
+					</td>
+					<td class="header-row">
+						<div class="post-header"><a name="p117602"></a>#7: 2024-08-18 18:32:13 
+						<span class='post-tools'>
+							
+							
+							
+							
+							<a href='/private/0?to=9000005#text'>ЛС</a> |
+							<a href='/profilemain/9000005'>Player001</a> | 
+							<a href="#" onclick='quote("p7-117602", "Player009"); return false;'>цитата</a>
+						</span>
+					</div>
+					</td>
+				</tr>
+				<tr style='display: ;' id='row2-117602'>
+					<td class="msg-row">
+						<div class="post-text" id="p7-117602">
+						 <div class=bc_quote><div class=bc_quote_title>Player010</b> писал(а):</div>Player008, Вовка прости меня конечно, но если на оформление вашего клана наложить наше, мы от этого вами не станем)</div><br/><br/>Player008, Вовка<b><font color="#CC3300">,</font></b> прости меня <b><font color="#CC3300">,</font></b> конечно, но<b><font color="#CC3300">,</font></b> если на оформление вашего клана наложить наше, мы от этого вами не станем)<br/><br/><div class=bc_quote><div class=bc_quote_title>Player008</b> писал(а):</div>Просьба Лосю передать картинку лично в руки, ответ на его тему которую он постил когда ливнул из МК в НоилВилар</div><br/><br/>Просьба Лосю передать картинку лично в руки, ответ на его тему<b><font color="#CC3300">,</font></b> которую он постил <b><font color="#CC3300">,</font></b> когда ливнул из МК в НоилВилар<br/>
+						</div>
+						
+					</td>
+				</tr>
+				<tr style="display: ;" id="row3-117602">
+					<td class="tool-row pcount">карма: <a class="" href="/userkarma/9000005" title="" target=""><span class="vote-neg">-57</span></a></td>
+					<td class="tool-row"><table class="memo" cellspacing=0 cellpadding=0><tr><td><div class="udescr"> <font color="#CC3300"><b><a target="_blank" href="https://forum.minecraft-galaxy.ru/hmain/2556">Официальное сообщество строителей MCGL</a></b></font>|<img src="/img/user.png"/> <a href="/profilemain/9000006">Player002</a></div></td><td style="text-align: right; width: 65px;"></td></tr></table></td></tr></table><table class='posts' cellspacing=1 cellpadding=0>
+				<tr style='display: ;' id='row1-117603'>
+					<td class="author-row" rowspan=2>
+						<div class="login"><img src="/img/offline.png" title=""/><a class="vip" href='javascript: onPaste("[b]Player007[/b], |");'>Player007</a> <img src="/img/offline.png" title=""/></div>
+						
+						<img src="http://forum.minecraft-galaxy.ru/img/avatars/9000003" />
+						<div class="pcount">Ответов: 442</div>
+						<div class="pcount"><a class="" href="/claninfo/2163" title="" target="">Nameless</a><br/>Темный Властелин</div>
+					</td>
+					<td class="header-row">
+						<div class="post-header"><a name="p117603"></a>#8: 2024-08-18 18:34:19 
+						<span class='post-tools'>
+							
+							
+							
+							
+							<a href='/private/0?to=9000003#text'>ЛС</a> |
+							<a href='/profilemain/9000003'>Player001</a> | 
+							<a href="#" onclick='quote("p8-117603", "Player007"); return false;'>цитата</a>
+						</span>
+					</div>
+					</td>
+				</tr>
+				<tr style='display: ;' id='row2-117603'>
+					<td class="msg-row">
+						<div class="post-text" id="p8-117603">
+						 <div class=bc_quote><div class=bc_quote_title>Player009</b> писал(а):</div>Пук</div><br/>Не лезь в чужие разборки.<br/>
+						</div>
+						
+					</td>
+				</tr>
+				<tr style="display: ;" id="row3-117603">
+					<td class="tool-row pcount">карма: <a class="" href="/userkarma/9000003" title="" target=""><span class="vote-pos">4</span></a></td>
+					<td class="tool-row"><table class="memo" cellspacing=0 cellpadding=0><tr><td><div class="udescr"> </div></td><td style="text-align: right; width: 65px;"></td></tr></table></td></tr></table><table class='posts' cellspacing=1 cellpadding=0>
+				<tr style='display: ;' id='row1-117604'>
+					<td class="author-row" rowspan=2>
+						<div class="login"><img src="/img/offline.png" title=""/><a class="girls" href='javascript: onPaste("[b]Player009[/b], |");'>Player009</a> <img src="/img/offline.png" title=""/></div>
+						
+						<img src="http://forum.minecraft-galaxy.ru/img/avatars/9000005" />
+						<div class="pcount">Ответов: 1251</div>
+						<div class="pcount"><a class="" href="/claninfo/2205" title="" target="">Nilfgaard</a><br/>Главный заместитель</div>
+					</td>
+					<td class="header-row">
+						<div class="post-header"><a name="p117604"></a>#9: 2024-08-18 18:35:07 
+						<span class='post-tools'>
+							
+							
+							
+							
+							<a href='/private/0?to=9000005#text'>ЛС</a> |
+							<a href='/profilemain/9000005'>Player001</a> | 
+							<a href="#" onclick='quote("p9-117604", "Player009"); return false;'>цитата</a>
+						</span>
+					</div>
+					</td>
+				</tr>
+				<tr style='display: ;' id='row2-117604'>
+					<td class="msg-row">
+						<div class="post-text" id="p9-117604">
+						 <div class=bc_quote><div class=bc_quote_title>Player007</b> писал(а):</div>Player009 писал(а):<br/>Пук<br/><br/>Не лезь в чюжие разборки.</div><br/><br/>чУжие?<br/>
+						</div>
+						
+					</td>
+				</tr>
+				<tr style="display: ;" id="row3-117604">
+					<td class="tool-row pcount">карма: <a class="" href="/userkarma/9000005" title="" target=""><span class="vote-neg">-57</span></a></td>
+					<td class="tool-row"><table class="memo" cellspacing=0 cellpadding=0><tr><td><div class="udescr"> <font color="#CC3300"><b><a target="_blank" href="https://forum.minecraft-galaxy.ru/hmain/2556">Официальное сообщество строителей MCGL</a></b></font>|<img src="/img/user.png"/> <a href="/profilemain/9000006">Player002</a></div></td><td style="text-align: right; width: 65px;"></td></tr></table></td></tr></table><table class='posts' cellspacing=1 cellpadding=0>
+				<tr style='display: ;' id='row1-117605'>
+					<td class="author-row" rowspan=2>
+						<div class="login"><img src="/img/offline.png" title=""/><a class="vip" href='javascript: onPaste("[b]Player003[/b], |");'>Player003</a> <img src="/img/offline.png" title=""/></div>
+						
+						
+						<div class="pcount">Ответов: 85</div>
+						<div class="pcount"><a class="" href="/claninfo/2296" title="" target="">Orion</a><br/>Старичок</div>
+					</td>
+					<td class="header-row">
+						<div class="post-header"><a name="p117605"></a>#10: 2024-08-18 19:24:57 
+						<span class='post-tools'>
+							
+							
+							
+							
+							<a href='/private/0?to=9000008#text'>ЛС</a> |
+							<a href='/profilemain/9000008'>Player001</a> | 
+							<a href="#" onclick='quote("p10-117605", "Player003"); return false;'>цитата</a>
+						</span>
+					</div>
+					</td>
+				</tr>
+				<tr style='display: ;' id='row2-117605'>
+					<td class="msg-row">
+						<div class="post-text" id="p10-117605">
+						 <div class=bc_quote><div class=bc_quote_title>Player007</b> писал(а):</div>Player009 писал(а):<br/>Пук<br/><br/>Не лезь в чужие разборки.</div><br/>ХАХАХАХ ХАХ чюжие)<br/>
+						</div>
+						
+					</td>
+				</tr>
+				<tr style="display: ;" id="row3-117605">
+					<td class="tool-row pcount">карма: <a class="" href="/userkarma/9000008" title="" target=""><span class="vote-neg">-33</span></a></td>
+					<td class="tool-row"><table class="memo" cellspacing=0 cellpadding=0><tr><td><div class="udescr"> 42</div></td><td style="text-align: right; width: 65px;"></td></tr></table></td></tr></table><table class='posts' cellspacing=1 cellpadding=0>
+				<tr style='display: ;' id='row1-117606'>
+					<td class="author-row" rowspan=2>
+						<div class="login"><img src="/img/offline.png" title=""/><a class="girls" href='javascript: onPaste("[b]Player009[/b], |");'>Player009</a> <img src="/img/offline.png" title=""/></div>
+						
+						<img src="http://forum.minecraft-galaxy.ru/img/avatars/9000005" />
+						<div class="pcount">Ответов: 1251</div>
+						<div class="pcount"><a class="" href="/claninfo/2205" title="" target="">Nilfgaard</a><br/>Главный заместитель</div>
+					</td>
+					<td class="header-row">
+						<div class="post-header"><a name="p117606"></a>#11: 2024-08-18 19:52:26 
+						<span class='post-tools'>
+							
+							
+							
+							
+							<a href='/private/0?to=9000005#text'>ЛС</a> |
+							<a href='/profilemain/9000005'>Player001</a> | 
+							<a href="#" onclick='quote("p11-117606", "Player009"); return false;'>цитата</a>
+						</span>
+					</div>
+					</td>
+				</tr>
+				<tr style='display: ;' id='row2-117606'>
+					<td class="msg-row">
+						<div class="post-text" id="p11-117606">
+						 <b>Player003</b>, это «friendly fire»? Огонь по своим?<br/>
+						</div>
+						
+					</td>
+				</tr>
+				<tr style="display: ;" id="row3-117606">
+					<td class="tool-row pcount">карма: <a class="" href="/userkarma/9000005" title="" target=""><span class="vote-neg">-57</span></a></td>
+					<td class="tool-row"><table class="memo" cellspacing=0 cellpadding=0><tr><td><div class="udescr"> <font color="#CC3300"><b><a target="_blank" href="https://forum.minecraft-galaxy.ru/hmain/2556">Официальное сообщество строителей MCGL</a></b></font>|<img src="/img/user.png"/> <a href="/profilemain/9000006">Player002</a></div></td><td style="text-align: right; width: 65px;"></td></tr></table></td></tr></table><table class='posts' cellspacing=1 cellpadding=0>
+				<tr style='display: ;' id='row1-117607'>
+					<td class="author-row" rowspan=2>
+						<div class="login"><img src="/img/offline.png" title=""/><a class="vip" href='javascript: onPaste("[b]Player003[/b], |");'>Player003</a> <img src="/img/offline.png" title=""/></div>
+						
+						
+						<div class="pcount">Ответов: 85</div>
+						<div class="pcount"><a class="" href="/claninfo/2296" title="" target="">Orion</a><br/>Старичок</div>
+					</td>
+					<td class="header-row">
+						<div class="post-header"><a name="p117607"></a>#12: 2024-08-18 20:13:03 
+						<span class='post-tools'>
+							
+							
+							
+							
+							<a href='/private/0?to=9000008#text'>ЛС</a> |
+							<a href='/profilemain/9000008'>Player001</a> | 
+							<a href="#" onclick='quote("p12-117607", "Player003"); return false;'>цитата</a>
+						</span>
+					</div>
+					</td>
+				</tr>
+				<tr style='display: ;' id='row2-117607'>
+					<td class="msg-row">
+						<div class="post-text" id="p12-117607">
+						 <div class=bc_quote><div class=bc_quote_title>Player009</b> писал(а):</div>Player003, это «friendly fire»? Огонь по своим?</div><br/>типо того<br/>
+						</div>
+						
+					</td>
+				</tr>
+				<tr style="display: ;" id="row3-117607">
+					<td class="tool-row pcount">карма: <a class="" href="/userkarma/9000008" title="" target=""><span class="vote-neg">-33</span></a></td>
+					<td class="tool-row"><table class="memo" cellspacing=0 cellpadding=0><tr><td><div class="udescr"> 42</div></td><td style="text-align: right; width: 65px;"></td></tr></table></td></tr></table><table class='posts' cellspacing=1 cellpadding=0>
+				<tr style='display: ;' id='row1-117608'>
+					<td class="author-row" rowspan=2>
+						<div class="login"><img src="/img/offline.png" title=""/><a class="girls" href='javascript: onPaste("[b]Player011[/b], |");'>Player011</a> <img src="/img/offline.png" title=""/></div>
+						
+						<img src="http://forum.minecraft-galaxy.ru/img/avatars/9000009" />
+						<div class="pcount">Ответов: 1</div>
+						<div class="pcount"><a class="" href="/claninfo/2203" title="" target="">MILF</a><br/>КМ</div>
+					</td>
+					<td class="header-row">
+						<div class="post-header"><a name="p117608"></a>#13: 2024-08-18 22:36:43 
+						<span class='post-tools'>
+							
+							
+							
+							
+							<a href='/private/0?to=9000009#text'>ЛС</a> |
+							<a href='/profilemain/9000009'>Player001</a> | 
+							<a href="#" onclick='quote("p13-117608", "Player011"); return false;'>цитата</a>
+						</span>
+					</div>
+					</td>
+				</tr>
+				<tr style='display: ;' id='row2-117608'>
+					<td class="msg-row">
+						<div class="post-text" id="p13-117608">
+						 Купить крепость за 10к и ссаться от счастья с онлайном 15 «человек». Ну ржавый как обычно. Лучше бы денег копил на нормальный драндулет, а то утиль с 400к пробега уже просит его усыпить. Ржавый на ржавом корыто. Ох уж эти нефоры…<br/>
+						</div>
+						
+					</td>
+				</tr>
+				<tr style="display: ;" id="row3-117608">
+					<td class="tool-row pcount">карма: <a class="" href="/userkarma/9000009" title="" target="">0</a></td>
+					<td class="tool-row"><table class="memo" cellspacing=0 cellpadding=0><tr><td><div class="udescr"> </div></td><td style="text-align: right; width: 65px;"></td></tr></table></td></tr></table><table class='posts' cellspacing=1 cellpadding=0>
+				<tr style='display: ;' id='row1-117609'>
+					<td class="author-row" rowspan=2>
+						<div class="login"><img src="/img/offline.png" title=""/><a class="vip" href='javascript: onPaste("[b]Player003[/b], |");'>Player003</a> <img src="/img/offline.png" title=""/></div>
+						
+						
+						<div class="pcount">Ответов: 85</div>
+						<div class="pcount"><a class="" href="/claninfo/2296" title="" target="">Orion</a><br/>Старичок</div>
+					</td>
+					<td class="header-row">
+						<div class="post-header"><a name="p117609"></a>#14: 2024-08-18 22:42:55 
+						<span class='post-tools'>
+							
+							
+							
+							
+							<a href='/private/0?to=9000008#text'>ЛС</a> |
+							<a href='/profilemain/9000008'>Player001</a> | 
+							<a href="#" onclick='quote("p14-117609", "Player003"); return false;'>цитата</a>
+						</span>
+					</div>
+					</td>
+				</tr>
+				<tr style='display: ;' id='row2-117609'>
+					<td class="msg-row">
+						<div class="post-text" id="p14-117609">
+						 <div class=bc_quote><div class=bc_quote_title>Player011</b> писал(а):</div>Купить крепость за 4к и ссаться от счастья с онлайном 15 «человек». Ну ржавый как обычно. Лучше бы денег копил на нормальный драндулет, а то утиль с 400к пробега уже просит его усыпить. Ржавый на ржавом корыто. Ох уж эти нефоры…</div><br/>высказалась<br/>
+						</div>
+						
+					</td>
+				</tr>
+				<tr style="display: ;" id="row3-117609">
+					<td class="tool-row pcount">карма: <a class="" href="/userkarma/9000008" title="" target=""><span class="vote-neg">-33</span></a></td>
+					<td class="tool-row"><table class="memo" cellspacing=0 cellpadding=0><tr><td><div class="udescr"> 42</div></td><td style="text-align: right; width: 65px;"></td></tr></table></td></tr></table><table class='posts' cellspacing=1 cellpadding=0>
+				<tr style='display: ;' id='row1-117613'>
+					<td class="author-row" rowspan=2>
+						<div class="login"><img src="/img/offline.png" title=""/><a class="girls" href='javascript: onPaste("[b]Player012[/b], |");'>Player012</a> <img src="/img/offline.png" title=""/></div>
+						
+						<img src="http://forum.minecraft-galaxy.ru/img/avatars/9000010" />
+						<div class="pcount">Ответов: 3</div>
+						<div class="pcount"><a class="" href="/claninfo/2173" title="" target="">Ancients</a><br/>Ancients</div>
+					</td>
+					<td class="header-row">
+						<div class="post-header"><a name="p117613"></a>#15: 2024-08-19 14:12:24 
+						<span class='post-tools'>
+							
+							
+							
+							
+							<a href='/private/0?to=9000010#text'>ЛС</a> |
+							<a href='/profilemain/9000010'>Player001</a> | 
+							<a href="#" onclick='quote("p15-117613", "Player012"); return false;'>цитата</a>
+						</span>
+					</div>
+					</td>
+				</tr>
+				<tr style='display: ;' id='row2-117613'>
+					<td class="msg-row">
+						<div class="post-text" id="p15-117613">
+						 <div class=bc_quote><div class=bc_quote_title>Player005</b> писал(а):</div>This is</div><br/>This is 10k...<br/>
+						</div>
+						
+					</td>
+				</tr>
+				<tr style="display: ;" id="row3-117613">
+					<td class="tool-row pcount">карма: <a class="" href="/userkarma/9000010" title="" target=""><span class="vote-neg">-1</span></a></td>
+					<td class="tool-row"><table class="memo" cellspacing=0 cellpadding=0><tr><td><div class="udescr"> </div></td><td style="text-align: right; width: 65px;"></td></tr></table></td></tr></table><table class='posts' cellspacing=1 cellpadding=0>
+				<tr style='display: ;' id='row1-117614'>
+					<td class="author-row" rowspan=2>
+						<div class="login"><img src="/img/offline.png" title=""/><a class="platinum" href='javascript: onPaste("[b]Player013[/b], |");'>Player013</a> <img src="/img/offline.png" title=""/></div>
+						
+						<img src="http://forum.minecraft-galaxy.ru/img/avatars/9000011" />
+						<div class="pcount">Ответов: 534</div>
+						<div class="pcount"><a class="" href="/claninfo/2262" title="" target="">Crying Angels</a><br/>Angel</div>
+					</td>
+					<td class="header-row">
+						<div class="post-header"><a name="p117614"></a>#16: 2024-08-19 17:27:48 
+						<span class='post-tools'>
+							
+							
+							
+							
+							<a href='/private/0?to=9000011#text'>ЛС</a> |
+							<a href='/profilemain/9000011'>Player001</a> | 
+							<a href="#" onclick='quote("p16-117614", "Player013"); return false;'>цитата</a>
+						</span>
+					</div>
+					</td>
+				</tr>
+				<tr style='display: ;' id='row2-117614'>
+					<td class="msg-row">
+						<div class="post-text" id="p16-117614">
+						 <b>Player011</b>, Пруфы будут за 10к ? или так чисто воздух<br/><b>Player009</b>, <div class=bc_quote><div class=bc_quote_title>Player009</b> писал(а):</div>Player003, это «friendly fire»? Огонь по своим?</div> ща еще раз вынесет их, потом поплачут глава в афк уйдёт а через пол годика забудут.<br/>
+						</div>
+						
+					</td>
+				</tr>
+				<tr style="display: ;" id="row3-117614">
+					<td class="tool-row pcount">карма: <a class="" href="/userkarma/9000011" title="" target=""><span class="vote-neg">-30</span></a></td>
+					<td class="tool-row"><table class="memo" cellspacing=0 cellpadding=0><tr><td><div class="udescr"> <b><font color="#CC3363">EΞΟΥΣΙΑ</font></b></div></td><td style="text-align: right; width: 65px;"></td></tr></table></td></tr></table><table class='posts' cellspacing=1 cellpadding=0>
+				<tr style='display: ;' id='row1-117619'>
+					<td class="author-row" rowspan=2>
+						<div class="login"><img src="/img/offline.png" title=""/><a class="girls" href='javascript: onPaste("[b]Player009[/b], |");'>Player009</a> <img src="/img/offline.png" title=""/></div>
+						
+						<img src="http://forum.minecraft-galaxy.ru/img/avatars/9000005" />
+						<div class="pcount">Ответов: 1251</div>
+						<div class="pcount"><a class="" href="/claninfo/2205" title="" target="">Nilfgaard</a><br/>Главный заместитель</div>
+					</td>
+					<td class="header-row">
+						<div class="post-header"><a name="p117619"></a>#17: 2024-08-20 01:04:50 
+						<span class='post-tools'>
+							
+							
+							
+							
+							<a href='/private/0?to=9000005#text'>ЛС</a> |
+							<a href='/profilemain/9000005'>Player001</a> | 
+							<a href="#" onclick='quote("p17-117619", "Player009"); return false;'>цитата</a>
+						</span>
+					</div>
+					</td>
+				</tr>
+				<tr style='display: ;' id='row2-117619'>
+					<td class="msg-row">
+						<div class="post-text" id="p17-117619">
+						 <div class="scroll"><div class="scroll-head" onclick="switchTable(this);"><img src="/img/icon_plus.gif" class="_plus"> Дизган</div><div class="scroll-body"><img class="post-image" src="https://sun9-51.userapi.com/impg/br5q9pXHSp9i5XJOpwNjU1IRnK5S496MW1plrg/4iYohcHLqyM.jpg?size=829x797&amp;quality=96&amp;sign=e2df650a39fc6560e8a7bd3e67ea8453&amp;type=album"></div></div><div class="scroll"><div class="scroll-head" onclick="switchTable(this);"><img src="/img/icon_plus.gif" class="_plus"> Галант</div><div class="scroll-body"><img class="post-image" src="https://sun9-54.userapi.com/impg/vgndOW9CJ5-5hlx_TW2B9KE8gd4f8hJ-UqWkQA/9uJsAJNI-7Q.jpg?size=314x587&amp;quality=96&amp;sign=c458100553a7517221990e5ef0caf02f&amp;type=album"></div></div><br/>Получается... <img src="/img/user.png"/> <a href="/profilemain/9000008" onmouseover="showtip(1, 9000008, event)" onmouseout="hidetip()" class="vip">Player003</a>---› <img src="/img/user.png"/> <a href="/profilemain/9000012" onmouseover="showtip(1, 9000012, event)" onmouseout="hidetip()" class="girls">Player004</a>  <img src="/img/smilies/icon_idea.gif" /> <img src="/img/smilies/icon_mrgreen.gif" /><br/>
+						</div>
+						
+					</td>
+				</tr>
+				<tr style="display: ;" id="row3-117619">
+					<td class="tool-row pcount">карма: <a class="" href="/userkarma/9000005" title="" target=""><span class="vote-neg">-57</span></a></td>
+					<td class="tool-row"><table class="memo" cellspacing=0 cellpadding=0><tr><td><div class="udescr"> <font color="#CC3300"><b><a target="_blank" href="https://forum.minecraft-galaxy.ru/hmain/2556">Официальное сообщество строителей MCGL</a></b></font>|<img src="/img/user.png"/> <a href="/profilemain/9000006">Player002</a></div></td><td style="text-align: right; width: 65px;"></td></tr></table></td></tr></table><table class='posts' cellspacing=1 cellpadding=0>
+				<tr style='display: ;' id='row1-117621'>
+					<td class="author-row" rowspan=2>
+						<div class="login"><img src="/img/offline.png" title=""/><a class="vip" href='javascript: onPaste("[b]Player014[/b], |");'>Player014</a> <img src="/img/offline.png" title=""/></div>
+						
+						<img src="http://forum.minecraft-galaxy.ru/img/avatars/9000013" />
+						<div class="pcount">Ответов: 264</div>
+						<div class="pcount"><a class="" href="/claninfo/93" title="" target="">Monte Carlo</a><br/>Промышленники</div>
+					</td>
+					<td class="header-row">
+						<div class="post-header"><a name="p117621"></a>#18: 2024-08-20 10:18:54 
+						<span class='post-tools'>
+							
+							
+							
+							
+							<a href='/private/0?to=9000013#text'>ЛС</a> |
+							<a href='/profilemain/9000013'>Player001</a> | 
+							<a href="#" onclick='quote("p18-117621", "Player014"); return false;'>цитата</a>
+						</span>
+					</div>
+					</td>
+				</tr>
+				<tr style='display: ;' id='row2-117621'>
+					<td class="msg-row">
+						<div class="post-text" id="p18-117621">
+						 <div class=bc_quote><div class=bc_quote_title>Player013</b> писал(а):</div><br/>ща еще раз вынесет их, потом поплачут глава в афк уйдёт а через пол годика забудут.</div><br/> <img src="/img/smilies/icon_biggrin.gif" /><br/>
+						</div>
+						
+					</td>
+				</tr>
+				<tr style="display: ;" id="row3-117621">
+					<td class="tool-row pcount">карма: <a class="" href="/userkarma/9000013" title="" target=""><span class="vote-neg">-6</span></a></td>
+					<td class="tool-row"><table class="memo" cellspacing=0 cellpadding=0><tr><td><div class="udescr"> <i><span style="font-size: 16px;">I'M TOXIC</span></i></div></td><td style="text-align: right; width: 65px;"></td></tr></table></td></tr></table><table class='posts' cellspacing=1 cellpadding=0>
+				<tr style='display: ;' id='row1-117628'>
+					<td class="author-row" rowspan=2>
+						<div class="login"><img src="/img/offline.png" title=""/><a class="vip" href='javascript: onPaste("[b]Player003[/b], |");'>Player003</a> <img src="/img/offline.png" title=""/></div>
+						
+						
+						<div class="pcount">Ответов: 85</div>
+						<div class="pcount"><a class="" href="/claninfo/2296" title="" target="">Orion</a><br/>Старичок</div>
+					</td>
+					<td class="header-row">
+						<div class="post-header"><a name="p117628"></a>#19: 2024-08-20 23:32:34 
+						<span class='post-tools'>
+							
+							
+							
+							
+							<a href='/private/0?to=9000008#text'>ЛС</a> |
+							<a href='/profilemain/9000008'>Player001</a> | 
+							<a href="#" onclick='quote("p19-117628", "Player003"); return false;'>цитата</a>
+						</span>
+					</div>
+					</td>
+				</tr>
+				<tr style='display: ;' id='row2-117628'>
+					<td class="msg-row">
+						<div class="post-text" id="p19-117628">
+						 <div class=bc_quote><div class=bc_quote_title>Player009</b> писал(а):</div>Дизган<br/><br/>Галант<br/><br/><br/>Получается...  DeathGun---›  Player004  </div><br/>чет не понял, сравнивают легенду с каким-то галантом?<br/>
+						</div>
+						
+					</td>
+				</tr>
+				<tr style="display: ;" id="row3-117628">
+					<td class="tool-row pcount">карма: <a class="" href="/userkarma/9000008" title="" target=""><span class="vote-neg">-33</span></a></td>
+					<td class="tool-row"><table class="memo" cellspacing=0 cellpadding=0><tr><td><div class="udescr"> 42</div></td><td style="text-align: right; width: 65px;"></td></tr></table></td></tr></table><table class='posts' cellspacing=1 cellpadding=0>
+				<tr style='display: ;' id='row1-117632'>
+					<td class="author-row" rowspan=2>
+						<div class="login"><img src="/img/offline.png" title=""/><a class="platinum" href='javascript: onPaste("[b]Player013[/b], |");'>Player013</a> <img src="/img/offline.png" title=""/></div>
+						
+						<img src="http://forum.minecraft-galaxy.ru/img/avatars/9000011" />
+						<div class="pcount">Ответов: 534</div>
+						<div class="pcount"><a class="" href="/claninfo/2262" title="" target="">Crying Angels</a><br/>Angel</div>
+					</td>
+					<td class="header-row">
+						<div class="post-header"><a name="p117632"></a>#20: 2024-08-20 23:56:17 
+						<span class='post-tools'>
+							
+							
+							
+							
+							<a href='/private/0?to=9000011#text'>ЛС</a> |
+							<a href='/profilemain/9000011'>Player001</a> | 
+							<a href="#" onclick='quote("p20-117632", "Player013"); return false;'>цитата</a>
+						</span>
+					</div>
+					</td>
+				</tr>
+				<tr style='display: ;' id='row2-117632'>
+					<td class="msg-row">
+						<div class="post-text" id="p20-117632">
+						 <b>Player003</b>, Та самая &quot;легенда&quot; с помойки ? <img src="/img/smilies/icon_lol.gif" /> <img src="/img/smilies/icon_lol.gif" /> <img src="/img/smilies/icon_lol.gif" /><br/>
+						</div>
+						
+					</td>
+				</tr>
+				<tr style="display: ;" id="row3-117632">
+					<td class="tool-row pcount">карма: <a class="" href="/userkarma/9000011" title="" target=""><span class="vote-neg">-30</span></a></td>
+					<td class="tool-row"><table class="memo" cellspacing=0 cellpadding=0><tr><td><div class="udescr"> <b><font color="#CC3363">EΞΟΥΣΙΑ</font></b></div></td><td style="text-align: right; width: 65px;"></td></tr></table></td></tr></table><table class='posts' cellspacing=1 cellpadding=0>
+				<tr style='display: ;' id='row1-117645'>
+					<td class="author-row" rowspan=2>
+						<div class="login"><img src="/img/offline.png" title=""/><a class="vip" href='javascript: onPaste("[b]Player003[/b], |");'>Player003</a> <img src="/img/offline.png" title=""/></div>
+						
+						
+						<div class="pcount">Ответов: 85</div>
+						<div class="pcount"><a class="" href="/claninfo/2296" title="" target="">Orion</a><br/>Старичок</div>
+					</td>
+					<td class="header-row">
+						<div class="post-header"><a name="p117645"></a>#21: 2024-08-21 10:31:50 
+						<span class='post-tools'>
+							
+							
+							
+							
+							<a href='/private/0?to=9000008#text'>ЛС</a> |
+							<a href='/profilemain/9000008'>Player001</a> | 
+							<a href="#" onclick='quote("p21-117645", "Player003"); return false;'>цитата</a>
+						</span>
+					</div>
+					</td>
+				</tr>
+				<tr style='display: ;' id='row2-117645'>
+					<td class="msg-row">
+						<div class="post-text" id="p21-117645">
+						 <div class=bc_quote><div class=bc_quote_title>Player013</b> писал(а):</div>Player003, Та самая &quot;легенда&quot; с помойки ?   </div><br/>ты вообще кто такая,откуда тебя знать?<br/>
+						</div>
+						
+					</td>
+				</tr>
+				<tr style="display: ;" id="row3-117645">
+					<td class="tool-row pcount">карма: <a class="" href="/userkarma/9000008" title="" target=""><span class="vote-neg">-33</span></a></td>
+					<td class="tool-row"><table class="memo" cellspacing=0 cellpadding=0><tr><td><div class="udescr"> 42</div></td><td style="text-align: right; width: 65px;"></td></tr></table></td></tr></table><table class='posts' cellspacing=1 cellpadding=0>
+				<tr style='display: ;' id='row1-117666'>
+					<td class="author-row" rowspan=2>
+						<div class="login"><img src="/img/offline.png" title=""/><a class="platinum" href='javascript: onPaste("[b]Player013[/b], |");'>Player013</a> <img src="/img/offline.png" title=""/></div>
+						
+						<img src="http://forum.minecraft-galaxy.ru/img/avatars/9000011" />
+						<div class="pcount">Ответов: 534</div>
+						<div class="pcount"><a class="" href="/claninfo/2262" title="" target="">Crying Angels</a><br/>Angel</div>
+					</td>
+					<td class="header-row">
+						<div class="post-header"><a name="p117666"></a>#22: 2024-08-21 22:21:28 
+						<span class='post-tools'>
+							
+							
+							
+							
+							<a href='/private/0?to=9000011#text'>ЛС</a> |
+							<a href='/profilemain/9000011'>Player001</a> | 
+							<a href="#" onclick='quote("p22-117666", "Player013"); return false;'>цитата</a>
+						</span>
+					</div>
+					</td>
+				</tr>
+				<tr style='display: ;' id='row2-117666'>
+					<td class="msg-row">
+						<div class="post-text" id="p22-117666">
+						 <b>Player003</b>, Иди побирайся и типов на пиксели кидай, ржака<br/>
+						</div>
+						
+					</td>
+				</tr>
+				<tr style="display: ;" id="row3-117666">
+					<td class="tool-row pcount">карма: <a class="" href="/userkarma/9000011" title="" target=""><span class="vote-neg">-30</span></a></td>
+					<td class="tool-row"><table class="memo" cellspacing=0 cellpadding=0><tr><td><div class="udescr"> <b><font color="#CC3363">EΞΟΥΣΙΑ</font></b></div></td><td style="text-align: right; width: 65px;"></td></tr></table></td></tr></table><table class='posts' cellspacing=1 cellpadding=0>
+				<tr style='display: ;' id='row1-117667'>
+					<td class="author-row" rowspan=2>
+						<div class="login"><img src="/img/offline.png" title=""/><a class="vip" href='javascript: onPaste("[b]Player003[/b], |");'>Player003</a> <img src="/img/offline.png" title=""/></div>
+						
+						
+						<div class="pcount">Ответов: 85</div>
+						<div class="pcount"><a class="" href="/claninfo/2296" title="" target="">Orion</a><br/>Старичок</div>
+					</td>
+					<td class="header-row">
+						<div class="post-header"><a name="p117667"></a>#23: 2024-08-21 22:26:07 
+						<span class='post-tools'>
+							
+							
+							
+							
+							<a href='/private/0?to=9000008#text'>ЛС</a> |
+							<a href='/profilemain/9000008'>Player001</a> | 
+							<a href="#" onclick='quote("p23-117667", "Player003"); return false;'>цитата</a>
+						</span>
+					</div>
+					</td>
+				</tr>
+				<tr style='display: ;' id='row2-117667'>
+					<td class="msg-row">
+						<div class="post-text" id="p23-117667">
+						 <div class=bc_quote><div class=bc_quote_title>Player013</b> писал(а):</div>Player003, Иди побирайся и типов на пиксели кидай, ржака</div><br/>иди сета за 70к реала продавай,ржака<br/>
+						</div>
+						
+					</td>
+				</tr>
+				<tr style="display: ;" id="row3-117667">
+					<td class="tool-row pcount">карма: <a class="" href="/userkarma/9000008" title="" target=""><span class="vote-neg">-33</span></a></td>
+					<td class="tool-row"><table class="memo" cellspacing=0 cellpadding=0><tr><td><div class="udescr"> 42</div></td><td style="text-align: right; width: 65px;"></td></tr></table></td></tr></table>
+			<div class="navigate">
+				<span class="treesel" style="z-index: 2;">Страницы: </span>
+				<span class="pages"><span class="hintleft">← Ctrl</span><span class="current">1</span><span class="hintright">Ctrl →</span></span>
+			</div><div class="form-panel" id="form-panel"><form action="" method="post"  onsubmit="$(this).find('.submit').attr('disabled','disabled')" ><input type="hidden" name="form"/><table class="msg-form"><tr><td  colspan="2"><input type="hidden" name="addcomment" value=""/></td></tr><tr><td colspan="2"><div class="title">Сообщение</div><div class="control"><div id="formatTools">...</div><textarea  name="text" style="height: 200px;" id="message"></textarea></div></td></tr><tr><td colspan="2"><div class="tools"><input onclick="block_button(this);" type="submit" class="submit" value="Отправить"/></div></td></tr></table></form></div></div>
+
+<div class="copyright">
+<div style="padding:7px;">Copyright 2026 by Project Galaxy team</div>
+
+		<div style="padding:7px;"> 
+			<!-- Rating@Mail.ru counter -->
+			<script type="text/javascript">
+				var _tmr = window._tmr || (window._tmr = []);
+				_tmr.push({id: "1990623", type: "pageView", start: (new Date()).getTime()});
+				(function (d, w, id) {
+					if (d.getElementById(id)) return;
+					var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+					ts.src = "https://top-fwz1.mail.ru/js/code.js";
+					var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+					if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+				})(document, window, "topmailru-code");
+			</script><noscript><div>
+				<img src="https://top-fwz1.mail.ru/counter?id=1990623;js=na" style="border:0;position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
+			</div></noscript>
+			<!-- //Rating@Mail.ru counter -->
+		</div> 
+	
+		<!-- Yandex.Metrika counter -->
+		<div style="display:none;"><script type="text/javascript">
+		(function(w, c) {
+			(w[c] = w[c] || []).push(function() {
+				try {
+					w.yaCounter12610318 = new Ya.Metrika({id:12610318, enableAll: true});
+				}
+				catch(e) { }
+			});
+		})(window, "yandex_metrika_callbacks");
+		</script></div>
+		<script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript" defer="defer"></script>
+		<noscript><div><img src="//mc.yandex.ru/watch/12610318" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+		<!-- /Yandex.Metrika counter -->
+</div>
+
+<div style="display: none; " id="user-select">
+	<div id="user-select-category">
+		<div class="item" onclick="user_select_search();"><img class="item-icon" src="/img/search.png"/> Поиск</div>
+		<div class="item" onclick="user_select_follow(5);"><img class="item-icon" src="/img/twinks.png"/> Твинки</div>
+		<div class="item" onclick="user_select_follow(6);"><img class="item-icon" src="/img/friends.png"/> Друзья</div>
+		<div class="item" onclick="user_select_follow(7);"><img class="item-icon" src="/img/admins.png"/> Администрация</div>
+	</div>
+	<div id="user-select-list">
+
+	</div>
+	<div id="user-select-search">
+		<div>Введите ник пользователя или его часть:</div>
+		<br/>
+		<div><input type="text" style="width: 180px;" id="ui-user-select"/></div>
+	</div>
+</div>
+
+
+	<script type="text/javascript" src="/js/highlight.pack.js"></script>
+	<script>
+	  hljs.initHighlightingOnLoad();
+	</script>
+  
+	<script type="text/javascript">
+		function register() {
+			window.open("/regform.html", "register", "menubar=no,location=no,width=480,height=410")
+		}
+		
+		function show_menu(obj) {
+			obj.style.display = 'block'
+			//if(obj.style.display == "none")
+			//	$(obj).show("fade")
+		}
+		
+		function hide_menu(obj) {
+			obj.style.display = 'none'
+			//$(obj).hide("fade")
+		}
+		
+		$(function () {
+			  $('.dropdown').each(function () {
+				$(this).parent().eq(0).hoverIntent({
+					timeout: 100,
+					over: function () {
+						var current = $('.dropdown:eq(0)', this);
+						current.slideDown(100);
+					},
+					out: function () {
+						var current = $('.dropdown:eq(0)', this);
+						current.fadeOut(200);
+					}
+				});
+			  });
+
+			  $('.dropdown').each(function(i, it){
+				  var list = $(it).find('li');
+				  if(list.length > 12){
+					  list.parent().addClass('large');
+						list.each(function(index, item){
+							if(index >= list.length / 2){
+								$(item).addClass('second');
+							} 
+							else{
+								$(item).addClass('first');
+							}
+						});
+						$(it).find('.first').wrapAll('<div class="first-row"/>');
+						$(it).find('.second').wrapAll('<div class="second-row"/>');
+				  }
+			  });
+			  
+		});
+	</script>
+	<style>
+
+	</style>
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-22798613-1']);
+	  _gaq.push(['_setDomainName', '.minecraft-galaxy.ru']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+	<script type="text/javascript">
+	attach_user_auto("#ui-user-select");
+</script>
+	<link rel="stylesheet" href="/map/map.css" type="text/css"/>
+	<link rel="stylesheet" href="/js/jquery-ui.css" type="text/css"/>
+	<link rel="stylesheet" href="/js/dark.css" type="text/css"/>
+</div>
+</body>
+
+</html>

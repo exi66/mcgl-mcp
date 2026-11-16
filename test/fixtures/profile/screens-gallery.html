@@ -1,0 +1,296 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta http-equiv="x-rim-auto-match" content="none">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="keywords" content="minecraft, многопользовательская, игра, game, beta, server, сервер, mmorpg, dmh"/> 
+	<meta http-equiv="description" content="Сервер игры Minecraft Galaxy"/>
+		<title>Рейтинг скриншотов - Minecraft Galaxy</title>
+
+	<link rel="stylesheet" href="/style.css?v=10" type="text/css"/>
+	<link rel="stylesheet" href="/red.css?v=5" type="text/css"/>	<link rel="stylesheet" href="/adaptive.css?v=3" type="text/css"/>
+	
+	<meta property="og:image" content="http://minecraft-galaxy.ru/img/logo_large.png"/> 
+	<script type="text/javascript" src="/js/jquery.min.js"></script> 
+	<script type="text/javascript" src="/js/jquery-ui.min.js"></script> 
+	
+	<script type="text/javascript" src="/js/jquery.autocomplete.js"></script>
+	
+	<script type="text/javascript" src="/script.js?v=9"></script>
+	<script type="text/javascript" src="/tpl/format.js"></script>
+	<script src="/map/script.js"></script>
+	
+	<script type="text/javascript" src="/js/ThreeCanvas.js"></script>
+	<script type="text/javascript" src="/js/Cube.js"></script>
+	<script type="text/javascript" src="/js/BinFileReader.js"></script>
+	
+	<style>
+			</style>
+	
+</head>
+
+<body onresize="change_sizes();" onload="change_sizes();">
+<div class="main-div">
+	<div class="header">
+		<div class="mobile-menu"></div>
+		<div class="main-logo"></div>		<div class="title"><a href="https://minecraft-galaxy.ru">Minecraft Galaxy</a></div>
+		<div class="title-mobile"><a href="/">MCGL</a></div>
+<div class="mobile-showen-menu-back"><div class="mobile-showen-menu"><ul class="mobilemenu"><li><a class="item mobile-menu-item" href="/">Форумы</a></li><li><a class="item mobile-menu-item" href="/forum/0">Темы ↓</a>								<ul class="dropdown-mobile">
+										<li><a class="item mobile-menu-item" href="/forum/0">Последние</a></li><li><a class="item mobile-menu-item" href="/forum/-1">Избранные</a></li><li><a class="item mobile-menu-item" href="/private/0">Личные</a></li><li><a class="item mobile-menu-item" href="/forum/-210">Все свои</a></li><li><a class="item mobile-menu-item" href="/teamforums/">Форумы сообществ</a></li>								</ul>
+							</li><li><a class="item mobile-menu-item" href="/blog/">Новости</a></li><li><a class="item mobile-menu-item" href="/users/">Игроки ↓</a>								<ul class="dropdown-mobile">
+										<li><a class="item mobile-menu-item" href="/users/">Список</a></li><li><a class="item mobile-menu-item" href="/clans/">Кланы</a></li><li><a class="item mobile-menu-item" href="/teams/">Сообщества</a></li><li><a class="item mobile-menu-item" href="/topgalaxy/">Galaxy Forbes</a></li><li><a class="item mobile-menu-item" href="/bans/">Баны</a></li><li><a class="item mobile-menu-item" href="/mutes/0">Молчуны</a></li><li><a class="item mobile-menu-item" href="/achieves/"><img src="/img/achieve/best.png"/> Достижения</a></li><li><a class="item mobile-menu-item" href="/top/0">Топ 25</a></li><li><a class="item mobile-menu-item" href="/prodtop/">Производство</a></li><li><a class="item mobile-menu-item" href="/screens/0">Скриншоты</a></li><li><a class="item mobile-menu-item" href="/fortress/">Крепости</a></li><li><a class="item mobile-menu-item" href="/battles/">Дракон</a></li><li><a class="item mobile-menu-item" href="/eventcalendar/">События</a></li><li><a class="item mobile-menu-item" href="/plugins/">Плагины</a></li>								</ul>
+							</li><li><a class="item mobile-menu-item" href="/goldshop/"><span class="vip">Donate</span></a></li><li><a class="item mobile-menu-item" href="/wiki/">Помощь ↓</a>								<ul class="dropdown-mobile">
+										<li><a class="item mobile-menu-item" href="/wiki/530">Наши правила</a></li><li><a class="item mobile-menu-item" href="/wiki/">Wiki</a></li><li><a class="item mobile-menu-item" href="/wiki/FAQ">FAQ</a></li><li><a class="item mobile-menu-item" href="/professions/">Профессии</a></li><li><a class="item mobile-menu-item" href="/doc/9120">План разработок</a></li><li><a class="item mobile-menu-item" href="https://minecraft-galaxy.ru/install/">Установка клиента</a></li><li><a class="item mobile-menu-item" href="/items/">Блоки и предметы</a></li><li><a class="item mobile-menu-item" href="/wiki/O_серверах">О серверах</a></li><li><a class="item mobile-menu-item" href="/wiki/995">О гриферах</a></li><li><a class="item mobile-menu-item" href="/exchange/0"><img src="/img/arrow_up.png"/> Биржа <img src="/img/arrow_down.png"/></a></li>								</ul>
+							</li><li><a class="item mobile-menu-item" href="#"><img src="/img/map.png" width="10"/> Карты ↓</a>								<ul class="dropdown-mobile">
+										<li><a class="item mobile-menu-item" href="/capitals/"><span class="vip">Столицы</span></a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/1/0/">Main</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/2/0/">Guest</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/3/0/">DemoPlanet</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/5/0/">Hunter</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/6/0/">LittleBigPlanet</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/7/0/">MinerPlanet</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/8/0/">Clans</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/9/0/">MiniGames</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/10/0/">MonkeyPlanet</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/11/0/">Pirate station</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/12/0/">Nano</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/13/0/">Rookie</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/14/0/">Newbie</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/15/0/">Build</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/16/0/">Pacific</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/19/0/">Novice</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/20/0/">Team</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/22/0/">Farm</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/23/0/">Creator</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/25/0/">Prometeus</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/26/0/">Laboratory</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/28/0/">Zeus</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/29/0/">Dragon nest</a></li><li><a class="item mobile-menu-item" href="http://map.minecraft-galaxy.ru/#0/0/30/0/">Atlantida</a></li>								</ul>
+							</li><li><a class="item mobile-menu-item" href="/search/">Поиск</a></li><li><a class="item mobile-menu-item" href="/registration/">Регистрация</a></li></ul></div></div><div class="sms-chat-msg"></div>			<div class="login-panel">
+									<div class="profile-panel">
+						<div class="button-container">
+							<a href="/guilogin/" class="button">Войти</a>
+						</div>
+					</div>
+								</div>
+			</div>
+			<ul class="tabs mainmenu"><li><a class="item" href="/">Форумы</a></li><li><a class="item" href="/forum/0">Темы ↓</a>						<ul class="dropdown">
+								<li><a href="/forum/0">Последние</a></li><li><a href="/forum/-1">Избранные</a></li><li><a href="/private/0">Личные</a></li><li><a href="/forum/-210">Все свои</a></li><li><a href="/teamforums/">Форумы сообществ</a></li>						</ul>
+					</li><li><a class="item" href="/blog/">Новости</a></li><li><a class="item" href="/users/">Игроки ↓</a>						<ul class="dropdown">
+								<li><a href="/users/">Список</a></li><li><a href="/clans/">Кланы</a></li><li><a href="/teams/">Сообщества</a></li><li><a href="/topgalaxy/">Galaxy Forbes</a></li><li><a href="/bans/">Баны</a></li><li><a href="/mutes/0">Молчуны</a></li><li><a href="/achieves/"><img src="/img/achieve/best.png"/> Достижения</a></li><li><a href="/top/0">Топ 25</a></li><li><a href="/prodtop/">Производство</a></li><li><a href="/screens/0">Скриншоты</a></li><li><a href="/fortress/">Крепости</a></li><li><a href="/battles/">Дракон</a></li><li><a href="/eventcalendar/">События</a></li><li><a href="/plugins/">Плагины</a></li>						</ul>
+					</li><li><a class="item" href="/goldshop/"><span class="vip">Donate</span></a></li><li><a class="item" href="/wiki/">Помощь ↓</a>						<ul class="dropdown">
+								<li><a href="/wiki/530">Наши правила</a></li><li><a href="/wiki/">Wiki</a></li><li><a href="/wiki/FAQ">FAQ</a></li><li><a href="/professions/">Профессии</a></li><li><a href="/doc/9120">План разработок</a></li><li><a href="https://minecraft-galaxy.ru/install/">Установка клиента</a></li><li><a href="/items/">Блоки и предметы</a></li><li><a href="/wiki/O_серверах">О серверах</a></li><li><a href="/wiki/995">О гриферах</a></li><li><a href="/exchange/0"><img src="/img/arrow_up.png"/> Биржа <img src="/img/arrow_down.png"/></a></li>						</ul>
+					</li><li><a class="item" href="#"><img src="/img/map.png" width="10"/> Карты ↓</a>						<ul class="dropdown">
+								<li><a href="/capitals/"><span class="vip">Столицы</span></a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/1/0/">Main</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/2/0/">Guest</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/3/0/">DemoPlanet</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/5/0/">Hunter</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/6/0/">LittleBigPlanet</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/7/0/">MinerPlanet</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/8/0/">Clans</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/9/0/">MiniGames</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/10/0/">MonkeyPlanet</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/11/0/">Pirate station</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/12/0/">Nano</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/13/0/">Rookie</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/14/0/">Newbie</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/15/0/">Build</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/16/0/">Pacific</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/19/0/">Novice</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/20/0/">Team</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/22/0/">Farm</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/23/0/">Creator</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/25/0/">Prometeus</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/26/0/">Laboratory</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/28/0/">Zeus</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/29/0/">Dragon nest</a></li><li><a href="http://map.minecraft-galaxy.ru/#0/0/30/0/">Atlantida</a></li>						</ul>
+					</li><li><a class="item" href="/search/">Поиск</a></li><li><a class="item" href="/registration/">Регистрация</a></li></ul><div class="content"><a class="top-block" href="#" title="" target="">Вверх &uarr;</a><ul class="tabs filter"><li><a class="itemselect">Игровые</a></li><li><a class="item" href="/screensother/0">Разные</a></li><li><a class="item" href="/screensworks/0">Работы</a></li></ul><ul class="tabs filter"><li><a class="itemselect">Все</a></li><li><a class="item" href="/screens/1">Все лучшие</a></li><li><a class="item" href="/screens/2">Лучшие за неделю</a></li><li><a class="item" href="/screens/6">Обсуждаемые</a></li><li><a class="item" href="/screens/7">Обсуждаемые за неделю</a></li></ul><div class="frame"><div style="padding: 5px;">Лучшие авторы: <a class="girls" href="/screens/0?u=102552" title="" target="">Ms.ELiza</a> (14680), <a class="vip" href="/screens/0?u=23906" title="" target="">Steone</a> (6583), <a class="vip" href="/screens/0?u=58456" title="" target="">kosyak</a> (4259), <a class="vip" href="/screens/0?u=9553" title="" target="">Ice1408</a> (3313), <a class="vip" href="/screens/0?u=64988" title="" target="">Spiderfan01</a> (3256), <a class="vip" href="/screens/0?u=273780" title="" target="">niki4777c</a> (3234), <a class="vip" href="/screens/0?u=17751" title="" target="">player$17751</a> (3042), <a class="vip" href="/screens/0?u=39003" title="" target="">MinerMD</a> (2942), <a class="vip" href="/screens/0?u=14384" title="" target="">tomrid</a> (2851), <a class="vip" href="/screens/0?u=101760" title="" target="">Aimbot.dll</a> (2832)</div></div>
+			<div class="navigate">
+				<span class="treesel" style="z-index: 2;">Страницы:</span>
+				<span class="pages"><span class="hintleft">← Ctrl</span><span class="current">1</span><a href="/screens/0/1">2</a><a href="/screens/0/2">3</a><a href="/screens/0/3">4</a><a href="/screens/0/4">5</a><span class="separator">...</span><a href="/screens/0/1394">1395</a><a href="/screens/0/1395">1396</a><a href="/screens/0/1396">1397</a><a href="/screens/0/1397">1398</a><a href="/screens/0/1398">1399</a><span class="hintright">Ctrl →</span></span>
+			</div><div class="screens"><div class="item"><div class="title">Mob</div><div class="map-coords"><span class="home-link" onmouseover="show_map(this, event, 116, 120, 15, 64, 0)" onmouseout="hidetip()">map: <a href="http://map.minecraft-galaxy.ru/#116/120/15/0/64" target=_blank>116,120</a></span></div>
+				<div><div class="screen-comments"><a class="" href="/screencomments/191694" title="Коментарии" target="">3</a></div><img style="cursor: pointer;"  onclick='show_screen("9000001", "191694");' src="/cache/img/191694.jpg" width="210" height="180"/></div>
+				<div class="screen-bottom">
+					<div class="author"><a href="/profilemain/9000001" class="user-link eventmoder" onmouseover='showtip(1, 9000001, event)' onmouseout='hidetip()'>Player001</a></div>
+					<div class="vote-simple">7</div>
+					<div class="clear"></div>
+				</div>
+							</div><div class="item"><div class="title">А ГДЕ ВРАГИ</div><div class="map-coords"><span class="home-link" onmouseover="show_map(this, event, -8, -263, 12, 43, 0)" onmouseout="hidetip()">map: <a href="http://map.minecraft-galaxy.ru/#-8/-263/12/0/43" target=_blank>-8,-263</a></span></div>
+				<div><div class="screen-comments"><a class="" href="/screencomments/191691" title="Коментарии" target="">0</a></div><img style="cursor: pointer;"  onclick='show_screen("9000002", "191691");' src="/cache/img/191691.jpg" width="210" height="180"/></div>
+				<div class="screen-bottom">
+					<div class="author"><a href="/profilemain/9000002" class="user-link vip" onmouseover='showtip(1, 9000002, event)' onmouseout='hidetip()'>Player002</a></div>
+					<div class="vote-simple">3</div>
+					<div class="clear"></div>
+				</div>
+							</div><div class="item"><div class="title">Пасхалка у Дракулы</div><div class="map-coords"><span class="home-link" onmouseover="show_map(this, event, -69, -103, 8, 29, 0)" onmouseout="hidetip()">map: <a href="http://map.minecraft-galaxy.ru/#-69/-103/8/0/29" target=_blank>-69,-103</a></span></div>
+				<div><div class="screen-comments"><a class="" href="/screencomments/191685" title="Коментарии" target="">2</a></div><img style="cursor: pointer;"  onclick='show_screen("9000003", "191685");' src="/cache/img/191685.jpg" width="210" height="180"/></div>
+				<div class="screen-bottom">
+					<div class="author"><a href="/profilemain/9000003" class="user-link platinum" onmouseover='showtip(1, 9000003, event)' onmouseout='hidetip()'>Player003</a></div>
+					<div class="vote-simple">23</div>
+					<div class="clear"></div>
+				</div>
+							</div><div class="item"><div class="title">ой-ой</div><div class="map-coords"><span class="home-link" onmouseover="show_map(this, event, 2693, -1723, 12, 43, 0)" onmouseout="hidetip()">map: <a href="http://map.minecraft-galaxy.ru/#2693/-1723/12/0/43" target=_blank>2693,-1723</a></span></div>
+				<div><div class="screen-comments"><a class="" href="/screencomments/191682" title="Коментарии" target="">2</a></div><img style="cursor: pointer;"  onclick='show_screen("9000004", "191682");' src="/cache/img/191682.jpg" width="210" height="180"/></div>
+				<div class="screen-bottom">
+					<div class="author"><a href="/profilemain/9000004" class="user-link girls" onmouseover='showtip(1, 9000004, event)' onmouseout='hidetip()'>Player004</a></div>
+					<div class="vote-simple">11</div>
+					<div class="clear"></div>
+				</div>
+							</div><div class="item"><div class="title">Продам</div><div class="map-coords"><span class="home-link" onmouseover="show_map(this, event, 2577, 87, 1, 10, 0)" onmouseout="hidetip()">map: <a href="http://map.minecraft-galaxy.ru/#2577/87/1/0/10" target=_blank>2577,87</a></span></div>
+				<div><div class="screen-comments"><a class="" href="/screencomments/191681" title="Коментарии" target="">0</a></div><img style="cursor: pointer;"  onclick='show_screen("9000005", "191681");' src="/cache/img/191681.jpg" width="210" height="180"/></div>
+				<div class="screen-bottom">
+					<div class="author"><a href="/profilemain/9000005" class="user-link vip" onmouseover='showtip(1, 9000005, event)' onmouseout='hidetip()'>Player005</a></div>
+					<div class="vote-simple">1</div>
+					<div class="clear"></div>
+				</div>
+							</div><div class="item"><div class="title">Маска Тролля</div><div class="map-coords"><span class="home-link" onmouseover="show_map(this, event, 28, 42, 29, 129, 0)" onmouseout="hidetip()">map: <a href="http://map.minecraft-galaxy.ru/#28/42/29/0/129" target=_blank>28,42</a></span></div>
+				<div><div class="screen-comments"><a class="" href="/screencomments/191676" title="Коментарии" target="">2</a></div><img style="cursor: pointer;"  onclick='show_screen("9000006", "191676");' src="/cache/img/191676.jpg" width="210" height="180"/></div>
+				<div class="screen-bottom">
+					<div class="author"><a href="/profilemain/9000006" class="user-link platinum" onmouseover='showtip(1, 9000006, event)' onmouseout='hidetip()'>Player006</a></div>
+					<div class="vote-simple">58</div>
+					<div class="clear"></div>
+				</div>
+							</div><div class="item"><div class="title">Обновки</div><div class="map-coords"><span class="home-link" onmouseover="show_map(this, event, -78, 241, 5, 7, 0)" onmouseout="hidetip()">map: <a href="http://map.minecraft-galaxy.ru/#-78/241/5/0/7" target=_blank>-78,241</a></span></div>
+				<div><div class="screen-comments"><a class="" href="/screencomments/191660" title="Коментарии" target="">2</a></div><img style="cursor: pointer;"  onclick='show_screen("9000007", "191660");' src="/cache/img/191660.jpg" width="210" height="180"/></div>
+				<div class="screen-bottom">
+					<div class="author"><a href="/profilemain/9000007" class="user-link platinum" onmouseover='showtip(1, 9000007, event)' onmouseout='hidetip()'>Player007</a></div>
+					<div class="vote-simple">10</div>
+					<div class="clear"></div>
+				</div>
+							</div><div class="item"><div class="title">capri</div><div class="map-coords"><span class="home-link" onmouseover="show_map(this, event, 456, -77, 15, 64, 0)" onmouseout="hidetip()">map: <a href="http://map.minecraft-galaxy.ru/#456/-77/15/0/64" target=_blank>456,-77</a></span></div>
+				<div><div class="screen-comments"><a class="" href="/screencomments/191658" title="Коментарии" target="">1</a></div><img style="cursor: pointer;"  onclick='show_screen("9000008", "191658");' src="/cache/img/191658.jpg" width="210" height="180"/></div>
+				<div class="screen-bottom">
+					<div class="author"><a href="/profilemain/9000008" class="user-link girls" onmouseover='showtip(1, 9000008, event)' onmouseout='hidetip()'>Player008</a></div>
+					<div class="vote-simple">17</div>
+					<div class="clear"></div>
+				</div>
+							</div><div class="item"><div class="title">Chery_ezzkinylegoaxax</div><div class="map-coords"><span class="home-link" onmouseover="show_map(this, event, -194, 33, 12, 43, 0)" onmouseout="hidetip()">map: <a href="http://map.minecraft-galaxy.ru/#-194/33/12/0/43" target=_blank>-194,33</a></span></div>
+				<div><div class="screen-comments"><a class="" href="/screencomments/191629" title="Коментарии" target="">2</a></div><img style="cursor: pointer;"  onclick='show_screen("9000009", "191629");' src="/cache/img/191629.jpg" width="210" height="180"/></div>
+				<div class="screen-bottom">
+					<div class="author"><a href="/profilemain/9000009" class="user-link platinum" onmouseover='showtip(1, 9000009, event)' onmouseout='hidetip()'>Player009</a></div>
+					<div class="vote-simple">3</div>
+					<div class="clear"></div>
+				</div>
+							</div><div class="item"><div class="title">ok</div><div class="map-coords"><span class="home-link" onmouseover="show_map(this, event, -26, -255, 12, 43, 0)" onmouseout="hidetip()">map: <a href="http://map.minecraft-galaxy.ru/#-26/-255/12/0/43" target=_blank>-26,-255</a></span></div>
+				<div><div class="screen-comments"><a class="" href="/screencomments/191625" title="Коментарии" target="">0</a></div><img style="cursor: pointer;"  onclick='show_screen("9000010", "191625");' src="/cache/img/191625.jpg" width="210" height="180"/></div>
+				<div class="screen-bottom">
+					<div class="author"><a href="/profilemain/9000010" class="user-link girls" onmouseover='showtip(1, 9000010, event)' onmouseout='hidetip()'>Player010</a></div>
+					<div class="vote-simple">4</div>
+					<div class="clear"></div>
+				</div>
+							</div><div class="item"><div class="title">ok mohnataya</div><div class="map-coords"><span class="home-link" onmouseover="show_map(this, event, -477, -159, 12, 43, 0)" onmouseout="hidetip()">map: <a href="http://map.minecraft-galaxy.ru/#-477/-159/12/0/43" target=_blank>-477,-159</a></span></div>
+				<div><div class="screen-comments"><a class="" href="/screencomments/191615" title="Коментарии" target="">3</a></div><img style="cursor: pointer;"  onclick='show_screen("9000011", "191615");' src="/cache/img/191615.jpg" width="210" height="180"/></div>
+				<div class="screen-bottom">
+					<div class="author"><a href="/profilemain/9000011" class="user-link vip" onmouseover='showtip(1, 9000011, event)' onmouseout='hidetip()'>Player011</a></div>
+					<div class="vote-simple">1</div>
+					<div class="clear"></div>
+				</div>
+							</div><div class="item"><div class="title">ok v troem</div><div class="map-coords"><span class="home-link" onmouseover="show_map(this, event, -463, -155, 12, 43, 0)" onmouseout="hidetip()">map: <a href="http://map.minecraft-galaxy.ru/#-463/-155/12/0/43" target=_blank>-463,-155</a></span></div>
+				<div><div class="screen-comments"><a class="" href="/screencomments/191614" title="Коментарии" target="">0</a></div><img style="cursor: pointer;"  onclick='show_screen("9000011", "191614");' src="/cache/img/191614.jpg" width="210" height="180"/></div>
+				<div class="screen-bottom">
+					<div class="author"><a href="/profilemain/9000011" class="user-link vip" onmouseover='showtip(1, 9000011, event)' onmouseout='hidetip()'>Player011</a></div>
+					<div class="vote-simple">1</div>
+					<div class="clear"></div>
+				</div>
+							</div><div style="clear: both;"></div></div>
+			<div class="navigate">
+				<span class="treesel" style="z-index: 2;">Страницы:</span>
+				<span class="pages"><span class="hintleft">← Ctrl</span><span class="current">1</span><a href="/screens/0/1">2</a><a href="/screens/0/2">3</a><a href="/screens/0/3">4</a><a href="/screens/0/4">5</a><span class="separator">...</span><a href="/screens/0/1394">1395</a><a href="/screens/0/1395">1396</a><a href="/screens/0/1396">1397</a><a href="/screens/0/1397">1398</a><a href="/screens/0/1398">1399</a><span class="hintright">Ctrl →</span></span>
+			</div><div id="img-frame" onclick='$("#img-frame").hide("fade")'><img id="img"/></div></div>
+
+<div class="copyright">
+<div style="padding:7px;">Copyright 2026 by Project Galaxy team</div>
+
+		<div style="padding:7px;"> 
+			<!-- Rating@Mail.ru counter -->
+			<script type="text/javascript">
+				var _tmr = window._tmr || (window._tmr = []);
+				_tmr.push({id: "1990623", type: "pageView", start: (new Date()).getTime()});
+				(function (d, w, id) {
+					if (d.getElementById(id)) return;
+					var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
+					ts.src = "https://top-fwz1.mail.ru/js/code.js";
+					var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
+					if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
+				})(document, window, "topmailru-code");
+			</script><noscript><div>
+				<img src="https://top-fwz1.mail.ru/counter?id=1990623;js=na" style="border:0;position:absolute;left:-9999px;" alt="Top.Mail.Ru" />
+			</div></noscript>
+			<!-- //Rating@Mail.ru counter -->
+		</div> 
+	
+		<!-- Yandex.Metrika counter -->
+		<div style="display:none;"><script type="text/javascript">
+		(function(w, c) {
+			(w[c] = w[c] || []).push(function() {
+				try {
+					w.yaCounter12610318 = new Ya.Metrika({id:12610318, enableAll: true});
+				}
+				catch(e) { }
+			});
+		})(window, "yandex_metrika_callbacks");
+		</script></div>
+		<script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript" defer="defer"></script>
+		<noscript><div><img src="//mc.yandex.ru/watch/12610318" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+		<!-- /Yandex.Metrika counter -->
+</div>
+
+<div style="display: none; " id="user-select">
+	<div id="user-select-category">
+		<div class="item" onclick="user_select_search();"><img class="item-icon" src="/img/search.png"/> Поиск</div>
+		<div class="item" onclick="user_select_follow(5);"><img class="item-icon" src="/img/twinks.png"/> Твинки</div>
+		<div class="item" onclick="user_select_follow(6);"><img class="item-icon" src="/img/friends.png"/> Друзья</div>
+		<div class="item" onclick="user_select_follow(7);"><img class="item-icon" src="/img/admins.png"/> Администрация</div>
+	</div>
+	<div id="user-select-list">
+
+	</div>
+	<div id="user-select-search">
+		<div>Введите ник пользователя или его часть:</div>
+		<br/>
+		<div><input type="text" style="width: 180px;" id="ui-user-select"/></div>
+	</div>
+</div>
+
+
+	<script type="text/javascript" src="/js/highlight.pack.js"></script>
+	<script>
+	  hljs.initHighlightingOnLoad();
+	</script>
+  
+	<script type="text/javascript">
+		function register() {
+			window.open("/regform.html", "register", "menubar=no,location=no,width=480,height=410")
+		}
+		
+		function show_menu(obj) {
+			obj.style.display = 'block'
+			//if(obj.style.display == "none")
+			//	$(obj).show("fade")
+		}
+		
+		function hide_menu(obj) {
+			obj.style.display = 'none'
+			//$(obj).hide("fade")
+		}
+		
+		$(function () {
+			  $('.dropdown').each(function () {
+				$(this).parent().eq(0).hoverIntent({
+					timeout: 100,
+					over: function () {
+						var current = $('.dropdown:eq(0)', this);
+						current.slideDown(100);
+					},
+					out: function () {
+						var current = $('.dropdown:eq(0)', this);
+						current.fadeOut(200);
+					}
+				});
+			  });
+
+			  $('.dropdown').each(function(i, it){
+				  var list = $(it).find('li');
+				  if(list.length > 12){
+					  list.parent().addClass('large');
+						list.each(function(index, item){
+							if(index >= list.length / 2){
+								$(item).addClass('second');
+							} 
+							else{
+								$(item).addClass('first');
+							}
+						});
+						$(it).find('.first').wrapAll('<div class="first-row"/>');
+						$(it).find('.second').wrapAll('<div class="second-row"/>');
+				  }
+			  });
+			  
+		});
+	</script>
+	<style>
+
+	</style>
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-22798613-1']);
+	  _gaq.push(['_setDomainName', '.minecraft-galaxy.ru']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+	<script type="text/javascript">
+	attach_user_auto("#ui-user-select");
+</script>
+	<link rel="stylesheet" href="/map/map.css" type="text/css"/>
+	<link rel="stylesheet" href="/js/jquery-ui.css" type="text/css"/>
+	<link rel="stylesheet" href="/js/dark.css" type="text/css"/>
+</div>
+</body>
+
+</html>

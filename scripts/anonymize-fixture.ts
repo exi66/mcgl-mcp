@@ -14,14 +14,30 @@ const KEEP = new Set(["618942", "714940"]); // GalaxyEvent, Capri
 const [input, output] = process.argv.slice(2);
 let html = readFileSync(input, "utf8");
 
+const KEEP_NAMES = new Set(["GalaxyEvent", "Capri"]);
 const names = new Map<string, string>();
 const ids = new Map<string, string>();
+const addId = (id: string) => {
+  if (!KEEP.has(id) && id !== "0" && !ids.has(id)) ids.set(id, String(9_000_000 + ids.size + 1));
+};
+const addName = (nick: string) => {
+  const n = nick.trim();
+  if (n && !KEEP_NAMES.has(n) && !names.has(n)) names.set(n, `Player${String(names.size + 1).padStart(3, "0")}`);
+};
+
+// Ники: ссылки на профиль, а у авторов постов — onPaste("[b]ник[/b]…") и quote("pN-ID", "ник").
 for (const [, id, name] of html.matchAll(/<a href=["']\/profilemain\/(\d+)["'][^>]*>([^<]+)<\/a>/g)) {
-  if (KEEP.has(id) || id === "0") continue;
-  if (!ids.has(id)) ids.set(id, String(9_000_000 + ids.size + 1));
-  const nick = name.trim();
-  if (nick && !names.has(nick)) names.set(nick, `Player${ids.get(id)!.slice(-3)}`);
+  if (KEEP.has(id)) continue;
+  addId(id);
+  addName(name);
 }
+for (const [, name] of html.matchAll(/onPaste\(\s*"\[b\]([^"[]+)\[\/b\]/g)) addName(name);
+for (const [, name] of html.matchAll(/quote\("p\d+-\d+",\s*"([^"]+)"\)/g)) addName(name);
+// id игроков в любых ссылках на профиль, ЛС, карму, приваты.
+for (const [, id] of html.matchAll(/\/(?:profilemain|userkarma|zones|userscreens)\/(\d+)|[?&]to=(\d+)/g)) {
+  if (id) addId(id);
+}
+for (const [, id] of html.matchAll(/[?&]to=(\d+)/g)) addId(id);
 
 const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 // Длинные ники первыми, чтобы "Nick" не заменился внутри "Nick2".
